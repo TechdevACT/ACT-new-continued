@@ -10,7 +10,7 @@ Starter kit ini menyediakan fondasi untuk proyek Laravel dengan autentikasi Soci
 - Laravel Socialite terintegrasi (contoh dengan Google)
 
 ## Buat credential OAuth pada Google Cloud Console
-1. **Dapatkan Client ID dan Client Secret
+1. **Dapatkan Client ID dan Client Secret**
 2. **Copy pada .env**
     ```bash
     GOOGLE_CLIENT_ID=
