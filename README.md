@@ -9,6 +9,13 @@ Starter kit ini menyediakan fondasi untuk proyek Laravel dengan autentikasi Soci
 - Laravel Breeze untuk autentikasi email/password
 - Laravel Socialite terintegrasi (contoh dengan Google)
 
+## Buat credential OAuth pada Google Cloud Console
+1. **Dapatkan Client ID dan Client Secret
+2. **Copy pada .env**
+    ```bash
+    GOOGLE_CLIENT_ID=
+    GOOGLE_CLIENT_SECRET=
+
 ## Cara Penggunaan
 
 1.  **Gunakan sebagai Template:** Klik tombol "Use this template" di halaman GitHub untuk membuat repositori baru dari template ini.
