@@ -1,96 +1,67 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import InteractiveCards from '@/Components/InteractiveCards.vue';
+import NavbarHeader from '@/Components/NavbarHeader.vue';
+import ProjectComponent from '@/Components/ProjectComponent.vue';
+import { Head } from '@inertiajs/vue3';
+
+const images = [
+    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
+    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
+    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png",
+    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp",
+    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"
+];
+
+const transformStyles = [
+    "rotate(5deg) translate(-300px)",
+    "rotate(0deg) translate(-150px)",
+    "rotate(-5deg)",
+    "rotate(5deg) translate(150px)",
+    "rotate(-5deg) translate(300px)"
+];
+
 </script>
 
 <template>
 
-    <!-- <Head title="Welcome - " /> -->
-    <div class="flex justify-between items-center py-8 px-16">
-        <div class="text-2xl font-bold animate-fade-right w-1/3">
-            act! Digital Agency
-        </div>
-        <div class="flex justify-center items-center animate-fade-down w-1/3">
-            <!-- Index -->
-            <div class="relative group">
-                <div class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700">
-                    <span
-                        class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
-                        Index
-                    </span>
-                    <span
-                        class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3">
-                        Index
-                    </span>
-                </div>
+    <Head title="Welcome - " />
+    <NavbarHeader />
 
-                <div
-                    class="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-40 rounded-xl bg-zinc-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
-                    <div class="flex flex-col" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">About</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Team</Link>
-                    </div>
-                </div>
-            </div>
-
-            <!-- News -->
-            <div class="relative group">
-                <div class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700">
-                    <span
-                        class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
-                        News
-                    </span>
-                    <span
-                        class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3">
-                        News
-                    </span>
-                </div>
-
-                <div
-                    class="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-40 rounded-xl bg-zinc-800 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
-                    <div class="flex flex-col" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Blog</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Events</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Press</Link>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project -->
-            <div class="relative group">
-                <div class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700">
-                    <span
-                        class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
-                        Project
-                    </span>
-                    <span
-                        class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3">
-                        Project
-                    </span>
-                </div>
-
-                <div
-                    class="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-40 rounded-xl bg-zinc-800 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
-                    <div class="flex flex-col" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Project 1</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Project 2</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Project 3</Link>
-                        <Link href="#" class="px-4 py-2 text-white hover:text-yellow-500 transition-all duration-300 ease-in-out"
-                            role="menuitem">Project 4</Link>
-                    </div>
-                </div>
-            </div>
+    <div class="flex flex-col py-16 justify-center items-center animate-fade-up">
+        <div class="w-1/2 flex justify-center">
+            <h1 class="text-7xl text-center font-bold">A place to display your masterpiece</h1>
         </div>
 
-        <div class="text-end animate-fade-left w-1/3">
-            switcher
+        <div class="hidden lg:flex lg:mt-20">
+            <InteractiveCards custom-class="custom-bounceCards" :card-size="300" :hover-offset="200" :images="images"
+                :container-width="500" :container-height="250" :animation-delay="1" :animation-stagger="0.08"
+                ease-type="elastic.out(1, 0.5)" :transform-styles="transformStyles" :enable-hover="true" />
+        </div>
+        <div class="flex lg:hidden">
+            <InteractiveCards custom-class="custom-bounceCards" :card-size="100" :hover-offset="50" :images="images"
+                :container-width="500" :container-height="250" :animation-delay="1" :animation-stagger="0.08"
+                ease-type="elastic.out(1, 0.5)" :transform-styles="transformStyles" :enable-hover="true" />
+        </div>
+
+    </div>
+
+    <div class="flex flex-col justify-center items-center py-16 animate-fade-up">
+        <div class="w-1/2 flex justify-center mb-4">
+            <h2 class="text-2xl text-center">Artists can display their masterpieces, and buyers can discover and
+                purchase works that resonate with them.
+            </h2>
+        </div>
+        <div class="flex gap-8">
+            <button
+                class="bg-black hover:bg-amber-200 text-white hover:text-black text-xl rounded-xl px-4 py-2 transition-all duration-300">
+                Contact Me
+            </button>
+            <button
+                class="bg-gray-200 hover:bg-amber-200 text-black text-xl rounded-xl px-4 py-2 transition-all duration-300">
+                Discover Our Work
+            </button>
         </div>
     </div>
+
+    <ProjectComponent />
 </template>
