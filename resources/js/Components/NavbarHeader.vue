@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import ThemeSwitcher from './ThemeSwitcher.vue';
 
 const menu = [
     {
@@ -37,32 +38,37 @@ const menu = [
 </script>
 
 <template>
-    <header class="relative z-50 flex justify-between items-center my-8 mx-6 sm:mx-16">
-        <div class="text-2xl font-bold animate-fade-right w-1/3">
+    <!-- Tambahkan transisi warna di header -->
+    <header class="relative z-50 flex justify-between items-center my-8 mx-6 sm:mx-16 transition-colors duration-500">
+        <!-- Teks utama diubah untuk mode gelap -->
+        <div class="text-2xl font-bold animate-fade-right w-1/3 text-black dark:text-white">
             <Link href="/">act! Digital Agency</Link>
         </div>
 
         <nav class="w-1/3 animate-fade-down">
             <ul class="flex justify-center items-center">
                 <li v-for="m in menu" :key="m.name" class="relative group">
+                    <!-- Teks menu diubah untuk mode gelap -->
                     <div
-                        class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700">
+                        class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700 dark:text-gray-300">
                         <span
                             class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
                             {{ m.name }}
                         </span>
+                        <!-- Teks hover juga diubah -->
                         <span v-if="m.submenu"
-                            class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3">
+                            class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                             {{ m.name }}
                         </span>
                         <Link v-if="!m.submenu" :href="m.link"
-                            class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3">
+                            class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                         {{ m.name }}
                         </Link>
                     </div>
 
+                    <!-- Latar submenu dan teks diubah untuk mode gelap -->
                     <div v-if="m.submenu"
-                        class="absolute left-1/2 -translate-x-1/2 top-full w-40 rounded-xl bg-zinc-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
+                        class="absolute left-1/2 -translate-x-1/2 top-full w-40 rounded-xl bg-zinc-800 dark:bg-gray-800 dark:border dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
                         <div class="flex flex-col" role="menu" aria-orientation="vertical"
                             aria-labelledby="options-menu">
                             <Link v-for="sm in m.submenu" :key="sm.name" :href="sm.link"
@@ -77,7 +83,7 @@ const menu = [
         </nav>
 
         <div class="text-end animate-fade-left w-1/3">
-            switcher
+            <ThemeSwitcher />
         </div>
     </header>
 </template>

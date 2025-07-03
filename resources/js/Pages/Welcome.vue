@@ -70,10 +70,13 @@ const mobileTransformStyles = [
     <Head title="Welcome - " />
     <NavbarHeader />
 
-    <main class="mx-auto max-w-7xl">
+    <!-- Tambahkan transisi warna di main content -->
+    <main class="mx-auto max-w-7xl transition-colors duration-500">
         <section class="flex flex-col pb-0 sm:py-16 justify-center items-center animate-fade-up">
             <div class="sm:w-1/2 flex justify-center">
-                <h1 class="text-4xl sm:text-7xl text-center font-bold">A place to display your masterpiece</h1>
+                <!-- Ubah warna teks heading -->
+                <h1 class="text-4xl sm:text-7xl text-center font-bold text-black dark:text-white">A place to display
+                    your masterpiece</h1>
             </div>
 
             <div class="hidden lg:flex lg:mt-20">
@@ -91,18 +94,21 @@ const mobileTransformStyles = [
 
         <section class="flex flex-col justify-center items-center pb-16 sm:pb-0 sm:py-16 animate-fade-up">
             <div class="w-11/12 lg:w-1/2 flex justify-center mb-4">
-                <h2 class="text-lg lg:text-2xl text-center">Artists can display their masterpieces, and buyers can
+                <!-- Ubah warna teks deskripsi -->
+                <h2 class="text-lg lg:text-2xl text-center text-gray-800 dark:text-gray-300">Artists can display their
+                    masterpieces, and buyers can
                     discover and
                     purchase works that resonate with them.
                 </h2>
             </div>
             <div class="flex gap-8">
+                <!-- Ubah style tombol untuk dark mode -->
                 <Link href="#"
-                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-xl rounded-xl px-4 py-2 transition-all duration-300">
+                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white">
                 Contact Me
                 </Link>
                 <Link href="#"
-                    class="bg-gray-200 hover:bg-amber-200 text-black text-xl rounded-xl px-4 py-2 transition-all duration-300">
+                    class="bg-gray-200 hover:bg-amber-200 text-black text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400">
                 Discover Our Work
                 </Link>
             </div>
