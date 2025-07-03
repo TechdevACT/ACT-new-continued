@@ -167,7 +167,7 @@ watch(
 
 <template>
     <div :class="['bounce-cards-container', customClass]" :style="{
-        width: `${containerWidth}px`,
+        width: `100%`,
         height: `${containerHeight}px`,
     }">
         <div v-for="(src, idx) in images" :key="idx" :class="['card', `card-${idx}`]" :style="{
