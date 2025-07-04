@@ -2,6 +2,14 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBehance, faDribbble, faFacebookF, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+
+const icons = [
+    { icon: faFacebookF, link: 'https://www.facebook.com' },
+    { icon: faInstagram, link: 'https://www.instagram.com' },
+    { icon: faBehance, link: 'https://www.behance.net' },
+    { icon: faXTwitter, link: 'https://twitter.com' },
+    { icon: faDribbble, link: 'https://dribbble.com' },
+]
 </script>
 
 <template>
@@ -16,18 +24,20 @@ import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 
             <div class="flex flex-col gap-2 mb-6 sm:mb-0">
                 <h2 class="text-xl font-bold">Social Media</h2>
-                <div class="flex gap-4 text-gray-700 dark:text-gray-300">
-                    <FontAwesomeIcon :icon="faFacebookF" size="lg" />
-                    <FontAwesomeIcon :icon="faInstagram" size="lg" />
-                    <FontAwesomeIcon :icon="faBehance" size="lg" />
-                    <FontAwesomeIcon :icon="faXTwitter" size="lg" />
-                    <FontAwesomeIcon :icon="faDribbble" size="lg" />
+                <div class="flex -ml-3">
+                    <a v-for="(icon, index) in icons" :key="index" :href="icon.link" target="_blank"
+                        rel="noopener noreferrer"
+                        class="group relative w-10 h-10 flex items-center justify-center text-black dark:text-white hover:text-white dark:hover:text-black overflow-hidden rounded-full">
+                        <span
+                            class="absolute inset-0 rounded-full scale-0 bg-black dark:bg-white transition-transform duration-300 ease-out group-hover:scale-100 z-0"></span>
+                        <FontAwesomeIcon :icon="icon.icon" size="lg" class="relative z-10" />
+                    </a>
                 </div>
             </div>
 
             <div class="mb-6 sm:mb-0">
                 <h2 class="text-xl font-bold">Contact</h2>
-                <h2 class="text-gray-700 dark:text-gray-300">info@actdigital.agency</h2>
+                <h2 class="text-gray-700 dark:text-gray-300 h-10 mt-2">info@actdigital.agency</h2>
             </div>
         </div>
 

@@ -5,7 +5,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue';
 const menu = [
     {
         name: 'Index',
-        link: '#',
+        link: '/',
         submenu: [
             { name: 'About', link: '#' },
             { name: 'Services', link: '#' },
@@ -32,7 +32,7 @@ const menu = [
     },
     {
         name: 'Contact',
-        link: '#',
+        link: '/contact',
     },
 ];
 </script>
@@ -60,7 +60,7 @@ const menu = [
                             class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                             {{ m.name }}
                         </span>
-                        <Link v-if="!m.submenu" :href="m.link"
+                        <Link :href="m.link"
                             class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                         {{ m.name }}
                         </Link>

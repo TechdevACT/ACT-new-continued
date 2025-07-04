@@ -1,9 +1,8 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
-import NavbarHeader from '@/Components/NavbarHeader.vue';
 import ProjectComponent from '@/Components/ProjectComponent.vue';
-import Footer from '@/Components/Footer.vue';
-import { Head, Link } from '@inertiajs/vue3';
 
 const projects = [
     {
@@ -63,18 +62,17 @@ const mobileTransformStyles = [
     "rotate(5deg) translate(60px)",
     "rotate(-5deg) translate(120px)"
 ];
+
 </script>
 
 <template>
+    <DefaultLayout title="Welcome -">
+        <template #meta>
+            <meta name="description" content="Meta Description Here" />
+        </template>
 
-    <Head title="Welcome - " />
-    <NavbarHeader />
-
-    <!-- Tambahkan transisi warna di main content -->
-    <main class="mx-auto max-w-7xl transition-colors duration-500">
         <section class="flex flex-col pb-0 sm:py-16 justify-center items-center animate-fade-up">
             <div class="sm:w-1/2 flex justify-center">
-                <!-- Ubah warna teks heading -->
                 <h1 class="text-4xl sm:text-7xl text-center font-bold text-black dark:text-white">A place to display
                     your masterpiece</h1>
             </div>
@@ -94,7 +92,6 @@ const mobileTransformStyles = [
 
         <section class="flex flex-col justify-center items-center pb-16 sm:pb-0 sm:py-16 animate-fade-up">
             <div class="w-11/12 lg:w-1/2 flex justify-center mb-4">
-                <!-- Ubah warna teks deskripsi -->
                 <h2 class="text-lg lg:text-2xl text-center text-gray-800 dark:text-gray-300">Artists can display their
                     masterpieces, and buyers can
                     discover and
@@ -102,7 +99,6 @@ const mobileTransformStyles = [
                 </h2>
             </div>
             <div class="flex gap-8">
-                <!-- Ubah style tombol untuk dark mode -->
                 <Link href="#"
                     class="bg-black hover:bg-amber-200 text-white hover:text-black text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white">
                 Contact Me
@@ -118,8 +114,5 @@ const mobileTransformStyles = [
             <ProjectComponent :projects="projects" :categories="projectCategories" />
         </section>
 
-
-    </main>
-
-    <Footer />
+    </DefaultLayout>
 </template>
