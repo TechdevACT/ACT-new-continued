@@ -1,4 +1,5 @@
 <script setup>
+// ... (script setup tidak berubah)
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBehance, faDribbble, faFacebookF, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
@@ -13,15 +14,12 @@ const icons = [
 </script>
 
 <template>
-    <!-- Ubah latar footer dan tambahkan transisi -->
     <footer class="w-full bg-gray-200 dark:bg-zinc-950 transition-colors duration-500">
-        <!-- Ubah warna teks di dalam footer -->
         <div
             class="max-w-7xl mx-auto px-4 pt-16 pb-0 sm:pb-16 flex flex-col sm:grid sm:grid-cols-4 sm:items-end text-black dark:text-white">
             <div class="sm:col-span-2 mb-6 sm:mb-0">
                 <h2 class="text-4xl font-bold">LET'S MAKE<br>IT HAPPEN</h2>
             </div>
-
             <div class="flex flex-col gap-2 mb-6 sm:mb-0">
                 <h2 class="text-xl font-bold">Social Media</h2>
                 <div class="flex -ml-3">
@@ -34,7 +32,6 @@ const icons = [
                     </a>
                 </div>
             </div>
-
             <div class="mb-6 sm:mb-0">
                 <h2 class="text-xl font-bold">Contact</h2>
                 <h2 class="text-gray-700 dark:text-gray-300 h-10 mt-2">info@actdigital.agency</h2>
@@ -42,19 +39,6 @@ const icons = [
         </div>
 
         <div class="relative flex overflow-hidden group pb-10 text-black dark:text-white">
-            <div class="flex whitespace-nowrap group-hover:paused animate-scroll">
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">
-                    <span>
-                        Photography
-                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
-                    </span>
-                </h3>
-
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
-                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
-                </h3>
-            </div>
-
             <div class="flex whitespace-nowrap group-hover:paused animate-scroll" aria-hidden="true">
                 <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
@@ -63,14 +47,27 @@ const icons = [
                 <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
+
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                </h3>
+
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                </h3>
+
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                </h3>
             </div>
         </div>
 
-        <!-- Ubah warna teks copyright -->
-        <div class="flex justify-between max-w-7xl p-4 mx-auto">
-            <span class="text-gray-500 dark:text-gray-400 text-xl">&copy; {{ new Date().getFullYear() }} act! Digital
+        <div
+            class="flex flex-row items-center justify-between gap-2 max-w-7xl p-4 mx-auto text-center sm:text-left">
+            <span class="text-gray-500 dark:text-gray-400 text-base sm:text-xl">&copy; {{ new Date().getFullYear() }}
+                act! Digital
                 Agency</span>
-            <span class="text-gray-500 dark:text-gray-400 text-xl">Privacy Policy</span>
+            <span class="text-gray-500 dark:text-gray-400 text-base sm:text-xl">Privacy Policy</span>
         </div>
     </footer>
 </template>

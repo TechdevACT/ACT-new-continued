@@ -14,7 +14,7 @@ export default {
     theme: {
         extend: {
             animation: {
-                scroll: 'scroll 50s linear infinite',
+                scroll: 'scroll 80s linear infinite',
             },
             // Menambahkan keyframes untuk animasi 'scroll'
             keyframes: {

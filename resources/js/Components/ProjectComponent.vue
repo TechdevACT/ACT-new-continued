@@ -40,9 +40,8 @@ const loadMore = () => {
 
 <template>
     <div class="flex flex-col justify-center items-center my-10 sm:my-20 animate-fade-up px-4">
-        <!-- Ubah latar filter dan teks untuk dark mode -->
         <div
-            class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-gray-200 dark:bg-gray-300 rounded-xl font-bold transition-colors duration-500">
+            class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-gray-200 dark:bg-gray-300 rounded-xl font-bold transition-colors duration-500 p-1.5 sm:p-2">
             <div v-for="category in props.categories" :key="category" @click="setFilter(category)" :class="[
                 'px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition-all ease-in-out duration-500 cursor-pointer',
                 {
@@ -59,19 +58,17 @@ const loadMore = () => {
         <TransitionGroup tag="div" name="project" class="w-full flex flex-wrap gap-10 justify-center px-4 mb-10">
             <div v-for="project in displayedProjects" :key="project.title"
                 class="flex flex-col justify-center items-center">
-                <div class="w-96 h-96 overflow-hidden rounded-3xl relative group">
+                <div class="w-full max-w-sm h-auto aspect-square overflow-hidden rounded-3xl relative group">
                     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         :src="project.image" :alt="project.title" />
                 </div>
-                <!-- Ubah warna teks judul dan tipe proyek -->
-                <div class="w-full flex justify-between items-center py-4 transition-colors duration-500">
+                <div class="w-full max-w-sm flex justify-between items-center py-4 transition-colors duration-500">
                     <h3 class="text-2xl uppercase font-bold text-black dark:text-white">{{ project.title }}</h3>
                     <h4 class="text-lg text-gray-500 dark:text-gray-400">{{ project.type }}</h4>
                 </div>
             </div>
         </TransitionGroup>
 
-        <!-- Ubah style tombol Load More untuk dark mode -->
         <button v-if="filteredProjects.length > 0 && visibleProjectsCount < filteredProjects.length" @click="loadMore"
             class="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
             <div

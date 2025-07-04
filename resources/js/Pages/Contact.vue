@@ -78,15 +78,12 @@ const icons = [
                     </div>
                 </div>
                 <div class="sm:w-2/3">
-                    <h2 class="text-6xl dark:text-white font-bold mb-4">GET IN TOUCH WITH US</h2>
+                    <h2 class="text-3xl sm:text-6xl dark:text-white font-bold mb-4">GET IN TOUCH WITH US</h2>
                     <p class="text-lg dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project
                         in mind,
-                        need a
-                        quote, or
-                        just
-                        want to say
-                        hello,
-                        feel free to reach out. Fill out the form below or use our contact details to connect with us.
+                        need a quote, or just want to say hello, feel free to reach out. Fill out the form below or use
+                        our
+                        contact details to connect with us.
                     </p>
 
                     <form action="">
@@ -102,7 +99,7 @@ const icons = [
                                 class="col-span-2 h-40 rounded-xl py-2 px-4 bg-white border border-white shadow-xl"
                                 placeholder="Message"></textarea>
                             <button
-                                class="col-span-2 rounded-xl py-2 px-4 bg-black dark:bg-amber-200 text-white dark:text-black hover:bg-amber-200 dark:hover:bg-amber-400 hover:text-black transition-all duration-500">Submit</button>
+                                class="col-span-2 rounded-xl py-2 px-4 bg-black dark:bg-amber-400 text-white dark:text-black hover:bg-amber-200 dark:hover:bg-amber-500 hover:text-black transition-all duration-500">Submit</button>
                         </div>
                     </form>
                 </div>

@@ -9,10 +9,11 @@ defineProps({
 </script>
 
 <template>
+
     <Head>
         <title>{{ title }}</title>
 
-        <meta name="description" content="Deskripsi default aplikasi Anda. Ini bisa di-override per halaman." >
+        <meta name="description" content="Deskripsi default aplikasi Anda. Ini bisa di-override per halaman.">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

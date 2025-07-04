@@ -1,4 +1,5 @@
 <script setup>
+// ... (script setup tidak berubah)
 import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
@@ -22,7 +23,7 @@ const projects = [
     },
     {
         title: "the dark side 2",
-        type: "Style",
+        type: "Design",
         image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/Colorful-Assortment-of-Macarons-and-Packaging.webp"
     },
     {
@@ -62,7 +63,6 @@ const mobileTransformStyles = [
     "rotate(5deg) translate(60px)",
     "rotate(-5deg) translate(120px)"
 ];
-
 </script>
 
 <template>
@@ -71,8 +71,8 @@ const mobileTransformStyles = [
             <meta name="description" content="Meta Description Here" />
         </template>
 
-        <section class="flex flex-col pb-0 sm:py-16 justify-center items-center animate-fade-up">
-            <div class="sm:w-1/2 flex justify-center">
+        <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
+            <div class="sm:w-1/2 px-4 flex justify-center">
                 <h1 class="text-4xl sm:text-7xl text-center font-bold text-black dark:text-white">A place to display
                     your masterpiece</h1>
             </div>
@@ -90,21 +90,21 @@ const mobileTransformStyles = [
             </div>
         </section>
 
-        <section class="flex flex-col justify-center items-center pb-16 sm:pb-0 sm:py-16 animate-fade-up">
-            <div class="w-11/12 lg:w-1/2 flex justify-center mb-4">
+        <section class="flex flex-col justify-center items-center pb-16 sm:pb-0 sm:py-16 animate-fade-up px-4">
+            <div class="w-full lg:w-1/2 flex justify-center mb-6">
                 <h2 class="text-lg lg:text-2xl text-center text-gray-800 dark:text-gray-300">Artists can display their
                     masterpieces, and buyers can
                     discover and
                     purchase works that resonate with them.
                 </h2>
             </div>
-            <div class="flex gap-8">
+            <div class="flex flex-row gap-4 sm:gap-8">
                 <Link href="#"
-                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white">
+                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white text-center">
                 Contact Me
                 </Link>
                 <Link href="#"
-                    class="bg-gray-200 hover:bg-amber-200 text-black text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400">
+                    class="bg-gray-200 hover:bg-amber-200 text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400 text-center">
                 Discover Our Work
                 </Link>
             </div>
@@ -113,6 +113,5 @@ const mobileTransformStyles = [
         <section>
             <ProjectComponent :projects="projects" :categories="projectCategories" />
         </section>
-
     </DefaultLayout>
 </template>
