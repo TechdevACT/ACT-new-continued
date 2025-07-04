@@ -30,7 +30,7 @@ const icons = [
                 </div>
                 <div class="sm:w-2/3 h-96">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322223!2d106.81958887532394!3d-6.194741393792367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1720056501659!5m2!1sid!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.362476116002!2d112.63348289999999!3d-7.961441200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629cfeb241105%3A0xce3fb2bbfc3db8ef!2sAct*21%20Digital%20Agency%20Branch%20Malang!5e0!3m2!1sen!2sid!4v1751596705599!5m2!1sen!2sid"
                         class="w-full h-full rounded-3xl shadow-xl" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
@@ -79,7 +79,9 @@ const icons = [
                 </div>
                 <div class="sm:w-2/3">
                     <h2 class="text-6xl dark:text-white font-bold mb-4">GET IN TOUCH WITH US</h2>
-                    <p class="text-lg dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project in mind, need a
+                    <p class="text-lg dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project
+                        in mind,
+                        need a
                         quote, or
                         just
                         want to say
