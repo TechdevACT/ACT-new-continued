@@ -21,4 +21,9 @@ class PageController extends Controller
     {
         return Inertia::render('Contact');
     }
+
+    public function about()
+    {
+        return Inertia::render('About');
+    }
 }

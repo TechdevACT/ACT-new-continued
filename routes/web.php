@@ -9,6 +9,7 @@ use Inertia\Inertia;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

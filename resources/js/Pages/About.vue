@@ -1,0 +1,207 @@
+<script setup>
+import { Link } from '@inertiajs/vue3';
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faFacebookF, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+import { ref } from 'vue';
+import Testimonials from '@/Components/Testimonials.vue';
+
+const teams = [
+    {
+        name: "Bruce Wayne",
+        role: "CEO",
+        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/Professional-Portrait-of-a-Man.webp",
+        facebook: "https://www.facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://www.linkedin.com",
+    },
+    {
+        name: "John Doe",
+        role: "Developer",
+        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/fnk_avatar_2.webp",
+        facebook: "https://www.facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://www.linkedin.com",
+    },
+    {
+        name: "Harley Quinn",
+        role: "Designer",
+        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/Autumn-Radiance.webp",
+        facebook: "https://www.facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://www.linkedin.com",
+    },
+];
+
+const clients = [
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-4.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-2.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-1.svg'
+];
+</script>
+
+<template>
+    <DefaultLayout title="About Us -" navbar-type="inverse">
+        <template #meta>
+            <meta name="description" content="Meta Description Here" />
+        </template>
+
+        <template #fullwidth>
+            <section
+                class="w-full h-screen bg-[url('/images/about/bg-about.png')] dark:bg-[url('/images/about/bg-about-dark.jpg')] bg-cover bg-center py-12 -mt-[102px] sm:-mt-[88px] animate-fade transition-all duration-500">
+                <div class="text-center text-3xl font-bold h-full flex items-center justify-center">
+                    <div class="flex flex-col gap-2 uppercase max-w-4xl">
+                        <h2 class="text-4xl sm:text-8xl text-white dark:text-black transition-all duration-500">
+                            From idea to reality</h2>
+                        <h2
+                            class="text-4xl sm:text-8xl text-yellow-200 dark:text-yellow-500 transition-all duration-500">
+                            your vision, our theme.</h2>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <section class="py-16 mx-4">
+            <div class="flex flex-col w-full">
+                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">FANKY team is not just a design,
+                    it's a family</h2>
+                <div class="flex justify-end mb-10">
+                    <div class="sm:w-1/2">
+                        <h2 class="text-xl text-justify dark:text-white">
+                            Over 10 years experience in design, close collaboration in work, friendship and a sense of
+                            humor is
+                            what makes FANKY a unique company. Meet the team members:
+                        </h2>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-10">
+                    <div v-for="team in teams">
+                        <div class="flex rounded-3xl h-96 items-end bg-cover"
+                            :style="{ backgroundImage: `url('${team.image}')` }">
+                            <div
+                                class="flex m-3 p-1 gap-2 rounded-2xl bg-white dark:bg-gray-600 transition-all duration-300">
+                                <a :href="team.facebook" target="_blank"
+                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
+                                    <FontAwesomeIcon :icon="faFacebookF"
+                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
+                                </a>
+                                <a :href="team.twitter" target="_blank"
+                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
+                                    <FontAwesomeIcon :icon="faXTwitter"
+                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
+                                </a>
+                                <a :href="team.linkedin" target="_blank"
+                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
+                                    <FontAwesomeIcon :icon="faLinkedinIn"
+                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-2">
+                            <h2 class="text-2xl font-bold dark:text-white">{{ team.name }}</h2>
+                            <h2 class="text-lg dark:text-white">{{ team.role }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sm:py-16 mx-4">
+            <span class="text-2xl">/ Approach</span>
+            <div class="flex flex-col w-full mt-2">
+                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">We solve problems to help
+                    businesses grow</h2>
+                <div class="flex justify-end mb-10">
+                    <div class="sm:w-1/2">
+                        <h2 class="text-xl text-justify dark:text-white">
+                            No matter what you bring—be it a landing page, a mobile app, or a full-scale e-commerce
+                            platform—we
+                            approach every project with the business’s growth and success as our top priority.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sm:py-16 mx-4 mb-10">
+            <span class="text-2xl">/ Expertise</span>
+            <div class="relative flex overflow-hidden group pb-10 text-black dark:text-white">
+                <div class="flex whitespace-nowrap group-hover:paused animate-scroll" aria-hidden="true">
+                    <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                    </h3>
+
+                    <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                    </h3>
+
+                    <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                    </h3>
+
+                    <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                    </h3>
+
+                    <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                        <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                    </h3>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <button
+                    class="w-1/2 sm:w-1/6 group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
+                    <div
+                        class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
+                    </div>
+                    <span class="relative flex items-center">
+                        All Services
+                        <span class="ml-3 flex items-center gap-1">
+                            <span
+                                class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                            <span
+                                class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <template #fullwidth2>
+            <Testimonials />
+        </template>
+
+        <template #afterFullwidth2>
+            <section class="sm:py-16 mx-4 my-10">
+                <span class="text-2xl">/ Emphasis</span>
+                <div class="flex flex-col w-full mt-2">
+                    <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">From small tasks to lasting
+                        partnerships
+                    </h2>
+                    <div class="flex justify-end mb-4 sm:mb-10">
+                        <div class="sm:w-1/2">
+                            <h2 class="text-xl text-justify dark:text-white">
+                                We believe that every collaboration has the potential to grow into something bigger.
+                                Whether
+                                you
+                                come to us with a small task or a large-scale project, we are committed to building
+                                long-term
+                                relationships based on trust, quality, and shared success.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-6">
+                    <div v-for="c in clients" class="flex h-20 sm:h-32 rounded-2xl border shadow">
+                        <img :src="c" alt="" class="p-4">
+                    </div>
+                </div>
+            </section>
+        </template>
+
+    </DefaultLayout>
+</template>
