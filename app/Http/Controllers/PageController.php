@@ -26,4 +26,9 @@ class PageController extends Controller
     {
         return Inertia::render('About');
     }
+
+    public function services()
+    {
+        return Inertia::render('Services');
+    }
 }

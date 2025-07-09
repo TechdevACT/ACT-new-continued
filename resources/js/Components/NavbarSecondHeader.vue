@@ -2,7 +2,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import ThemeSwitcher from './ThemeSwitcher.vue';
-import ThemeSwitcherDark from './ThemeSwitcherDark.vue';
 
 const menu = [
     {
@@ -71,60 +70,61 @@ onUnmounted(() => {
 <template>
     <header
         class="sticky top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-16 transition-[padding,background-color] duration-300 ease-in-out"
-        :class="isScrolled ? 'py-3 bg-black/70 dark:bg-white/70 backdrop-blur-sm shadow-lg' : 'py-6 bg-transparent'">
+        :class="isScrolled ? 'py-3 bg-white/80 dark:bg-black/70 backdrop-blur-sm shadow-lg' : 'py-6 bg-transparent'">
 
-        <div class="text-2xl font-bold text-white dark:text-black z-10">
+        <div class="text-2xl font-bold text-black dark:text-white z-10">
             <Link href="/">act! Digital Agency</Link>
         </div>
 
-        <transition enter-active-class="transition-opacity duration-300 ease-out"
-            leave-active-class="transition-opacity duration-200 ease-in" enter-from-class="opacity-0"
-            leave-to-class="opacity-0">
-            <nav v-if="!showCompactMenu" class="hidden md:block absolute left-1/2 -translate-x-1/2">
-                <ul class="flex items-center justify-center">
-                    <li v-for="m in menu" :key="m.name" class="relative group">
-                        <div
-                            class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-300 dark:text-gray-700">
-                            <span
-                                class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
+        <div class="flex justify-end items-start gap-4">
+            <transition enter-active-class="transition-opacity duration-300 ease-out"
+                leave-active-class="transition-opacity duration-200 ease-in" enter-from-class="opacity-0"
+                leave-to-class="opacity-0">
+                <nav v-if="!showCompactMenu" class="hidden md:block">
+                    <ul class="flex items-center justify-end gap-4">
+                        <li v-for="m in menu" :key="m.name" class="relative group">
+                            <div
+                                class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-700 dark:text-gray-300">
+                                <span
+                                    class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
+                                    {{ m.name }}
+                                </span>
+                                <span v-if="m.submenu"
+                                    class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
+                                    {{ m.name }}
+                                </span>
+                                <Link :href="m.link"
+                                    class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                                 {{ m.name }}
-                            </span>
-                            <span v-if="m.submenu"
-                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-white dark:text-black">
-                                {{ m.name }}
-                            </span>
-                            <Link :href="m.link"
-                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-white dark:text-black">
-                            {{ m.name }}
-                            </Link>
-                        </div>
-                        <div v-if="m.submenu"
-                            class="absolute left-1/2 -translate-x-1/2 top-full w-40 rounded-xl bg-zinc-800 dark:bg-gray-800 dark:border dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
-                            <div class="flex flex-col">
-                                <Link v-for="sm in m.submenu" :key="sm.name" :href="sm.link"
-                                    class="px-4 py-2 text-white hover:text-yellow-500 transition-colors duration-200">
-                                {{ sm.name }}
                                 </Link>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </transition>
+                            <div v-if="m.submenu"
+                                class="absolute left-1/2 -translate-x-1/2 top-full w-40 rounded-xl bg-zinc-800 dark:bg-gray-800 dark:border dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
+                                <div class="flex flex-col">
+                                    <Link v-for="sm in m.submenu" :key="sm.name" :href="sm.link"
+                                        class="px-4 py-2 text-white hover:text-yellow-500 transition-colors duration-200">
+                                    {{ sm.name }}
+                                    </Link>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </transition>
 
-        <div class="flex justify-end items-center">
-             <transition enter-active-class="transition-all duration-300 ease-out"
+            <!-- ThemeSwitcher -->
+            <transition enter-active-class="transition-all duration-300 ease-out"
                 leave-active-class="transition-all duration-200 ease-in" enter-from-class="opacity-0 scale-90"
                 leave-to-class="opacity-0 scale-90" mode="out-in">
-
                 <div v-if="!showCompactMenu">
-                    <ThemeSwitcherDark />
+                    <ThemeSwitcher />
                 </div>
 
+                <!-- Compact version tetap di sini -->
                 <div v-else
-                    class="flex items-center gap-x-1 p-1.5 rounded-full bg-zinc-800/60 dark:bg-zinc-200/60 backdrop-blur-md border border-zinc-700/80 dark:border-zinc-300/80 shadow-lg">
-                    <ThemeSwitcherDark />
-                    <div class="h-6 w-px bg-zinc-600 dark:bg-zinc-300 mx-1"></div>
+                    class="flex items-center gap-x-1 p-1.5 rounded-full bg-zinc-200/60 dark:bg-zinc-800/60 backdrop-blur-md border border-zinc-300/80 dark:border-zinc-700/80 shadow-lg">
+                    <ThemeSwitcher />
+                    <div class="h-6 w-px bg-zinc-300 dark:bg-zinc-600 mx-1"></div>
                     <div class="relative">
                         <button @click="isMenuOpen = !isMenuOpen"
                             class="flex items-center gap-x-2 pl-4 pr-3 py-2 rounded-full bg-white dark:bg-black text-black dark:text-white font-semibold shadow-inner dark:shadow-none transition-transform duration-200 ease-in-out active:scale-95">
