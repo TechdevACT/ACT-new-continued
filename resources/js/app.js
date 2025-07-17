@@ -7,7 +7,7 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { themeStore } from './themeStore';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'act! Digital Agency';
 
 createInertiaApp({
     title: (title) => `${title} act! Digital Agency`,

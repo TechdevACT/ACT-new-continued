@@ -2,6 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import NavbarSecondHeader from '@/Components/NavbarSecondHeader.vue';
 import Footer from '@/Components/Footer.vue';
+import CursorFollower from '@/Components/CursorFollower.vue';
 
 </script>
 
@@ -16,6 +17,8 @@ import Footer from '@/Components/Footer.vue';
 
         <slot name="meta" />
     </Head>
+
+    <CursorFollower />
 
     <div class="flex flex-col min-h-screen">
         <NavbarSecondHeader/>

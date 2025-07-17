@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/vue3';
 import NavbarHeader from '@/Components/NavbarHeader.vue';
 import NavbarHeaderDark from '@/Components/NavbarHeaderDark.vue';
 import Footer from '@/Components/Footer.vue';
+import CursorFollower from '@/Components/CursorFollower.vue';
 
 defineProps({
     title: String,
@@ -24,6 +25,8 @@ defineProps({
 
         <slot name="meta" />
     </Head>
+
+    <CursorFollower />
 
     <div class="flex flex-col min-h-screen">
         <component :is="navbarType === 'inverse' ? NavbarHeaderDark : NavbarHeader" />

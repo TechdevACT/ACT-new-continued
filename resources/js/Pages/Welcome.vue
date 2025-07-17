@@ -66,7 +66,7 @@ const mobileTransformStyles = [
 </script>
 
 <template>
-    <DefaultLayout title="Welcome -">
+    <DefaultLayout>
         <template #meta>
             <meta name="description" content="Meta Description Here" />
         </template>
