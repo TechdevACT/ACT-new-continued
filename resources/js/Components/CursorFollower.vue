@@ -19,9 +19,9 @@ onMounted(() => {
     })
 
     document.addEventListener('mouseover', (e) => {
-        if (e.target.closest('.cursor-pointer')) {
+        if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
             gsap.to(cursor.value, {
-                scale: 1.3,
+                scale: 2,
                 backgroundColor: '#f7c133',
                 opacity: 0.9,
                 duration: 0.2,
@@ -31,7 +31,7 @@ onMounted(() => {
     })
 
     document.addEventListener('mouseout', (e) => {
-        if (e.target.closest('.cursor-pointer')) {
+        if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
             gsap.to(cursor.value, {
                 scale: 1,
                 backgroundColor: '#f7d033',
@@ -45,6 +45,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="cursor" class="fixed top-0 left-0 w-8 h-8 bg-[#f7d033]/70 rounded-full pointer-events-none z-[9999]"></div>
+    <div ref="cursor"
+        class="fixed top-0 left-0 w-4 h-4 bg-[#f7d033]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
+    </div>
 </template>
-
