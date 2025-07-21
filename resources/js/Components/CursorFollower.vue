@@ -34,7 +34,7 @@ onMounted(() => {
         if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
             gsap.to(cursor.value, {
                 scale: 1,
-                backgroundColor: '#f7d033',
+                backgroundColor: '#fdce79',
                 opacity: 0.7,
                 duration: 0.2,
                 ease: 'power3.out',
@@ -46,6 +46,6 @@ onMounted(() => {
 
 <template>
     <div ref="cursor"
-        class="fixed top-0 left-0 w-4 h-4 bg-[#f7d033]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
+        class="fixed top-0 left-0 w-4 h-4 bg-[#fdce79]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
     </div>
 </template>

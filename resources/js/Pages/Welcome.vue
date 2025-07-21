@@ -72,9 +72,9 @@ const mobileTransformStyles = [
         </template>
 
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
-            <div class="sm:w-1/2 px-4 flex justify-center">
-                <h1 class="text-4xl sm:text-7xl text-center font-bold text-black dark:text-white">A place to display
-                    your masterpiece</h1>
+            <div class="px-4 flex justify-center">
+                <h1 class="text-4xl sm:text-7xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]"><span class="text-[5rem] text-[#99CA3D]"><strong>act!</strong></span> digital agency
+                </h1>
             </div>
 
             <div class="hidden lg:flex lg:mt-20">
@@ -91,11 +91,9 @@ const mobileTransformStyles = [
         </section>
 
         <section class="flex flex-col justify-center items-center pb-16 sm:pb-0 sm:py-16 animate-fade-up px-4">
-            <div class="w-full lg:w-1/2 flex justify-center mb-6">
-                <h2 class="text-lg lg:text-2xl text-center text-gray-800 dark:text-gray-300">Artists can display their
-                    masterpieces, and buyers can
-                    discover and
-                    purchase works that resonate with them.
+            <div class="w-full flex justify-center mb-6">
+                <h2 class="text-lg lg:text-2xl font-bold text-center text-gray-800 dark:text-gray-300">it’s all about
+                    creativity, technology and everything in digital
                 </h2>
             </div>
             <div class="flex flex-row gap-4 sm:gap-8">
@@ -108,6 +106,32 @@ const mobileTransformStyles = [
                 Discover Our Work
                 </Link>
             </div>
+        </section>
+
+        <section class="sm:py-16 mx-4">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                <div class="col-span-3 animate-fade-up transition-all duration-500">
+                    <h2 class="text-2xl">/ About</h2>
+                </div>
+
+                <div class="col-span-2 animate-fade-up transition-all duration-500">
+                    <h3 class="text-xl dark:text-white">
+                        We are an Indonesian full-service agency that
+                        helps businesses to execute the idea from strategy, implementation, measurement, and
+                        optimization.
+                    </h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="flex flex-col sm:py-16 mx-4 animate-fade-up transition-all duration-500">
+            <div>
+                <img src="https://placehold.co/1080x500" class="w-full rounded-3xl">
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+            </div>
+
         </section>
 
         <section>
