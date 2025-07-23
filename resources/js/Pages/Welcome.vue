@@ -3,9 +3,6 @@ import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
 import ProjectComponent from '@/Components/ProjectComponent.vue';
-import { useDark } from '@vueuse/core';
-
-const isDark = useDark();
 
 const cards = [
     {
@@ -182,7 +179,8 @@ const mobileTransformStyles = [
                 <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
                     <h3 class="textmd sm:text-2xl">/ Expertise</h3>
                     <h1 class="text-4xl sm:text-7xl font-bold">Our Core Strengths</h1>
-                    <h2 class="text-lg sm:text-xl sm:w-1/2">We combine innovative strategies with cutting-edge digital solutions to transform your vision into tangible success.</h2>
+                    <h2 class="text-lg sm:text-xl sm:w-1/2">We combine innovative strategies with cutting-edge digital
+                        solutions to transform your vision into tangible success.</h2>
                 </div>
             </div>
 
@@ -190,12 +188,9 @@ const mobileTransformStyles = [
                 <div v-for="(card, index) in cards" :key="card.id"
                     class="sticky top-20 h-[65vh] flex items-start justify-center pt-10 transition-all duration-700"
                     :style="{ zIndex: index + 1 }">
-                    <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl shadow dark:shadow-white/10 flex flex-col gap-6 justify-center  w-full overflow-hidden"
+                    <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl dark:border-2 dark:border-gray-600 flex flex-col gap-6 justify-center  w-full overflow-hidden"
                         :style="{
-                            backgroundImage: isDark
-                                ? `linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3)), url(${card.bg})`
-                                : `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
-
+                            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
                             backgroundSize: 'cover',
                             backgroundPosition: '10% center',
                             backgroundRepeat: 'no-repeat'
