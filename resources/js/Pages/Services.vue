@@ -1,8 +1,5 @@
 <script setup>
 import SecondLayout from '@/Layouts/SecondLayout.vue';
-import { useDark } from '@vueuse/core';
-
-const isDark = useDark();
 
 const cards = [
     {
@@ -85,7 +82,8 @@ const whyUs = [
         <section class="animate-fade-up">
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Our Services</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4">Capturing moments that tell a story, I create striking images that leave
+                <h2 class="text-lg sm:text-xl sm:w-3/4">Capturing moments that tell a story, I create striking images
+                    that leave
                     a
                     lasting
                     impression. <br>From
@@ -101,12 +99,9 @@ const whyUs = [
                 <div v-for="(card, index) in cards" :key="card.id"
                     class="sticky top-20 h-[65vh] flex items-start justify-center pt-10 transition-all duration-700"
                     :style="{ zIndex: index + 1 }">
-                    <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl shadow-2xl dark:shadow-white/10 flex flex-col gap-6 justify-center  w-full overflow-hidden"
+                    <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl dark:border-2 dark:border-gray-600 flex flex-col gap-6 justify-center  w-full overflow-hidden"
                         :style="{
-                            backgroundImage: isDark
-                                ? `linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3)), url(${card.bg})`
-                                : `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
-
+                            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
                             backgroundSize: 'cover',
                             backgroundPosition: '10% center',
                             backgroundRepeat: 'no-repeat'
@@ -150,7 +145,8 @@ const whyUs = [
         <template #afterFullwidth2>
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Why Us?</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4">Exceptional photography isn’t just about capturing images—it’s about
+                <h2 class="text-lg sm:text-xl sm:w-3/4">Exceptional photography isn’t just about capturing images—it’s
+                    about
                     creating stories that resonate. With a keen eye for detail, a passion for visual storytelling, and a
                     commitment to quality, we deliver powerful imagery that speaks for itself.</h2>
             </div>
