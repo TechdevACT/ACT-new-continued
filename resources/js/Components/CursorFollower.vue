@@ -46,6 +46,6 @@ onMounted(() => {
 
 <template>
     <div ref="cursor"
-        class="fixed top-0 left-0 w-4 h-4 bg-[#fdce79]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
+        class="hidden sm:block fixed top-0 left-0 w-4 h-4 bg-[#fdce79]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
     </div>
 </template>
