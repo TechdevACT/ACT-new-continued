@@ -9,16 +9,7 @@ const menu = [
         link: '/',
         submenu: [
             { name: 'About', link: '/about' },
-            { name: 'Services', link: '#' },
-        ]
-    },
-    {
-        name: 'News',
-        link: '#',
-        submenu: [
-            { name: 'Blog', link: '#' },
-            { name: 'Events', link: '#' },
-            { name: 'Press', link: '#' },
+            { name: 'Services', link: '/services' },
         ]
     },
     {
@@ -27,8 +18,6 @@ const menu = [
         submenu: [
             { name: 'Project 1', link: '#' },
             { name: 'Project 2', link: '#' },
-            { name: 'Project 3', link: '#' },
-            { name: 'Project 4', link: '#' },
         ]
     },
     {

@@ -51,9 +51,9 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="phone_number" value="WhatsApp" required info-field="Contoh: 6281234567890"/>
+                <InputLabel for="phone_number" value="WhatsApp" info-field="Contoh: 6281234567890"/>
 
-                <TextInput id="phone_number" type="tel" class="mt-1 block w-full" v-model="form.phone_number" required
+                <TextInput id="phone_number" type="tel" class="mt-1 block w-full" v-model="form.phone_number"
                     autocomplete="tel" @input="handlePhoneInput" placeholder="6281234567890" />
 
                 <InputError class="mt-2" :message="form.errors.phone_number" />

@@ -2,12 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
-import ProjectComponent from '@/Components/ProjectComponent.vue';
 import Industries from '@/Components/Industries.vue';
-import { useDark } from '@vueuse/core';
-import { ref } from 'vue';
-
-const isDark = useDark();
 
 const cards = [
     {
@@ -81,8 +76,6 @@ const clientsImage = [
     'images/clients/t3.png',
 ]
 
-const projectCategories = ['All', ...new Set(projects.map(project => project.type))];
-
 const images = [
     "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
     "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
@@ -114,6 +107,24 @@ const mobileTransformStyles = [
     "rotate(5deg) translate(60px)",
     "rotate(-5deg) translate(120px)"
 ];
+
+const last3blog = [
+    {
+        date: "April 03, 2025",
+        title: "Optimizing the Use of TopAds: Strategies for Maximizing Ad Credits.",
+        image: "https://placehold.co/400x200",
+    },
+    {
+        date: "May 20, 2025",
+        title: "How Content Marketing Plays a Role in Business Success",
+        image: "https://placehold.co/400x200",
+    },
+    {
+        date: "June 11, 2025",
+        title: "Understanding Email Marketing to achieve digital marketing success",
+        image: "https://placehold.co/400x200",
+    },
+]
 </script>
 
 <template>
@@ -151,7 +162,7 @@ const mobileTransformStyles = [
             <div class="flex flex-row gap-4 sm:gap-8">
                 <Link href="#"
                     class="bg-black hover:bg-amber-200 text-white hover:text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white text-center">
-                Contact Me
+                Contact Us
                 </Link>
                 <Link href="#"
                     class="bg-gray-200 hover:bg-amber-200 text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400 text-center">
@@ -202,11 +213,9 @@ const mobileTransformStyles = [
                     <div v-for="(card, index) in cards" :key="card.id"
                         class="sticky top-20 h-[65vh] flex items-start justify-center pt-10 transition-all duration-700"
                         :style="{ zIndex: index + 1 }">
-                        <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl shadow dark:shadow-white/10 flex flex-col gap-6 justify-center  w-full overflow-hidden"
+                        <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl shadow dark:border-2 dark:border-gray-600 flex flex-col gap-6 justify-center  w-full overflow-hidden"
                             :style="{
-                                backgroundImage: isDark
-                                    ? `linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3)), url(${card.bg})`
-                                    : `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
+                                backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
 
                                 backgroundSize: 'cover',
                                 backgroundPosition: '10% center',
@@ -249,13 +258,32 @@ const mobileTransformStyles = [
             </section>
 
             <section class="bg-brand-purple py-10 px-4 sm:px-0">
-                <Industries :industries="industries"/>
+                <Industries :industries="industries" />
             </section>
 
         </template>
 
         <template #afterFullwidth2>
-            <section>
+            <section class="py-10 px-4 sm:px-0">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ Blog</h3>
+                    <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
+                        <h3 class="text-4xl sm:text-6xl font-bold">Latest News</h3>
+                        <h4 class="sm:w-3/4 text-lg sm:text-xl">The latest updates from the creative industry, including
+                            design trends, technology, as well as recent projects and innovations.</h4>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10">
+                    <div class="flex flex-col" v-for="blog in last3blog">
+                        <div
+                            class="flex flex-col bg-gray-200 dark:bg-zinc-900 p-6 rounded-t-3xl transition-all duration-500">
+                            <span class="text-sm text-gray-500 dark:text-gray-200">{{ blog.date }}</span>
+                            <h3 class="text-md sm:text-xl dark:text-white">{{ blog.title }}</h3>
+                        </div>
+                        <img :src="blog.image" alt="" class="w-full rounded-b-3xl">
+                    </div>
+                </div>
             </section>
         </template>
     </DefaultLayout>

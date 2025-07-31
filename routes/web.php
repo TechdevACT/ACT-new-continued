@@ -2,15 +2,11 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/services', [PageController::class, 'services'])->name('services');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -25,6 +21,13 @@ Route::middleware('auth')->group(function () {
         ->name('auth.delete.redirect');
     Route::get('/auth/{provider}/delete/callback', [SocialiteController::class, 'deleteCallback'])
         ->name('auth.delete.callback');
+
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/services', [PageController::class, 'services'])->name('services');
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 });
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])

@@ -18,7 +18,8 @@ const icons = [
         <div
             class="max-w-7xl mx-auto px-4 pt-16 pb-0 sm:pb-16 flex flex-col sm:grid sm:grid-cols-4 sm:items-end text-black dark:text-white">
             <div class="sm:col-span-2 mb-6 sm:mb-0">
-                <h2 class="text-4xl font-bold">LET'S MAKE<br>IT HAPPEN</h2>
+                <h2 class="text-4xl font-bold">Think Big. Start Small.<br>
+                    Act Faster.</h2>
             </div>
             <div class="flex flex-col gap-2 mb-6 sm:mb-0">
                 <h2 class="text-xl font-bold">Social Media</h2>
@@ -62,8 +63,7 @@ const icons = [
             </div>
         </div>
 
-        <div
-            class="flex flex-row items-center justify-between gap-2 max-w-7xl p-4 mx-auto text-center sm:text-left">
+        <div class="flex flex-row items-center justify-between gap-2 max-w-7xl p-4 mx-auto text-center sm:text-left">
             <span class="text-gray-500 dark:text-gray-400 text-base sm:text-xl">&copy; {{ new Date().getFullYear() }}
                 act! Digital
                 Agency</span>

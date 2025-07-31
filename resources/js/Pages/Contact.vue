@@ -89,15 +89,15 @@ const icons = [
                     <form action="">
                         <div class="grid grid-cols-2 gap-4">
                             <input type="text" class="rounded-xl py-2 px-4 bg-white border border-white shadow-xl"
-                                placeholder="Name">
+                                placeholder="Name" disabled>
                             <input type="email" class="rounded-xl py-2 px-4 bg-white border border-white shadow-xl"
-                                placeholder="Email">
+                                placeholder="Email" disabled>
                             <input type="text"
                                 class="col-span-2 rounded-xl py-2 px-4 bg-white border border-white shadow-xl"
-                                placeholder="Title">
+                                placeholder="Title" disabled>
                             <textarea
                                 class="col-span-2 h-40 rounded-xl py-2 px-4 bg-white border border-white shadow-xl"
-                                placeholder="Message"></textarea>
+                                placeholder="Message" disabled></textarea>
                             <button
                                 class="col-span-2 rounded-xl py-2 px-4 bg-black dark:bg-amber-400 text-white dark:text-black hover:bg-amber-200 dark:hover:bg-amber-500 hover:text-black transition-all duration-500">Submit</button>
                         </div>
