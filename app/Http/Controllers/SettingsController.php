@@ -11,4 +11,9 @@ class SettingsController extends Controller
     {
         return Inertia::render('Settings/Settings');
     }
+
+    public function heroUpdate(Request $request)
+    {
+        dd($request->all());
+    }
 }
