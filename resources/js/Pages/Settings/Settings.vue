@@ -11,6 +11,10 @@ import HomeIndustry from './HomeSettings/HomeIndustry.vue';
 import HomeBlog from './HomeSettings/HomeBlog.vue';
 
 const activeTab = ref('home');
+
+const props = defineProps({
+    data_fe: Object
+})
 </script>
 
 <template>
@@ -26,7 +30,6 @@ const activeTab = ref('home');
 
         <div class="py-4 mx-4">
             <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-
                 <!-- This component to navigate setting -->
                 <div class="flex gap-4">
                     <button
@@ -44,25 +47,25 @@ const activeTab = ref('home');
                 <!-- Home Setting Components -->
                 <template v-if="activeTab === 'home'">
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeHero />
+                        <HomeHero :data_fe="data_fe.data_fe[0]" :images="data_fe.hero_image" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeAbout />
+                        <HomeAbout :data_fe="data_fe.data_fe[0]" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeImageClient />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeExpertise />
+                        <HomeExpertise :data_fe="data_fe.data_fe[0]" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeServices />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeIndustry />
+                        <HomeIndustry :data_fe="data_fe.data_fe[0]" :images="data_fe.industry_image"/>
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeBlog />
+                        <HomeBlog :data_fe="data_fe.data_fe[0]" />
                     </div>
                 </template>
 

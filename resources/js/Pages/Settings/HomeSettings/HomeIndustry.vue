@@ -8,27 +8,19 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const props = defineProps({
-    hero: {
+    data_fe: {
+        type: Object
+    },
+    images: {
         type: Object,
-        default: () => ({
-            title: '',
-            heading: '',
-            description: '',
-            images: [
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"]
-        }),
     }
 })
 
 const form = useForm({
-    title: props.hero.title || '',
-    heading: props.hero.heading || '',
-    description: props.hero.description || '',
-    images: [...props.hero.images],
+    title: props.data_fe.industry_title || '',
+    heading: props.data_fe.industry_heading || '',
+    description: props.data_fe.industry_description || '',
+    images: [...props.images.map(item => item.path)],
 });
 
 const fileInput = ref(null);
@@ -62,16 +54,11 @@ function removeImage(index) {
 }
 
 function submit() {
-    form.post(route('settings.heroUpdate'), {
+    form.post(route('settings.industryUpdate'), {
         _method: 'patch',
         onError: (errors) => {
             console.log(form.value);
         },
-        onSuccess: () => {
-            // Aksi setelah berhasil, misalnya reset form atau preview
-            // imagePreviews.value = [];
-            // form.reset('images');
-        }
     });
 }
 

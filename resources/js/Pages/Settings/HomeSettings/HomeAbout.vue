@@ -4,11 +4,25 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
+const props = defineProps({
+    data_fe: {
+        type: Object
+    },
+})
 
 const form = useForm({
-    titleAbout: '',
-    descriptionAbout: '',
+    titleAbout: props.data_fe.about_title || '',
+    descriptionAbout: props.data_fe.about_description || '',
 });
+
+function submit() {
+    form.post(route('settings.aboutUpdate'), {
+        _method: 'patch',
+        onError: (errors) => {
+            console.log(form.value);
+        },
+    });
+}
 </script>
 
 <template>
@@ -23,7 +37,7 @@ const form = useForm({
             </p>
         </header>
 
-        <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
+        <form @submit.prevent="submit" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="titleAbout" value="Judul" required />
 

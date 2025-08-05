@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/', [SettingsController::class, 'heroUpdate'])->name('heroUpdate');
         Route::post('/about', [SettingsController::class, 'aboutUpdate'])->name('aboutUpdate');
+        Route::post('/expertise', [SettingsController::class, 'expertiseUpdate'])->name('expertiseUpdate');
+        Route::post('/industry', [SettingsController::class, 'industryUpdate'])->name('industryUpdate');
+        Route::post('/blog', [SettingsController::class, 'blogUpdate'])->name('blogUpdate');
     });
 });
 

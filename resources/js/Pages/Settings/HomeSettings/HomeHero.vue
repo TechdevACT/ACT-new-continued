@@ -8,27 +8,19 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
 const props = defineProps({
-    hero: {
+    data_fe: {
+        type: Object
+    },
+    images: {
         type: Object,
-        default: () => ({
-            title1: '',
-            title2: '',
-            description: '',
-            images: [
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp",
-                "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"]
-        }),
     }
 })
 
 const form = useForm({
-    title1: props.hero.title || '',
-    title2: props.hero.title2 || '',
-    description: props.hero.description || '',
-    images: [...props.hero.images],
+    title1: props.data_fe.hero_title || '',
+    title2: props.data_fe.hero_title2 || '',
+    description: props.data_fe.hero_description || '',
+    images: [...props.images.map(item => item.path)],
 });
 
 const fileInput = ref(null);
@@ -67,11 +59,6 @@ function submit() {
         onError: (errors) => {
             console.log(form.value);
         },
-        onSuccess: () => {
-            // Aksi setelah berhasil, misalnya reset form atau preview
-            // imagePreviews.value = [];
-            // form.reset('images');
-        }
     });
 }
 
@@ -88,13 +75,13 @@ function submit() {
             </p>
         </header>
 
-        <form @submit.prevent="submit" class="mt-6 space-y-6">
+        <form @submit.prevent="submit" class="mt-6 space-y-6" enctype="multipart/form-data">
             <div class="flex flex-col md:flex-row gap-6">
 
                 <div class="grid w-full md:w-1/2 gap-4 content-start">
                     <div>
                         <InputLabel for="title" value="Judul dengan warna" required />
-                        <TextInput id="title" type="text" class="mt-1 block w-full" v-model="form.title1" required />
+                        <TextInput id="title" type="text" class="mt-1 block w-full" v-model="form.title1" required/>
                         <InputError class="mt-2" :message="form.errors.title1" />
                     </div>
                     <div>
