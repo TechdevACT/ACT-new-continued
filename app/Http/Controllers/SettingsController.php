@@ -16,4 +16,9 @@ class SettingsController extends Controller
     {
         dd($request->all());
     }
+
+    public function aboutUpdate(Request $request)
+    {
+        dd($request->all());
+    }
 }

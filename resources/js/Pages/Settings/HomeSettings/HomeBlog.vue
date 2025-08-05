@@ -7,7 +7,7 @@ import { useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     title: '',
-    subtitle: '',
+    heading: '',
     description: '',
 });
 </script>
@@ -16,17 +16,17 @@ const form = useForm({
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Section Expertise
+                Bagian Blog
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Perbarui informasi Expertise pada halaman utama.
+                Perbarui informasi Blog pada halaman utama.
             </p>
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
             <div>
-                <InputLabel for="title" value="Title" required />
+                <InputLabel for="title" value="Judul" required />
 
                 <TextInput id="title" type="text" class="mt-1 block w-full" v-model="form.title" required />
 
@@ -34,15 +34,15 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="subtitle" value="Subtitle" required />
+                <InputLabel for="subtitle" value="Heading" required />
 
-                <TextInput id="subtitle" type="text" class="mt-1 block w-full" v-model="form.subtitle" required />
+                <TextInput id="subtitle" type="text" class="mt-1 block w-full" v-model="form.heading" required />
 
                 <InputError class="mt-2" :message="form.errors.subtitle" />
             </div>
 
             <div>
-                <InputLabel for="description" value="Description" required />
+                <InputLabel for="description" value="Deskripsi" required />
 
                 <TextInput id="description" type="text" class="mt-1 block w-full" v-model="form.description"
                     required />

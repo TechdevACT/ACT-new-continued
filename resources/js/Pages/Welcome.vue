@@ -4,6 +4,10 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
 import Industries from '@/Components/Industries.vue';
 
+const props = defineProps({
+    data_fe: Object,
+})
+
 const cards = [
     {
         id: 1,
@@ -35,62 +39,17 @@ const cards = [
     },
 ];
 
-const projects = [
-    {
-        title: "the dark side",
-        type: "Creative",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/Colorful-Assortment-of-Macarons-and-Packaging.webp"
-    },
-    {
-        title: "Justice robot",
-        type: "Design",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/nkLC12rAR56ibf4tRP0JYBiA.webp"
-    },
-    {
-        title: "color current",
-        type: "Photo",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/SPOA-Vintage-Camera-with-Dual-Viewfinders.webp"
-    },
-    {
-        title: "the dark side 2",
-        type: "Design",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/Colorful-Assortment-of-Macarons-and-Packaging.webp"
-    },
-    {
-        title: "Justice robot 2",
-        type: "Creative",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/nkLC12rAR56ibf4tRP0JYBiA.webp"
-    },
-    {
-        title: "color current 2",
-        type: "Photo",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/SPOA-Vintage-Camera-with-Dual-Viewfinders.webp"
-    },
-];
+const clientsImage = props.data_fe.clients_image.map(item => item.path) ;
 
-const clientsImage = [
-    'images/clients/valar.png',
-    'images/clients/brother.png',
-    'images/clients/tautoparts.png',
-    'images/clients/bpi.png',
-    'images/clients/t3.png',
+const images = props.data_fe.hero_image.map(item => item.path) ;
+
+const industries = props.data_fe.industry_image.map(item => item.path) ;
+
+const industries_text = [
+    props.data_fe.data_fe[0].industry_title,
+    props.data_fe.data_fe[0].industry_heading,
+    props.data_fe.data_fe[0].industry_description
 ]
-
-const images = [
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"
-];
-
-const industries = [
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Person-with-VR-Headset-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Minimalist-Stone-Composition-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Whimsical-Character-in-a-Jar-m_f.png",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Three-Scoops-of-Ice-Cream-on-Spoons.webp",
-    "https://theme.madsparrow.me/osty/wp-content/uploads/2025/01/Green-Character-in-Yellow-Hoodie-m_f.png"
-];
 
 const transformStyles = [
     "rotate(5deg) translate(-300px)",
@@ -136,7 +95,7 @@ const last3blog = [
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
             <div class="px-4 flex justify-center">
                 <h1 class="text-4xl sm:text-7xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]"><span
-                        class="text-5xl sm:text-[5rem] text-[#99CA3D]">act!</span> digital agency
+                        class="text-5xl sm:text-[5rem] text-[#99CA3D]">{{ data_fe.data_fe[0].hero_title }}</span> {{ data_fe.data_fe[0].hero_title2 }}
                 </h1>
             </div>
 
@@ -155,8 +114,8 @@ const last3blog = [
 
         <section class="flex flex-col justify-center items-center pb-10 sm:py-10 animate-fade-up px-4">
             <div class="w-full flex justify-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-center text-gray-800 dark:text-gray-300">it’s all about
-                    creativity, technology and everything in digital
+                <h2 class="text-lg lg:text-2xl font-bold text-center text-gray-800 dark:text-gray-300">
+                    {{ data_fe.data_fe[0].hero_description }}
                 </h2>
             </div>
             <div class="flex flex-row gap-4 sm:gap-8">
@@ -174,14 +133,12 @@ const last3blog = [
         <section class="py-5 sm:py-10 mx-4">
             <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 sm:gap-6">
                 <div class="col-span-3 animate-fade-up transition-all duration-500">
-                    <h3 class="text-md sm:text-2xl">/ About</h3>
+                    <h3 class="text-md sm:text-2xl">/ {{ data_fe.data_fe[0].about_title }}</h3>
                 </div>
 
                 <div class="col-span-2 animate-fade-up transition-all duration-500">
                     <h3 class="text-lg sm:text-xl dark:text-white">
-                        We are an Indonesian full-service agency that
-                        helps businesses to execute the idea from strategy, implementation, measurement, and
-                        optimization.
+                        {{ data_fe.data_fe[0].about_description }}
                     </h3>
                 </div>
             </div>
@@ -202,10 +159,9 @@ const last3blog = [
             <section>
                 <div class="flex flex-col max-w-7xl mx-auto py-5 sm:py-10 animate-fade-up transition-all duration-500">
                     <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
-                        <h3 class="text-md sm:text-2xl">/ Expertise</h3>
-                        <h1 class="text-4xl sm:text-7xl font-bold">Our Core Strengths</h1>
-                        <h2 class="text-lg sm:text-xl sm:w-1/2">We combine innovative strategies with cutting-edge
-                            digital solutions to transform your vision into tangible success.</h2>
+                        <h3 class="text-md sm:text-2xl">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
+                        <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
+                        <h2 class="text-lg sm:text-xl sm:w-1/2">{{ data_fe.data_fe[0].expertise_description }}</h2>
                     </div>
                 </div>
 
@@ -258,7 +214,7 @@ const last3blog = [
             </section>
 
             <section class="bg-brand-purple py-10 px-4 sm:px-0">
-                <Industries :industries="industries" />
+                <Industries :industries="industries" :text="industries_text"/>
             </section>
 
         </template>
@@ -266,11 +222,10 @@ const last3blog = [
         <template #afterFullwidth2>
             <section class="py-10 px-4 sm:px-0">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ Blog</h3>
+                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ {{ data_fe.data_fe[0].blog_title }}</h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
-                        <h3 class="text-4xl sm:text-6xl font-bold">Latest News</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-xl">The latest updates from the creative industry, including
-                            design trends, technology, as well as recent projects and innovations.</h4>
+                        <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
+                        <h4 class="sm:w-3/4 text-lg sm:text-xl">{{ data_fe.data_fe[0].blog_description }}</h4>
                     </div>
                 </div>
 

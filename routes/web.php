@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('/', [SettingsController::class, 'heroUpdate'])->name('heroUpdate');
-        Route::get('/about', [SettingsController::class, 'about'])->name('about');
         Route::post('/about', [SettingsController::class, 'aboutUpdate'])->name('aboutUpdate');
     });
 });
