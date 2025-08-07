@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class SettingsController extends Controller
@@ -15,9 +17,11 @@ class SettingsController extends Controller
         $data_fe = FrontEnd::all();
         $hero_image = ImageFrontEnd::where('type', 'hero')->take(5)->get('path');
         $industry_image = ImageFrontEnd::where('type', 'industry')->take(5)->get('path');
+        $clients_image = ImageFrontEnd::where('type', 'clients')->take(6)->get('path');
+        $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
         return Inertia::render('Settings/Settings',
     [
-        'data_fe' => compact('data_fe', 'hero_image', 'industry_image'),
+        'data_fe' => compact('data_fe', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
     ]);
     }
 
@@ -81,7 +85,59 @@ class SettingsController extends Controller
 
     public function bannerClientUpdate(Request $request)
     {
-        dd($request->all());
+        DB::beginTransaction();
+
+        try {
+            if ($request->hasFile('banner')) {
+                $oldBanner = ImageFrontEnd::where('type', 'bannerHome')->first();
+                if ($oldBanner) {
+                    $filePath = public_path($oldBanner->path);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                    $oldBanner->delete();
+                }
+
+                $image = $request->file('banner')[0];
+                $imageName = $image->hashName();
+                $image->move(public_path('images/frontEnd'), $imageName);
+
+                ImageFrontEnd::create([
+                    'type' => 'bannerHome',
+                    'path' => '/images/frontEnd/' . $imageName,
+                ]);
+            }
+
+            if ($request->hasFile('images')) {
+                $oldImages = ImageFrontEnd::where('type', 'clients')->get();
+                foreach ($oldImages as $image) {
+                    $filePath = public_path($image->path);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                    $image->delete();
+                }
+
+                foreach ($request->file('images') as $image) {
+                    $imageName = $image->hashName();
+                    $image->move(public_path('images/clients'), $imageName);
+
+                    ImageFrontEnd::create([
+                        'type' => 'clients',
+                        'path' => '/images/clients/' . $imageName,
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+            return back()->withErrors([
+                'error' => 'Terjadi kesalahan saat mengupdate data',
+            ]);
+        }
     }
 
     public function expertiseUpdate(Request $request)

@@ -53,7 +53,7 @@ const props = defineProps({
                         <HomeAbout :data_fe="data_fe.data_fe[0]" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeImageClient />
+                        <HomeImageClient :banner="data_fe.banner_image" :images="data_fe.clients_image"/>
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeExpertise :data_fe="data_fe.data_fe[0]" />

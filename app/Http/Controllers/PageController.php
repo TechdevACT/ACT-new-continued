@@ -16,11 +16,12 @@ class PageController extends Controller
         $hero_image = ImageFrontEnd::where('type', 'hero')->take(5)->get('path');
         $industry_image = ImageFrontEnd::where('type', 'industry')->take(5)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(5)->get('path');
+        $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
 
         return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'data_fe' => compact('data_fe', 'hero_image', 'industry_image', 'clients_image'),
+        'data_fe' => compact('data_fe', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
     ]);
 
     }
