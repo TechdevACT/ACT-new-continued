@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/bannerClient', [SettingsController::class, 'bannerClientUpdate'])->name('bannerClientUpdate');
         Route::post('/industry', [SettingsController::class, 'industryUpdate'])->name('industryUpdate');
         Route::post('/blog', [SettingsController::class, 'blogUpdate'])->name('blogUpdate');
+        Route::post('/aboutPage', [SettingsController::class, 'aboutPageUpdate'])->name('aboutPageUpdate');
     });
 });
 

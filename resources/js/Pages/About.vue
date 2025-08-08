@@ -1,11 +1,15 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faFacebookF, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
-import { ref } from 'vue';
 import Testimonials from '@/Components/Testimonials.vue';
+
+const props = defineProps({
+    data_about: {
+        type: Object
+    },
+})
 
 const teams = [
     {
@@ -56,10 +60,10 @@ const clients = [
                 <div class="text-center text-3xl font-bold h-full flex items-center justify-center">
                     <div class="flex flex-col gap-2 uppercase max-w-4xl">
                         <h2 class="text-4xl sm:text-8xl text-white dark:text-black transition-all duration-500">
-                            From idea to reality</h2>
+                            {{ data_about.data_about.heading_big }}</h2>
                         <h2
                             class="text-4xl sm:text-8xl text-yellow-200 dark:text-yellow-500 transition-all duration-500">
-                            your vision, our theme.</h2>
+                            {{ data_about.data_about.heading_big2 }}</h2>
                     </div>
                 </div>
             </section>
@@ -67,14 +71,13 @@ const clients = [
 
         <section class="py-16 mx-4">
             <div class="flex flex-col w-full">
-                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">FANKY team is not just a design,
-                    it's a family</h2>
+                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
+                    {{ data_about.data_about.heading }}
+                </h2>
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
                         <h2 class="text-xl text-justify dark:text-white">
-                            Over 10 years experience in design, close collaboration in work, friendship and a sense of
-                            humor is
-                            what makes FANKY a unique company. Meet the team members:
+                            {{ data_about.data_about.description }}
                         </h2>
                     </div>
                 </div>
@@ -111,16 +114,15 @@ const clients = [
         </section>
 
         <section class="sm:py-16 mx-4">
-            <span class="text-2xl">/ Approach</span>
+            <span class="text-2xl">/ {{ data_about.data_about.approach_title }}</span>
             <div class="flex flex-col w-full mt-2">
-                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">We solve problems to help
-                    businesses grow</h2>
+                <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
+                    {{ data_about.data_about.approach_heading }}
+                </h2>
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
                         <h2 class="text-xl text-justify dark:text-white">
-                            No matter what you bring—be it a landing page, a mobile app, or a full-scale e-commerce
-                            platform—we
-                            approach every project with the business’s growth and success as our top priority.
+                            {{ data_about.data_about.approach_description }}
                         </h2>
                     </div>
                 </div>
@@ -128,7 +130,7 @@ const clients = [
         </section>
 
         <section class="sm:py-16 mx-4 mb-10">
-            <span class="text-2xl">/ Expertise</span>
+            <span class="text-2xl">/ {{ data_about.data_about.expertise_title }}</span>
             <div class="relative flex overflow-hidden group pb-10 text-black dark:text-white">
                 <div class="flex whitespace-nowrap group-hover:paused animate-scroll" aria-hidden="true">
                     <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
@@ -177,20 +179,15 @@ const clients = [
 
         <template #afterFullwidth2>
             <section class="sm:py-16 mx-4 my-10">
-                <span class="text-2xl">/ Emphasis</span>
+                <span class="text-2xl">/ {{ data_about.data_about.emphasis_title }}</span>
                 <div class="flex flex-col w-full mt-2">
-                    <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">From small tasks to lasting
-                        partnerships
+                    <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
+                        {{ data_about.data_about.emphasis_heading }}
                     </h2>
                     <div class="flex justify-end mb-4 sm:mb-10">
                         <div class="sm:w-1/2">
                             <h2 class="text-xl text-justify dark:text-white">
-                                We believe that every collaboration has the potential to grow into something bigger.
-                                Whether
-                                you
-                                come to us with a small task or a large-scale project, we are committed to building
-                                long-term
-                                relationships based on trust, quality, and shared success.
+                                {{ data_about.data_about.emphasis_description }}
                             </h2>
                         </div>
                     </div>
@@ -202,6 +199,5 @@ const clients = [
                 </div>
             </section>
         </template>
-
     </DefaultLayout>
 </template>

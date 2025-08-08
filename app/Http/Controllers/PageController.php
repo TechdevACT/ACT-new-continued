@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutOption;
 use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
 use Illuminate\Foundation\Application;
@@ -32,7 +33,10 @@ class PageController extends Controller
 
     public function about()
     {
-        return Inertia::render('About');
+        $data_about = AboutOption::where('id', 1)->first();
+        return Inertia::render('About', [
+            'data_about' => compact('data_about'),
+        ]);
     }
 
     public function services()

@@ -9,6 +9,7 @@ import { ref } from 'vue';
 import HomeServices from './HomeSettings/HomeServices.vue';
 import HomeIndustry from './HomeSettings/HomeIndustry.vue';
 import HomeBlog from './HomeSettings/HomeBlog.vue';
+import AboutHeading from './AboutSettings/AboutHeading.vue';
 
 const activeTab = ref('home');
 
@@ -71,12 +72,7 @@ const props = defineProps({
 
                 <!-- About Setting Components -->
                 <template v-if="activeTab === 'about'">
-                    <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeImageClient />
-                    </div>
-                    <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeHero />
-                    </div>
+                    <AboutHeading :data_about="data_fe.data_about[0]"/>
                 </template>
             </div>
         </div>
