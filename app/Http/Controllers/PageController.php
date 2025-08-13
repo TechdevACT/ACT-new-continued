@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutOption;
 use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
+use App\Models\News;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,10 @@ class PageController extends Controller
 
     public function news()
     {
-        return Inertia::render('News');
+        $news_all = News::where('status', 'published')->orderBy('created_at', 'desc')->paginate(5);
+        return Inertia::render('News',  [
+            'data' => compact('news_all'),
+        ]);
     }
 
     public function newsDetail()

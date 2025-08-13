@@ -41,9 +41,10 @@ class NewsController extends Controller
         News::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
+            'slug' => $request->slug,
             'content' => $request->content,
             'status' => 'published',
-            'excerpt' => $request->excerpt ?? null
+            'excerpt' => $request->excerpt ?? $request->title
         ]);
 
         return redirect()->route('news.index');
@@ -52,9 +53,13 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(News $blog)
     {
-        //
+        $blog = News::where('slug', $blog->slug)->firstOrFail();
+
+        return Inertia::render('DetailNews', [
+            'data' => compact('blog'),
+        ]);
     }
 
     /**

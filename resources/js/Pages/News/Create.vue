@@ -13,6 +13,15 @@ const form = useForm({
     content: '',
 });
 
+const formatSlug = () => {
+    form.slug = form.slug
+        .toLowerCase() // jadi huruf kecil semua
+        .trim() // hilangkan spasi di depan/belakang
+        .replace(/\s+/g, '-') // ganti spasi jadi "-"
+        .replace(/[^a-z0-9\-]/g, '') // hapus karakter selain huruf, angka, dan "-"
+        .replace(/-+/g, '-'); // rapikan jika ada double "-"
+};
+
 const handleImageUpload = (event) => {
     form.image = event.target.files[0];
 };
@@ -20,8 +29,23 @@ const handleImageUpload = (event) => {
 const submit = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(form.content, 'text/html');
+    doc.querySelectorAll('h1').forEach(h1 => {
+        h1.classList.add('text-4xl', 'font-bold', 'mt-4');
+    });
     doc.querySelectorAll('h2').forEach(h2 => {
-        h2.classList.add('text-2xl', 'font-bold', 'mt-4');
+        h2.classList.add('text-3xl', 'font-bold', 'mt-4');
+    });
+    doc.querySelectorAll('p').forEach(p => {
+        p.classList.add('text-xl', 'mt-4');
+    });
+    doc.querySelectorAll('ol').forEach(ol => {
+        ol.classList.add('list-decimal', 'list-inside', 'space-y-1', 'pl-4', 'mt-4');
+    });
+    doc.querySelectorAll('ul').forEach(ul => {
+        ul.classList.add('list-disc', 'list-inside', 'space-y-1', 'pl-4', 'mt-4');
+    });
+    doc.querySelectorAll('a').forEach(a => {
+        a.classList.add('text-blue-600', 'hover:underline');
     });
     form.content = doc.body.innerHTML;
 

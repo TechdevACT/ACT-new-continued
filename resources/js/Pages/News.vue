@@ -2,20 +2,9 @@
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { Link } from '@inertiajs/vue3';
 
-const post = [
-    {
-        title: "The Power of a Great Portfolio",
-        date: "April 03, 2025",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Modern-Collaborative-Workspace.webp",
-        shortDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, quaerat.",
-    },
-    {
-        title: "The Power of a Great Portfolio",
-        date: "April 03, 2025",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Modern-Collaborative-Workspace.webp",
-        shortDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, quaerat.",
-    }
-]
+const props = defineProps({
+    data: Object
+});
 
 </script>
 
@@ -26,9 +15,9 @@ const post = [
         </template>
 
         <template #fullwidth>
-            <section class="animate-fade-up bg-gray-200">
+            <section class="animate-fade-up bg-gray-200 dark:bg-zinc-900 transition-all duration-300">
                 <div class="hidden sm:flex flex-col h-96 justify-center items-center">
-                    <div class="w-2/3">
+                    <div class="w-2/3 dark:text-white">
                         <h2 class="text-7xl font-bold uppercase">
                             We share BRILLIANT
                         </h2>
@@ -42,7 +31,7 @@ const post = [
                     </div>
                 </div>
 
-                <div class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4">
+                <div class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4 dark:text-white">
                     <h2 class="text-5xl font-bold uppercase">We share brilliant stories</h2>
                     <p class="text-lg">Building a standout portfolio is challenging let’s make it easier...</p>
                 </div>
@@ -51,30 +40,34 @@ const post = [
 
         <section class="max-w-7xl px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
-                <div class="col-span-2">
+                <div class="col-span-2 ">
                     <div class="grid sm:grid-cols-2 gap-10 animate-fade-up">
-                        <div v-for="p in post" class="flex flex-col shadow-xl group">
-                            <Link :href="`/news/detail`">
-                                <div class="flex flex-col bg-gray-200 rounded-t-2xl p-4">
-                                    <span class="text-gray-500">{{ p.date }}</span>
-                                    <h3 class="text-xl font-bold">{{ p.title }}</h3>
-                                    <p class="text-md">{{ p.shortDescription }}</p>
-                                </div>
-                                <div class="rounded-b-2xl overflow-hidden">
-                                    <img :src="p.image" alt=""
-                                        class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                                </div>
+                        <div v-for="p in props.data.news_all.data" class="flex flex-col shadow-xl group rounded-2xl">
+                            <Link :href="`/blog/` + p.slug">
+                            <div class="flex flex-col bg-gray-200 dark:bg-zinc-900 dark:text-white rounded-t-2xl p-4">
+                                <span class="text-gray-500">{{ new Date(p.created_at).toLocaleDateString('id-ID', {
+                                    day: '2-digit',
+                                    month: 'long',
+                                    year: 'numeric'
+                                    }) }}</span>
+                                <h3 class="text-xl font-bold">{{ p.title }}</h3>
+                                <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
+                            </div>
+                            <div class="rounded-b-2xl overflow-hidden">
+                                <img :src="p.image || 'https://placehold.co/400x200'" alt=""
+                                    class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left">
+                <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left dark:text-white">
                     <img src="https://placehold.co/400x200" alt="" class="rounded-2xl">
                     <span class="text-lg mb-10">It’s all about creative design, website,
                         and everything in digital.</span>
                     <h3 class="text-xl sm:text-2xl font-bold">Recent Posts</h3>
                     <div class="flex flex-col">
-                        <div v-for="p in post" class="flex flex-col">
+                        <div v-for="p in props.data.news_all.data" class="flex flex-col">
                             <h3 class="text-lg font-bold">{{ p.title }}</h3>
                         </div>
                     </div>

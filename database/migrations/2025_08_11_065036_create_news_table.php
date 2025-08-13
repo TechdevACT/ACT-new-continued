@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title')->required();
             $table->string('slug')->required();
-            $table->string('content')->required();
+            $table->text('content')->required();
             $table->string('excerpt');
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamps();

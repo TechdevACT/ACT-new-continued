@@ -87,10 +87,10 @@ function submit() {
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Bagian Industri
+                Bagian Banner dan Client
             </h2>
             <p class="mt-1 text-sm text-gray-600">
-                Perbarui informasi Industry di halaman utama.
+                Perbarui informasi Banner dan Client di halaman utama.
             </p>
         </header>
 

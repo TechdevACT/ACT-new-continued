@@ -1,12 +1,14 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import gsap from 'gsap'
 
 const cursor = ref(null)
 const mouse = { x: 0, y: 0 }
 const pos = { x: 0, y: 0 }
 
-onMounted(() => {
+onMounted(async () => {
+    await nextTick()
+
     window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX
         mouse.y = e.clientY
@@ -15,8 +17,11 @@ onMounted(() => {
     gsap.ticker.add(() => {
         pos.x += (mouse.x - pos.x) * 0.15
         pos.y += (mouse.y - pos.y) * 0.15
-        gsap.set(cursor.value, { x: pos.x, y: pos.y })
+        if (cursor.value) {
+            gsap.set(cursor.value, { x: pos.x, y: pos.y })
+        }
     })
+
 
     document.addEventListener('mouseover', (e) => {
         if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
