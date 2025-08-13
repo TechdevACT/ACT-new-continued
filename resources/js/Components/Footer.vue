@@ -1,5 +1,4 @@
 <script setup>
-// ... (script setup tidak berubah)
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBehance, faDribbble, faFacebookF, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';

@@ -43,4 +43,14 @@ class PageController extends Controller
     {
         return Inertia::render('Services');
     }
+
+    public function news()
+    {
+        return Inertia::render('News');
+    }
+
+    public function newsDetail()
+    {
+        return Inertia::render('DetailNews');
+    }
 }

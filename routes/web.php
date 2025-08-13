@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/news', [PageController::class, 'news'])->name('news');
+    Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
 
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
@@ -37,6 +40,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/blog', [SettingsController::class, 'blogUpdate'])->name('blogUpdate');
         Route::post('/aboutPage', [SettingsController::class, 'aboutPageUpdate'])->name('aboutPageUpdate');
     });
+
+    Route::resource('blog', NewsController::class);
 });
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
