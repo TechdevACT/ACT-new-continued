@@ -39,11 +39,11 @@ const cards = [
     },
 ];
 
-const clientsImage = props.data_fe.clients_image.map(item => item.path) ;
+const clientsImage = props.data_fe.clients_image.map(item => item.path);
 
-const images = props.data_fe.hero_image.map(item => item.path) ;
+const images = props.data_fe.hero_image.map(item => item.path);
 
-const industries = props.data_fe.industry_image.map(item => item.path) ;
+const industries = props.data_fe.industry_image.map(item => item.path);
 
 const industries_text = [
     props.data_fe.data_fe[0].industry_title,
@@ -67,23 +67,6 @@ const mobileTransformStyles = [
     "rotate(-5deg) translate(120px)"
 ];
 
-const last3blog = [
-    {
-        date: "April 03, 2025",
-        title: "Optimizing the Use of TopAds: Strategies for Maximizing Ad Credits.",
-        image: "https://placehold.co/400x200",
-    },
-    {
-        date: "May 20, 2025",
-        title: "How Content Marketing Plays a Role in Business Success",
-        image: "https://placehold.co/400x200",
-    },
-    {
-        date: "June 11, 2025",
-        title: "Understanding Email Marketing to achieve digital marketing success",
-        image: "https://placehold.co/400x200",
-    },
-]
 </script>
 
 <template>
@@ -95,7 +78,8 @@ const last3blog = [
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
             <div class="px-4 flex justify-center">
                 <h1 class="text-4xl sm:text-7xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]"><span
-                        class="text-5xl sm:text-[5rem] text-[#99CA3D]">{{ data_fe.data_fe[0].hero_title }}</span> {{ data_fe.data_fe[0].hero_title2 }}
+                        class="text-5xl sm:text-[5rem] text-[#99CA3D]">{{ data_fe.data_fe[0].hero_title }}</span> {{
+                            data_fe.data_fe[0].hero_title2 }}
                 </h1>
             </div>
 
@@ -214,7 +198,7 @@ const last3blog = [
             </section>
 
             <section class="bg-brand-purple py-10 px-4 sm:px-0">
-                <Industries :industries="industries" :text="industries_text"/>
+                <Industries :industries="industries" :text="industries_text" />
             </section>
 
         </template>
@@ -222,21 +206,30 @@ const last3blog = [
         <template #afterFullwidth2>
             <section class="py-10 px-4 sm:px-0">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ {{ data_fe.data_fe[0].blog_title }}</h3>
+                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ {{ data_fe.data_fe[0].blog_title }}
+                    </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
                         <h4 class="sm:w-3/4 text-lg sm:text-xl">{{ data_fe.data_fe[0].blog_description }}</h4>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10">
-                    <div class="flex flex-col" v-for="blog in last3blog">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 animate-fade-up">
+                    <div class="flex flex-col" v-for="blog in data_fe.blog">
+                        <Link :href="`/blog/` + blog.slug" class="flex flex-col flex-1">
                         <div
                             class="flex flex-col bg-gray-200 dark:bg-zinc-900 p-6 rounded-t-3xl transition-all duration-500">
-                            <span class="text-sm text-gray-500 dark:text-gray-200">{{ blog.date }}</span>
-                            <h3 class="text-md sm:text-xl dark:text-white">{{ blog.title }}</h3>
+                            <span class="text-sm text-gray-500 dark:text-gray-200">{{ new
+                                Date(blog.created_at).toLocaleDateString('en-GB', {
+                                    day: '2-digit', month: 'long', year:
+                                        'numeric'
+                                }) }}</span>
+                            <h3 class="text-md font-bold sm:text-xl dark:text-white">{{ blog.title }}</h3>
+                            <span>{{ blog.excerpt }}</span>
                         </div>
-                        <img :src="blog.image" alt="" class="w-full rounded-b-3xl">
+                        <img :src="blog.image ? blog.image : 'https://placehold.co/1080x500'" alt=""
+                            class="w-full rounded-b-3xl">
+                        </Link>
                     </div>
                 </div>
             </section>

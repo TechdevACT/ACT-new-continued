@@ -71,7 +71,7 @@ class NewsController extends Controller
             'excerpt' => $request->excerpt ?? $request->title
         ]);
 
-        return redirect()->route('news.index');
+        return redirect()->route('blog.index');
     }
 
     /**
