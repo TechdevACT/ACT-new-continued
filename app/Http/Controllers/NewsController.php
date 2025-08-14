@@ -21,7 +21,7 @@ class NewsController extends Controller
         $sortField = $request->get('sortField', 'created_at');
         $sortDirection = $request->get('sortDirection', 'desc');
 
-        $news = News::with('user')
+        $news = News::with('user', 'newsImages')
             ->when($search, function ($query) use ($search) {
                 $query->where('title', 'like', "%{$search}%")
                     ->orWhere('slug', 'like', "%{$search}%");
@@ -63,7 +63,12 @@ class NewsController extends Controller
             'excerpt' => 'required',
         ]);
 
-        News::create([
+        if ($request->file('image')) {
+            $imageName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('images/news'), $imageName);
+        }
+
+        $news = News::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'slug' => $request->slug,
@@ -71,6 +76,11 @@ class NewsController extends Controller
             'status' => 'published',
             'excerpt' => $request->excerpt
         ]);
+
+        NewsImages::create([
+                'news_id' => $news->id,
+                'image' => '/images/news/'. $imageName,
+            ]);
 
         return redirect()->route('blog.index');
     }
@@ -80,7 +90,7 @@ class NewsController extends Controller
      */
     public function show(News $blog)
     {
-        $blog = News::with('user')->where('slug', $blog->slug)->firstOrFail();
+        $blog = News::with('user', 'newsImages')->where('slug', $blog->slug)->firstOrFail();
 
         return Inertia::render('DetailNews', [
             'data' => compact('blog'),
@@ -100,11 +110,22 @@ class NewsController extends Controller
      */
     public function update(String $id, Request $request)
     {
+        dd($request->all());
         $request->validate([
             'title' => 'required',
             'slug' => 'required|unique:news,slug,' . $id,
             'content' => 'required',
         ]);
+
+        if ($request->file('image')) {
+            $imageName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('images/news'), $imageName);
+
+            $newsImage = NewsImages::where('news_id', $id)->first();
+            $newsImage->update([
+                'image' => '/images/news/' . $imageName
+            ]);
+        }
 
         $news = News::findOrFail($id);
         $news->update($request->all());

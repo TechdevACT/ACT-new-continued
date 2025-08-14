@@ -70,11 +70,6 @@ const editData = (item) => {
                         :class="['px-3 py-1 rounded', page.active ? 'bg-indigo-500 text-white' : 'bg-gray-200']" />
                 </div>
             </div>
-
-            <!-- Form -->
-            <div v-if="showForm">
-                <Create :form-data="editItem" @cancel="showForm = false; editItem = null" />
-            </div>
         </div>
     </AuthenticatedLayout>
 </template>

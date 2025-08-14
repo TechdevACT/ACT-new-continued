@@ -227,8 +227,8 @@ const mobileTransformStyles = [
                             <h3 class="text-md font-bold sm:text-xl dark:text-white">{{ blog.title }}</h3>
                             <span>{{ blog.excerpt }}</span>
                         </div>
-                        <img :src="blog.image ? blog.image : 'https://placehold.co/1080x500'" alt=""
-                            class="w-full rounded-b-3xl">
+                        <img :src="blog.news_images[0]?.image ?? 'https://placehold.co/1080x500'" alt=""
+                            class="object-cover max-h-60 rounded-b-3xl">
                         </Link>
                     </div>
                 </div>

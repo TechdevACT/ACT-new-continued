@@ -14,10 +14,11 @@ const props = defineProps({
     <SecondLayout>
         <section>
             <div class="animate-fade-up py-10 px-4">
-                <img src="https://placehold.co/1080x500" alt="" class="w-full rounded-3xl">
+                <img :src="props.data.blog.news_images[0]?.image ?? 'https://placehold.co/1080x500'" alt="" class="w-full max-h-96 object-cover rounded-3xl">
             </div>
 
             <div class="flex flex-col gap-4 max-w-3xl mx-auto animate-fade-up pb-10 px-4 dark:text-white">
+                {{  }}
                 <h1 class="text-3xl sm:text-4xl font-bold">{{ props.data.blog.title }}</h1>
                 <div class="flex gap-2 text-sm ">
                     <p>Author: <span class="font-bold">{{ props.data.blog.user.name }}</span></p>

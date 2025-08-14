@@ -19,7 +19,7 @@ class PageController extends Controller
         $industry_image = ImageFrontEnd::where('type', 'industry')->take(5)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(5)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
-        $blog = News::where('status', 'published')->orderBy('created_at', 'desc')->take(3)->get(['title', 'slug', 'created_at', 'excerpt']);
+        $blog = News::with('newsImages')->where('status', 'published')->orderBy('created_at', 'desc')->take(3)->get();
 
         return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
