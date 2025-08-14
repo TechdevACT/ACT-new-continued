@@ -4,19 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\NewsImages;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Yajra\DataTables\Facades\DataTables;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('News/Index');
+        $search = $request->get('search');
+        $sortField = $request->get('sortField', 'created_at');
+        $sortDirection = $request->get('sortDirection', 'desc');
+
+        $news = News::with('user')
+            ->when($search, function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%");
+            })
+            ->orderBy($sortField, $sortDirection)
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render('News/Index', [
+            'news' => $news,
+            'filters' => [
+                'search' => $search,
+                'sortField' => $sortField,
+                'sortDirection' => $sortDirection,
+            ]
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,16 +97,27 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(String $id, Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:news,slug,' . $id,
+            'content' => 'required',
+        ]);
+
+        $news = News::findOrFail($id);
+        $news->update($request->all());
+
+        return redirect()->route('blog.index')->with('success', 'News updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(String $id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->delete();
+        return back()->with('success', 'News deleted!');
     }
 }

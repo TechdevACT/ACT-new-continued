@@ -31,7 +31,8 @@ const props = defineProps({
                     </div>
                 </div>
 
-                <div class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4 dark:text-white">
+                <div
+                    class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4 dark:text-white">
                     <h2 class="text-5xl font-bold uppercase">We share brilliant stories</h2>
                     <p class="text-lg">Building a standout portfolio is challenging let’s make it easier...</p>
                 </div>
@@ -41,21 +42,27 @@ const props = defineProps({
         <section class="max-w-7xl px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
                 <div class="col-span-2 ">
-                    <div class="grid sm:grid-cols-2 gap-10 animate-fade-up">
-                        <div v-for="p in props.data.news_all.data" class="flex flex-col shadow-xl group rounded-2xl">
-                            <Link :href="`/blog/` + p.slug">
-                            <div class="flex flex-col bg-gray-200 dark:bg-zinc-900 dark:text-white rounded-t-2xl p-4">
-                                <span class="text-gray-500">{{ new Date(p.created_at).toLocaleDateString('id-ID', {
-                                    day: '2-digit',
-                                    month: 'long',
+                    <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
+                        <div v-for="p in props.data.news_all.data" :key="p.slug"
+                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
+                            <Link :href="`/blog/` + p.slug" class="flex flex-col flex-1">
+                            <!-- Konten -->
+                            <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
+                                <span class="text-gray-500">
+                                    {{ new Date(p.created_at).toLocaleDateString('id-ID', {
+                                        day: '2-digit',
+                                        month: 'long',
                                     year: 'numeric'
-                                    }) }}</span>
+                                    }) }}
+                                </span>
                                 <h3 class="text-xl font-bold">{{ p.title }}</h3>
                                 <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
                             </div>
-                            <div class="rounded-b-2xl overflow-hidden">
+
+                            <!-- Gambar -->
+                            <div class="flex-1">
                                 <img :src="p.image || 'https://placehold.co/400x200'" alt=""
-                                    class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                             </div>
                             </Link>
                         </div>

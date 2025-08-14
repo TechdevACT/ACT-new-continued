@@ -13,13 +13,28 @@ const form = useForm({
     content: '',
 });
 
+const props = defineProps({
+    formData: { type: Object, default: null }
+});
+
+watch(
+    () => props.formData,
+    (val) => {
+        form.title = val?.title ?? '';
+        form.slug = val?.slug ?? '';
+        form.content = val?.content ?? '';
+        form.image = null; // reset file input ketika ganti item
+    },
+    { immediate: true }
+);
+
 const formatSlug = () => {
     form.slug = form.slug
-        .toLowerCase() // jadi huruf kecil semua
-        .trim() // hilangkan spasi di depan/belakang
-        .replace(/\s+/g, '-') // ganti spasi jadi "-"
-        .replace(/[^a-z0-9\-]/g, '') // hapus karakter selain huruf, angka, dan "-"
-        .replace(/-+/g, '-'); // rapikan jika ada double "-"
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9\-]/g, '')
+        .replace(/-+/g, '-');
 };
 
 const handleImageUpload = (event) => {
@@ -29,6 +44,7 @@ const handleImageUpload = (event) => {
 const submit = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(form.content, 'text/html');
+
     doc.querySelectorAll('h1').forEach(h1 => {
         h1.classList.add('text-4xl', 'font-bold', 'mt-4');
     });
@@ -49,11 +65,21 @@ const submit = () => {
     });
     form.content = doc.body.innerHTML;
 
-    form.post(route('blog.store'), {
-        onSuccess: () => {
-            form.reset();
-        }
-    });
+    if (props.formData?.id) {
+        form.put(route('blog.update', props.formData.id), {
+            onSuccess: () => {
+                form.reset();
+                emit('cancel');
+            }
+        });
+    } else {
+        form.post(route('blog.store'), {
+            onSuccess: () => {
+                form.reset();
+                emit('cancel');
+            }
+        });
+    }
 };
 </script>
 

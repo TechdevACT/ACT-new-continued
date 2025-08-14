@@ -1,14 +1,35 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Create from './Create.vue';
+import DataBlog from '@/Components/DataBlog.vue';
 
 const activeTab = ref('allBlog');
 
-const handleCancel = () => {
-    activeTab.value = 'allBlog';
+const props = defineProps({
+    news: Object,
+    filters: Object
+});
+
+const search = ref(props.filters.search || '');
+const showForm = ref(false);
+const editItem = ref(null);
+
+const handleSearch = () => {
+    router.get(route('blog.index'), { search: search.value }, { preserveState: true });
 };
+
+const addNew = () => {
+    editItem.value = null;
+    showForm.value = true;
+};
+
+const editData = (item) => {
+    editItem.value = { ...item };
+    showForm.value = true;
+};
+
 </script>
 
 <template>
@@ -22,9 +43,7 @@ const handleCancel = () => {
                     All Blog
                 </h2>
 
-                <button
-                    :class="['py-1 px-4 rounded-xl', activeTab === 'addBlog' ? 'bg-gray-900 text-white' : 'bg-gray-300']"
-                    @click="activeTab = 'addBlog'">
+                <button class='py-1 px-4 rounded-xl bg-gray-300' @click="addNew">
                     Add New Blog
                 </button>
             </div>
@@ -32,9 +51,29 @@ const handleCancel = () => {
 
         <div class="py-4 mx-4">
             <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                <template v-if="activeTab === 'addBlog'">
-                    <Create @cancel="handleCancel" />
-                </template>
+                <Create v-if="showForm" :key="editItem?.id || 'new'" :form-data="editItem"
+                    @cancel="showForm = false; editItem = null" />
+
+                <!-- Search & Add -->
+                <div class="flex justify-between">
+                    <input v-model="search" @keyup.enter="handleSearch" type="text" placeholder="Cari..."
+                        class="border rounded-lg px-3 py-2 w-1/3" />
+                </div>
+
+                <!-- Table -->
+                <DataBlog :news="news" @edit="editData" />
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-4 space-x-2">
+                    <button v-for="page in news.links" :key="page.url" @click="page.url && router.get(page.url)"
+                        v-html="page.label"
+                        :class="['px-3 py-1 rounded', page.active ? 'bg-indigo-500 text-white' : 'bg-gray-200']" />
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div v-if="showForm">
+                <Create :form-data="editItem" @cancel="showForm = false; editItem = null" />
             </div>
         </div>
     </AuthenticatedLayout>

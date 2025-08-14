@@ -28,6 +28,8 @@
         "@heroicons/vue": "^2.2.0",
         "@vueup/vue-quill": "^1.2.0",
         "@vueuse/core": "^13.5.0",
+        "datatables.net": "^2.3.2",
+        "datatables.net-dt": "^2.3.2",
         "gsap": "^3.13.0"
     }
 }
