@@ -9,6 +9,7 @@ const emit = defineEmits(['cancel']);
 const form = useForm({
     title: '',
     slug: '',
+    excerpt: '',
     image: null,
     content: '',
 });
@@ -46,10 +47,10 @@ const submit = () => {
     const doc = parser.parseFromString(form.content, 'text/html');
 
     doc.querySelectorAll('h1').forEach(h1 => {
-        h1.classList.add('text-4xl', 'font-bold', 'mt-4');
+        h1.classList.add('text-4xl', 'mt-4');
     });
     doc.querySelectorAll('h2').forEach(h2 => {
-        h2.classList.add('text-3xl', 'font-bold', 'mt-4');
+        h2.classList.add('text-3xl', 'mt-4');
     });
     doc.querySelectorAll('p').forEach(p => {
         p.classList.add('text-xl', 'mt-4');
@@ -110,6 +111,15 @@ const submit = () => {
                 <label for="image" class="block text-sm font-medium text-gray-700">Gambar</label>
                 <input type="file" id="image" accept="image/*" @change="handleImageUpload" class="mt-1 block w-full">
                 <div v-if="form.errors.image" class="text-red-500 text-sm mt-1">{{ form.errors.image }}</div>
+            </div>
+
+            <!-- Excerpt Blog -->
+            <div>
+                <label for="excerpt" class="block text-sm font-medium text-gray-700">Deskripsi Singkat</label>
+                <input type="text" id="excerpt" v-model="form.excerpt"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    placeholder="Masukkan deskripsi singkat">
+                <div v-if="form.errors.title" class="text-red-500 text-sm mt-1">{{ form.errors.excerpt }}</div>
             </div>
 
             <!-- Konten -->

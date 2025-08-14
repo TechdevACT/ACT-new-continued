@@ -60,6 +60,7 @@ class NewsController extends Controller
             'slug' => 'required',
             'image' => 'required',
             'content' => 'required',
+            'excerpt' => 'required',
         ]);
 
         News::create([
@@ -68,7 +69,7 @@ class NewsController extends Controller
             'slug' => $request->slug,
             'content' => $request->content,
             'status' => 'published',
-            'excerpt' => $request->excerpt ?? $request->title
+            'excerpt' => $request->excerpt
         ]);
 
         return redirect()->route('blog.index');
@@ -79,7 +80,7 @@ class NewsController extends Controller
      */
     public function show(News $blog)
     {
-        $blog = News::where('slug', $blog->slug)->firstOrFail();
+        $blog = News::with('user')->where('slug', $blog->slug)->firstOrFail();
 
         return Inertia::render('DetailNews', [
             'data' => compact('blog'),

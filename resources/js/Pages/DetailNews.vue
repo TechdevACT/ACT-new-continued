@@ -20,22 +20,21 @@ const props = defineProps({
             <div class="flex flex-col gap-4 max-w-3xl mx-auto animate-fade-up pb-10 px-4 dark:text-white">
                 <h1 class="text-3xl sm:text-4xl font-bold">{{ props.data.blog.title }}</h1>
                 <div class="flex gap-2 text-sm ">
-                    <span>Author: </span>
-                    <span class="font-bold">{{ props.data.blog.user_id }}</span>
+                    <p>Author: <span class="font-bold">{{ props.data.blog.user.name }}</span></p>
                     |
-                    <span>Date: </span>
-                    <span class="font-bold"><span class="text-gray-500">{{ new
+                    <p>Date: <span class="font-bold"><span class="text-gray-500">{{ new
                         Date(props.data.blog.created_at).toLocaleDateString('id-ID', {
                             day: '2-digit',
                             month: 'long',
                             year: 'numeric'
-                        }) }}</span></span>
+                                }) }}</span></span></p>
                 </div>
 
                 <div v-html="props.data.blog.content"></div>
 
                 <div class="flex justify-center mt-10">
-                    <div class="flex gap-4 justify-between sm:w-1/3 bg-black rounded-2xl py-2 px-4 text-3xl text-white dark:bg-white dark:text-black">
+                    <div
+                        class="flex gap-4 justify-between sm:w-1/3 bg-black rounded-2xl py-2 px-4 text-3xl text-white dark:bg-white dark:text-black">
                         <FontAwesomeIcon :icon="faXTwitter" />
                         <FontAwesomeIcon :icon="faFacebookF" />
                         <FontAwesomeIcon :icon="faInstagram" />
@@ -44,7 +43,8 @@ const props = defineProps({
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-0 max-w-5xl mx-auto animate-fade-up pb-10 px-4 dark:text-white">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-0 max-w-5xl mx-auto animate-fade-up pb-10 px-4 dark:text-white">
                 <div class="flex flex-col sm:border-r border-black pr-4 dark:border-white">
                     <span class="text-gray-500">Previous News</span>
                     <h4 class="w-2/3 text-xl font-bold">A Step-by-Step Guide to Mastering Technical Design</h4>
@@ -59,7 +59,8 @@ const props = defineProps({
 
         <template #fullwidth2>
             <section class="bg-gray-200 dark:bg-zinc-900 mx-4 rounded-3xl mb-10">
-                <div class="flex flex-col px-4 py-6 mx-auto max-w-3xl flex-grow transition-colors duration-500 w-full dark:text-white">
+                <div
+                    class="flex flex-col px-4 py-6 mx-auto max-w-3xl flex-grow transition-colors duration-500 w-full dark:text-white">
                     <h2 class="text-2xl font-bold">Read other news</h2>
                     <div class="flex gap-4 mt-6 items-center border-b border-gray-400 pb-6">
                         <img src="https://placehold.co/200x200" alt="" class="h-32 rounded-2xl">
