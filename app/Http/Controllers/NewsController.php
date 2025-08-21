@@ -72,11 +72,11 @@ class NewsController extends Controller
 
         if ($request->file('image')) {
             $imageName = $request->file('image')->hashName();
-            $request->file('image')->move(public_path('images/news'), $imageName);
+            $request->file('image')->move(public_path('storage/images/news'), $imageName);
 
             NewsImages::create([
                 'news_id' => $news->id,
-                'image' => '/images/news/'. $imageName,
+                'image' => '/storage/images/news/'. $imageName,
             ]);
         }
 
@@ -117,11 +117,11 @@ class NewsController extends Controller
 
         if ($request->file('image')) {
             $imageName = $request->file('image')->hashName();
-            $request->file('image')->move(public_path('images/news'), $imageName);
+            $request->file('image')->move(public_path('storage/images/news'), $imageName);
 
             $newsImage = NewsImages::where('news_id', $id)->first();
             $newsImage->update([
-                'image' => '/images/news/' . $imageName
+                'image' => '/storage/images/news/' . $imageName
             ]);
         }
 

@@ -50,10 +50,10 @@ class SettingsController extends Controller
 
             foreach ($request->file('images') as $image) {
                 $imageName = $image->hashName();
-                $image->move(public_path('images/frontEnd'), $imageName);
+                $image->move(public_path('storage/images/frontEnd'), $imageName);
                 ImageFrontEnd::create([
                     'type' => 'hero',
-                    'path' => '/images/frontEnd/' . $imageName
+                    'path' => '/storage/images/frontEnd/' . $imageName
                 ]);
             }
         }
@@ -102,11 +102,11 @@ class SettingsController extends Controller
 
                 $image = $request->file('banner')[0];
                 $imageName = $image->hashName();
-                $image->move(public_path('images/frontEnd'), $imageName);
+                $image->move(public_path('storage/images/frontEnd'), $imageName);
 
                 ImageFrontEnd::create([
                     'type' => 'bannerHome',
-                    'path' => '/images/frontEnd/' . $imageName,
+                    'path' => '/storage/images/frontEnd/' . $imageName,
                 ]);
             }
 
@@ -122,11 +122,11 @@ class SettingsController extends Controller
 
                 foreach ($request->file('images') as $image) {
                     $imageName = $image->hashName();
-                    $image->move(public_path('images/clients'), $imageName);
+                    $image->move(public_path('storage/images/clients'), $imageName);
 
                     ImageFrontEnd::create([
                         'type' => 'clients',
-                        'path' => '/images/clients/' . $imageName,
+                        'path' => '/storage/images/clients/' . $imageName,
                     ]);
                 }
             }
@@ -184,10 +184,10 @@ class SettingsController extends Controller
 
             foreach ($request->file('images') as $image) {
                 $imageName = $image->hashName();
-                $image->move(public_path('images/frontEnd'), $imageName);
+                $image->move(public_path('storage/images/frontEnd'), $imageName);
                 ImageFrontEnd::create([
                     'type' => 'industry',
-                    'path' => '/images/frontEnd/' . $imageName
+                    'path' => '/storage/images/frontEnd/' . $imageName
                 ]);
             }
         }
