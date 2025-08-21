@@ -34,13 +34,13 @@ defineProps({
         <slot name="fullwidth" />
 
         <main>
-            <div class="mx-auto max-w-7xl flex-grow transition-colors duration-500 w-full">
+            <div class="mx-auto w-11/12 sm:w-10/12 flex-grow transition-colors duration-500">
                 <slot />
             </div>
 
             <slot name="fullwidth2" />
 
-            <div class="mx-auto max-w-7xl flex-grow transition-colors duration-500 w-full">
+            <div class="mx-auto w-11/12 sm:w-10/12 flex-grow transition-colors duration-500">
                 <slot name="afterFullwidth2" />
             </div>
         </main>

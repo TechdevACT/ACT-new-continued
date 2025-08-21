@@ -19,21 +19,21 @@ const cards = [
     {
         id: 2,
         no: '02',
-        text: 'Photography',
+        text: 'Web Application',
         subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-2.png'
     },
     {
         id: 3,
         no: '03',
-        text: 'Company Profile',
+        text: 'Motion Graphics',
         subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-3.png'
     },
     {
         id: 4,
         no: '04',
-        text: 'Packaging',
+        text: 'Content Creation',
         subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-4.png'
     },
@@ -76,8 +76,8 @@ const mobileTransformStyles = [
         </template>
 
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
-            <div class="px-4 flex justify-center">
-                <h1 class="text-4xl sm:text-6xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]">{{
+            <div class="px-4 flex justify-center mb-6">
+                <h1 class="text-4xl sm:text-6xl text-center font-bold text-black dark:text-white">{{
                     data_fe.data_fe[0].hero_title }}
                     <span class="text-[#99CA3D]">
                         {{ data_fe.data_fe[0].hero_title2 }}
@@ -106,31 +106,31 @@ const mobileTransformStyles = [
             </div>
             <div class="flex flex-row gap-4 sm:gap-8 font-semibold">
                 <Link href="#"
-                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white text-center">
-                Contact Us
+                    class="bg-black hover:bg-amber-200 text-white hover:text-black text-sm sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white text-center">
+                Getting Started
                 </Link>
                 <Link href="#"
-                    class="bg-gray-200 hover:bg-amber-200 text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400 text-center">
+                    class="bg-gray-200 hover:bg-amber-200 text-black text-sm sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-gray-300 dark:hover:bg-yellow-400 text-center">
                 Discover Our Work
                 </Link>
             </div>
         </section>
 
         <section class="py-5 sm:py-10 mx-4">
-            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 sm:gap-6">
-                <div class="col-span-3 animate-fade-up transition-all duration-500">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-6">
+                <div class=" animate-fade-up transition-all duration-500">
                     <h3 class="text-md sm:text-2xl dark:text-white">/ {{ data_fe.data_fe[0].about_title }}</h3>
                 </div>
 
-                <div class="col-span-2 animate-fade-up transition-all duration-500">
-                    <h3 class="text-lg sm:text-xl dark:text-white font-medium">
+                <div class="animate-fade-up transition-all duration-500">
+                    <h3 class="text-lg sm:text-2xl dark:text-white font-medium">
                         {{ data_fe.data_fe[0].about_description }}
                     </h3>
                 </div>
             </div>
         </section>
 
-        <section class="flex flex-col py-5 sm:py-10 mx-4 animate-fade-up transition-all duration-500">
+        <section class="flex flex-col py-5 sm:pt-10 mx-4 animate-fade-up transition-all duration-500">
             <div class="mb-10">
                 <img src="https://placehold.co/1080x500" class="w-full rounded-3xl">
             </div>
@@ -139,18 +139,18 @@ const mobileTransformStyles = [
                     <img :src="clients" alt="">
                 </div>
             </div>
+            <div class="flex flex-col mt-16">
+                <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
+                    <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
+                    <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
+                    <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">{{ data_fe.data_fe[0].expertise_description }}
+                    </h2>
+                </div>
+            </div>
         </section>
 
         <template #fullwidth2>
             <section>
-                <div class="flex flex-col max-w-7xl mx-auto py-5 sm:py-10 animate-fade-up transition-all duration-500">
-                    <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
-                        <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
-                        <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
-                        <h2 class="text-lg sm:text-xl sm:w-1/2 font-medium">{{ data_fe.data_fe[0].expertise_description }}</h2>
-                    </div>
-                </div>
-
                 <div class="relative mb-10 animate-fade-up" :style="{ height: `${cards.length * 65}vh` }">
                     <div v-for="(card, index) in cards" :key="card.id"
                         class="sticky top-20 h-[65vh] flex items-start justify-center pt-10 transition-all duration-700"
@@ -208,11 +208,11 @@ const mobileTransformStyles = [
         <template #afterFullwidth2>
             <section class="py-10 px-4 sm:px-0">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-                    <h3 class="text-md sm:text-2xl text-black dark:text-white">/ {{ data_fe.data_fe[0].blog_title }}
+                    <h3 class="text-md sm:text-2xl text-black dark:text-white font-medium">/ {{ data_fe.data_fe[0].blog_title }}
                     </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-xl">{{ data_fe.data_fe[0].blog_description }}</h4>
+                        <h4 class="sm:w-3/4 text-lg sm:text-xl font-medium">{{ data_fe.data_fe[0].blog_description }}</h4>
                     </div>
                 </div>
 

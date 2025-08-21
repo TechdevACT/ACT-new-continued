@@ -76,7 +76,7 @@ const clients = [
                 </h2>
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
-                        <h2 class="text-xl text-justify dark:text-white">
+                        <h2 class="text-xl text-justify dark:text-white font-semibold">
                             {{ data_about.data_about.description }}
                         </h2>
                     </div>
@@ -114,14 +114,14 @@ const clients = [
         </section>
 
         <section class="sm:py-16 mx-4">
-            <span class="text-2xl">/ {{ data_about.data_about.approach_title }}</span>
+            <span class="text-2xl font-medium">/ {{ data_about.data_about.approach_title }}</span>
             <div class="flex flex-col w-full mt-2">
                 <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
                     {{ data_about.data_about.approach_heading }}
                 </h2>
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
-                        <h2 class="text-xl text-justify dark:text-white">
+                        <h2 class="text-xl font-semibold dark:text-white">
                             {{ data_about.data_about.approach_description }}
                         </h2>
                     </div>
@@ -130,7 +130,7 @@ const clients = [
         </section>
 
         <section class="sm:py-16 mx-4 mb-10">
-            <span class="text-2xl">/ {{ data_about.data_about.expertise_title }}</span>
+            <span class="text-2xl font-medium">/ {{ data_about.data_about.expertise_title }}</span>
             <div class="relative flex overflow-hidden group pb-10 text-black dark:text-white">
                 <div class="flex whitespace-nowrap group-hover:paused animate-scroll" aria-hidden="true">
                     <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
@@ -179,14 +179,14 @@ const clients = [
 
         <template #afterFullwidth2>
             <section class="sm:py-16 mx-4 my-10">
-                <span class="text-2xl">/ {{ data_about.data_about.emphasis_title }}</span>
+                <span class="text-2xl font-medium">/ {{ data_about.data_about.emphasis_title }}</span>
                 <div class="flex flex-col w-full mt-2">
                     <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
                         {{ data_about.data_about.emphasis_heading }}
                     </h2>
                     <div class="flex justify-end mb-4 sm:mb-10">
                         <div class="sm:w-1/2">
-                            <h2 class="text-xl text-justify dark:text-white">
+                            <h2 class="text-xl font-semibold dark:text-white">
                                 {{ data_about.data_about.emphasis_description }}
                             </h2>
                         </div>

@@ -46,7 +46,6 @@ const props = defineProps({
                         <div v-for="p in props.data.news_all.data" :key="p.slug"
                             class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
                             <Link :href="`/blog/` + p.slug" class="flex flex-col flex-1">
-                            <!-- Konten -->
                             <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
                                 <span class="text-gray-500">
                                     {{ new Date(p.created_at).toLocaleDateString('id-ID', {
@@ -59,7 +58,6 @@ const props = defineProps({
                                 <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
                             </div>
 
-                            <!-- Gambar -->
                             <div class="flex-1">
                                 <img :src="p.image || 'https://placehold.co/400x200'" alt=""
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -75,7 +73,7 @@ const props = defineProps({
                     <h3 class="text-xl sm:text-2xl font-bold">Recent Posts</h3>
                     <div class="flex flex-col">
                         <div v-for="p in props.data.news_all.data" class="flex flex-col">
-                            <h3 class="text-lg font-bold">{{ p.title }}</h3>
+                            <h3 class="text-lg font-medium mb-4">{{ p.title }}</h3>
                         </div>
                     </div>
                 </div>

@@ -30,11 +30,11 @@ watch(
 </script>
 
 <template>
-    <div class="mx-auto max-w-7xl flex-grow transition-colors duration-500 w-full">
+    <div class="mx-auto w-11/12 sm:w-10/12 flex-grow transition-colors duration-500">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
             <h3 class="text-md sm:text-2xl text-white font-medium">/ {{ text[0] }}</h3>
             <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-white">
-                <h3 class="sm:w-3/4 text-4xl sm:text-6xl font-bold">{{ text[1] }}</h3>
+                <h3 class="text-4xl sm:text-6xl font-bold">{{ text[1] }}</h3>
                 <h4 class="sm:w-3/4 text-lg sm:text-xl font-medium">{{ text[2] }}</h4>
             </div>
         </div>

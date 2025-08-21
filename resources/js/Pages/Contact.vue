@@ -41,27 +41,27 @@ const icons = [
                 <div class="sm:w-1/3">
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">ADDRESS:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">1234 Creative Street, Suite 567,
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">1234 Creative Street, Suite 567,
                             New
                             York, NY</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">PHONE:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">+1 (123) 456-7890</h3>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">+1 (123) 456-7291</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+1 (123) 456-7890</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+1 (123) 456-7291</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">EMAIL:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">info@actdigital.agency</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">info@actdigital.agency</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">BUSSINESS:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">Monday – Friday: 9 AM – 6 PM
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Monday – Friday: 9 AM – 6 PM
                         </h3>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300">Saturday – Sunday: Closed
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Saturday – Sunday: Closed
                         </h3>
                     </div>
                     <div class="grid mb-10">
@@ -79,7 +79,7 @@ const icons = [
                 </div>
                 <div class="sm:w-2/3">
                     <h2 class="text-3xl sm:text-6xl dark:text-white font-bold mb-4">GET IN TOUCH WITH US</h2>
-                    <p class="text-lg dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project
+                    <p class="text-xl text-justify font-medium dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project
                         in mind,
                         need a quote, or just want to say hello, feel free to reach out. Fill out the form below or use
                         our
