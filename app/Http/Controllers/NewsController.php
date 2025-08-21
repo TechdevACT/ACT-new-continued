@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\NewsImages;
-use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Yajra\DataTables\Facades\DataTables;
 
 class NewsController extends Controller
 {
@@ -58,15 +56,10 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'required',
             'slug' => 'required',
-            'image' => 'required',
             'content' => 'required',
             'excerpt' => 'required',
         ]);
 
-        if ($request->file('image')) {
-            $imageName = $request->file('image')->hashName();
-            $request->file('image')->move(public_path('images/news'), $imageName);
-        }
 
         $news = News::create([
             'user_id' => Auth::id(),
@@ -77,10 +70,15 @@ class NewsController extends Controller
             'excerpt' => $request->excerpt
         ]);
 
-        NewsImages::create([
+        if ($request->file('image')) {
+            $imageName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('images/news'), $imageName);
+
+            NewsImages::create([
                 'news_id' => $news->id,
                 'image' => '/images/news/'. $imageName,
             ]);
+        }
 
         return redirect()->route('blog.index');
     }

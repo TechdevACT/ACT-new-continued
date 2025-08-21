@@ -5,7 +5,7 @@ const cards = [
     {
         id: 1,
         no: '01',
-        text: 'Photography',
+        text: 'Creative Creation',
         subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
         bg: '/images/services/bg-card-1.png'
     },
@@ -19,14 +19,14 @@ const cards = [
     {
         id: 3,
         no: '03',
-        text: 'Photography',
+        text: 'Company Profile',
         subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
         bg: '/images/services/bg-card-3.png'
     },
     {
         id: 4,
         no: '04',
-        text: 'Photography',
+        text: 'Packaging',
         subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
         bg: '/images/services/bg-card-4.png'
     },
@@ -82,7 +82,7 @@ const whyUs = [
         <section class="animate-fade-up">
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Our Services</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4">Capturing moments that tell a story, I create striking images
+                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">Capturing moments that tell a story, I create striking images
                     that leave
                     a
                     lasting
@@ -110,11 +110,11 @@ const whyUs = [
                             <div class="w-3 sm:w-5 h-3 sm:h-10 border-l-2 border-white dark:border-white/60">
 
                             </div>
-                            <h3 class="text-white text-2xl sm:text-7xl font-bold">{{ card.no }}</h3>
+                            <h3 class="text-white text-2xl sm:text-7xl font-medium">{{ card.no }}</h3>
                         </div>
 
                         <div class="flex flex-col gap-2 sm:w-1/2">
-                            <h3 class="text-white text-5xl sm:text-7xl font-bold">
+                            <h3 class="text-white text-5xl sm:text-7xl font-semibold">
                                 {{ card.text }}
                             </h3>
                             <p class="text-white text-lg sm:text-2xl">
@@ -122,7 +122,7 @@ const whyUs = [
                             </p>
 
                             <button
-                                class="group w-1/3 relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
+                                class="group w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
                                 <div
                                     class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
                                 </div>
@@ -145,7 +145,7 @@ const whyUs = [
         <template #afterFullwidth2>
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Why Us?</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4">Exceptional photography isn’t just about capturing images—it’s
+                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">Exceptional photography isn’t just about capturing images—it’s
                     about
                     creating stories that resonate. With a keen eye for detail, a passion for visual storytelling, and a
                     commitment to quality, we deliver powerful imagery that speaks for itself.</h2>

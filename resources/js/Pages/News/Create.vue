@@ -24,7 +24,7 @@ watch(
         form.title = val?.title ?? '';
         form.slug = val?.slug ?? '';
         form.content = val?.content ?? '';
-        form.image = null; // reset file input ketika ganti item
+        form.excerpt = val?.excerpt ?? '';
     },
     { immediate: true }
 );
@@ -67,6 +67,7 @@ const submit = () => {
     form.content = doc.body.innerHTML;
 
     if (props.formData?.id) {
+        console.log(form);
         form.put(route('blog.update', props.formData.id), {
             onSuccess: () => {
                 form.reset();
@@ -119,7 +120,7 @@ const submit = () => {
                 <input type="text" id="excerpt" v-model="form.excerpt"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     placeholder="Masukkan deskripsi singkat">
-                <div v-if="form.errors.title" class="text-red-500 text-sm mt-1">{{ form.errors.excerpt }}</div>
+                <div v-if="form.errors.excerpt" class="text-red-500 text-sm mt-1">{{ form.errors.excerpt }}</div>
             </div>
 
             <!-- Konten -->

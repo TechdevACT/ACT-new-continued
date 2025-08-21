@@ -1,39 +1,44 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import ThemeSwitcher from './ThemeSwitcher.vue';
 import ThemeSwitcherDark from './ThemeSwitcherDark.vue';
 
+const page = usePage()
+
 const menu = [
     {
-        name: 'Index',
+        name: 'Home',
         link: '/',
         submenu: [
             { name: 'About', link: '/about' },
-            { name: 'Services', link: '/services' },
         ]
     },
-    {
-        name: 'Projects',
-        link: '#',
-        submenu: [
-            { name: 'Project 1', link: '#' },
-            { name: 'Project 2', link: '#' },
-        ]
-    },
+    // {
+    //     name: 'Projects',
+    //     link: '#',
+    //     submenu: [
+    //         { name: 'Project 1', link: '#' },
+    //         { name: 'Project 2', link: '#' },
+    //     ]
+    // },
     {
         name: 'Services',
         link: '/services',
     },
-        {
-            name: 'News',
-            link: '/news',
-        },
+    {
+        name: 'News',
+        link: '/news',
+    },
     {
         name: 'Contact',
         link: '/contact',
     },
 ];
+
+const isActive = (link) => {
+    return page.url === link || page.url.startsWith(link + '/')
+}
 
 const isScrolled = ref(false);
 const isMenuOpen = ref(false);
@@ -67,7 +72,9 @@ onUnmounted(() => {
         :class="isScrolled ? 'py-3 bg-black/70 dark:bg-white/70 backdrop-blur-sm shadow-lg' : 'py-6 bg-transparent'">
 
         <div class="text-2xl font-bold text-white dark:text-black z-10">
-            <Link href="/">act! Digital Agency</Link>
+            <Link href="/">
+                <img src="/images/logo.png" alt="">
+            </Link>
         </div>
 
         <transition enter-active-class="transition-opacity duration-300 ease-out"
@@ -76,18 +83,19 @@ onUnmounted(() => {
             <nav v-if="!showCompactMenu" class="hidden md:block absolute left-1/2 -translate-x-1/2">
                 <ul class="flex items-center justify-center">
                     <li v-for="m in menu" :key="m.name" class="relative group">
-                        <div
-                            class="relative inline-block overflow-hidden cursor-pointer text-base font-medium text-gray-300 dark:text-gray-700">
+                        <div class="relative inline-block overflow-hidden cursor-pointer text-base font-medium"
+                            :class="isActive(m.link) ? 'text-yellow-400 dark:text-[#573280]' : 'text-gray-300 dark:text-black'">
                             <span
                                 class="inline-block text-lg transition-transform duration-500 ease-in-out group-hover:-translate-y-full py-2 px-3">
                                 {{ m.name }}
                             </span>
                             <span v-if="m.submenu"
-                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-white dark:text-black">
+                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-black dark:text-white">
                                 {{ m.name }}
                             </span>
                             <Link :href="m.link"
-                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3 text-white dark:text-black">
+                                class="absolute text-lg left-0 top-0 inline-block w-full transform transition-transform duration-300 ease-in-out translate-y-full group-hover:translate-y-0 py-2 px-3"
+                                :class="isActive(m.link) ? 'text-yellow-400 dark:text-[#573280]' : 'text-white dark:text-black'">
                             {{ m.name }}
                             </Link>
                         </div>
@@ -95,7 +103,8 @@ onUnmounted(() => {
                             class="absolute left-1/2 -translate-x-1/2 top-full w-40 rounded-xl bg-zinc-800 dark:bg-gray-800 dark:border dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-10 shadow-xl">
                             <div class="flex flex-col">
                                 <Link v-for="sm in m.submenu" :key="sm.name" :href="sm.link"
-                                    class="px-4 py-2 text-white hover:text-yellow-500 transition-colors duration-200">
+                                    :class="isActive(sm.link) ? 'text-yellow-400' : 'text-white hover:text-yellow-500'"
+                                    class="px-4 py-2 transition-colors duration-200">
                                 {{ sm.name }}
                                 </Link>
                             </div>
@@ -106,7 +115,7 @@ onUnmounted(() => {
         </transition>
 
         <div class="flex justify-end items-center">
-             <transition enter-active-class="transition-all duration-300 ease-out"
+            <transition enter-active-class="transition-all duration-300 ease-out"
                 leave-active-class="transition-all duration-200 ease-in" enter-from-class="opacity-0 scale-90"
                 leave-to-class="opacity-0 scale-90" mode="out-in">
 

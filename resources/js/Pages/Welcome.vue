@@ -12,29 +12,29 @@ const cards = [
     {
         id: 1,
         no: '01',
-        text: 'Photography',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Creative Creation',
+        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-1.png'
     },
     {
         id: 2,
         no: '02',
         text: 'Photography',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-2.png'
     },
     {
         id: 3,
         no: '03',
-        text: 'Photography',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Company Profile',
+        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-3.png'
     },
     {
         id: 4,
         no: '04',
-        text: 'Photography',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Packaging',
+        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
         bg: '/images/services/bg-card-4.png'
     },
 ];
@@ -77,9 +77,11 @@ const mobileTransformStyles = [
 
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
             <div class="px-4 flex justify-center">
-                <h1 class="text-4xl sm:text-7xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]"><span
-                        class="text-5xl sm:text-[5rem] text-[#99CA3D]">{{ data_fe.data_fe[0].hero_title }}</span> {{
-                            data_fe.data_fe[0].hero_title2 }}
+                <h1 class="text-4xl sm:text-6xl text-center font-bold text-[#A8A9A9] dark:text-[#A8A9A9]">{{
+                    data_fe.data_fe[0].hero_title }}
+                    <span class="text-[#99CA3D]">
+                        {{ data_fe.data_fe[0].hero_title2 }}
+                    </span>
                 </h1>
             </div>
 
@@ -98,11 +100,11 @@ const mobileTransformStyles = [
 
         <section class="flex flex-col justify-center items-center pb-10 sm:py-10 animate-fade-up px-4">
             <div class="w-full flex justify-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-center text-gray-800 dark:text-gray-300">
+                <h2 class="text-lg lg:text-2xl font-medium text-center text-gray-800 dark:text-gray-300">
                     {{ data_fe.data_fe[0].hero_description }}
                 </h2>
             </div>
-            <div class="flex flex-row gap-4 sm:gap-8">
+            <div class="flex flex-row gap-4 sm:gap-8 font-semibold">
                 <Link href="#"
                     class="bg-black hover:bg-amber-200 text-white hover:text-black text-lg sm:text-xl rounded-xl px-4 py-2 transition-all duration-500 dark:bg-yellow-400 dark:text-black dark:hover:bg-white text-center">
                 Contact Us
@@ -117,11 +119,11 @@ const mobileTransformStyles = [
         <section class="py-5 sm:py-10 mx-4">
             <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 sm:gap-6">
                 <div class="col-span-3 animate-fade-up transition-all duration-500">
-                    <h3 class="text-md sm:text-2xl">/ {{ data_fe.data_fe[0].about_title }}</h3>
+                    <h3 class="text-md sm:text-2xl dark:text-white">/ {{ data_fe.data_fe[0].about_title }}</h3>
                 </div>
 
                 <div class="col-span-2 animate-fade-up transition-all duration-500">
-                    <h3 class="text-lg sm:text-xl dark:text-white">
+                    <h3 class="text-lg sm:text-xl dark:text-white font-medium">
                         {{ data_fe.data_fe[0].about_description }}
                     </h3>
                 </div>
@@ -143,9 +145,9 @@ const mobileTransformStyles = [
             <section>
                 <div class="flex flex-col max-w-7xl mx-auto py-5 sm:py-10 animate-fade-up transition-all duration-500">
                     <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
-                        <h3 class="text-md sm:text-2xl">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
+                        <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
                         <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
-                        <h2 class="text-lg sm:text-xl sm:w-1/2">{{ data_fe.data_fe[0].expertise_description }}</h2>
+                        <h2 class="text-lg sm:text-xl sm:w-1/2 font-medium">{{ data_fe.data_fe[0].expertise_description }}</h2>
                     </div>
                 </div>
 
@@ -165,19 +167,19 @@ const mobileTransformStyles = [
                                 <div class="w-3 sm:w-5 h-3 sm:h-10 border-l-2 border-white dark:border-white/60">
 
                                 </div>
-                                <h3 class="text-white text-2xl sm:text-7xl font-bold">{{ card.no }}</h3>
+                                <h3 class="text-white text-2xl sm:text-7xl font-medium">{{ card.no }}</h3>
                             </div>
 
                             <div class="flex flex-col gap-2 sm:w-1/2">
-                                <h3 class="text-white text-5xl sm:text-7xl font-bold">
+                                <h3 class="text-white text-5xl sm:text-7xl font-semibold">
                                     {{ card.text }}
                                 </h3>
-                                <p class="text-white text-lg sm:text-2xl">
+                                <p class="text-white text-lg sm:text-2xl font-medium">
                                     {{ card.subText }}
                                 </p>
 
                                 <button
-                                    class="group w-1/3 relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
+                                    class="group w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
                                     <div
                                         class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
                                     </div>

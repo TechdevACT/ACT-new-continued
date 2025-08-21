@@ -24,7 +24,8 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                // sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', 'sans-serif'],
             },
             colors: {
                 'brand-purple': '#573280'

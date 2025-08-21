@@ -10,7 +10,7 @@ import { themeStore } from './themeStore';
 const appName = import.meta.env.VITE_APP_NAME || 'act! Digital Agency';
 
 createInertiaApp({
-    title: (title) => `${title} act! Digital Agency`,
+    title: (title) => `${title} act! digital agency`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,
