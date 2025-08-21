@@ -13,14 +13,10 @@ const menu = [
             { name: 'About', link: '/about' },
         ]
     },
-    // {
-    //     name: 'Projects',
-    //     link: '#',
-    //     submenu: [
-    //         { name: 'Project 1', link: '#' },
-    //         { name: 'Project 2', link: '#' },
-    //     ]
-    // },
+    {
+        name: 'Projects',
+        link: '/projects',
+    },
     {
         name: 'Services',
         link: '/services',

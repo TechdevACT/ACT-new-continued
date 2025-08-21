@@ -13,14 +13,10 @@ const menu = [
             { name: 'About', link: '/about' },
         ]
     },
-    // {
-    //     name: 'Projects',
-    //     link: '#',
-    //     submenu: [
-    //         { name: 'Project 1', link: '#' },
-    //         { name: 'Project 2', link: '#' },
-    //     ]
-    // },
+    {
+        name: 'Projects',
+        link: '/projects',
+    },
     {
         name: 'Services',
         link: '/services',
@@ -72,7 +68,7 @@ onUnmounted(() => {
 
         <div class="text-2xl font-bold text-black dark:text-white z-10">
             <Link href="/">
-                <img src="/images/logo.png" alt="">
+            <img src="/images/logo.png" alt="">
             </Link>
         </div>
 
