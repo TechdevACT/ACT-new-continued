@@ -140,10 +140,10 @@ const mobileTransformStyles = [
                 </div>
             </div>
             <div class="flex flex-col mt-16">
-                <div class="flex flex-col gap-2 mx-4 sm:mx-0 dark:text-white">
+                <div class="flex flex-col gap-4 mx-4 sm:mx-0 dark:text-white">
                     <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
                     <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
-                    <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">{{ data_fe.data_fe[0].expertise_description }}
+                    <h2 class="text-lg sm:text-2xl sm:w-3/4 font-medium">{{ data_fe.data_fe[0].expertise_description }}
                     </h2>
                 </div>
             </div>
@@ -212,7 +212,7 @@ const mobileTransformStyles = [
                     </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-xl font-medium">{{ data_fe.data_fe[0].blog_description }}</h4>
+                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium">{{ data_fe.data_fe[0].blog_description }}</h4>
                     </div>
                 </div>
 
