@@ -3,36 +3,16 @@ import ProjectComponent from '@/Components/ProjectComponent.vue';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { faArrowDownLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { ref } from 'vue';
 
-const categories = ['All', 'Web', 'Mobile', 'Design']
+const data = defineProps({
+    data: Array
+})
 
-const projects = [
-  {
-    title: 'Landing Page Startup',
-    image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/Colorful-Assortment-of-Macarons-and-Packaging.webp',
-    type: 'Web'
-  },
-  {
-    title: 'E-commerce App',
-    image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/nkLC12rAR56ibf4tRP0JYBiA.webp',
-    type: 'Mobile'
-  },
-  {
-    title: 'Company Profile Website adsf sdf asdfa s adsf asdfa df adf ads a',
-    image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/SPOA-Vintage-Camera-with-Dual-Viewfinders.webp',
-    type: 'Web'
-  },
-  {
-    title: 'UI Kit Dashboard',
-    image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/Colorful-Assortment-of-Macarons-and-Packaging.webp',
-    type: 'Design'
-  },
-  {
-    title: 'Mobile Banking App',
-    image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2024/12/nkLC12rAR56ibf4tRP0JYBiA.webp',
-    type: 'Mobile'
-  }
-]
+const categoryTest = ref([
+    'All',
+    ...data.data.allCategory.map(item => item.name)
+]);
 
 </script>
 
@@ -77,6 +57,6 @@ const projects = [
                 Development that delivers. Let the work do the talking.</p>
         </section>
 
-        <ProjectComponent :projects="projects" :categories="categories" />
+        <ProjectComponent :projects="data.data.allProjects" :categories="categoryTest" />
     </DefaultLayout>
 </template>

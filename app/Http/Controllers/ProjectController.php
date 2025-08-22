@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +14,23 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Projects');
+        $allProjects = Project::with('category:id,name')
+        ->select('id', 'title', 'slug', 'thumbnail', 'category_id')
+        ->get()
+        ->map(function ($project) {
+            return [
+                'title' => $project->title,
+                'slug' => $project->slug,
+                'image' => $project->thumbnail,
+                'type' => $project->category->name ?? null,
+            ];
+        });
+
+        $allCategory = ProjectCategory::all(['name'])->toArray();
+
+        return Inertia::render('Projects', [
+            'data' => compact('allProjects', 'allCategory'),
+        ]);
     }
 
     /**
@@ -34,9 +52,13 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        $project = Project::with('category')->where('slug', $project->slug)->firstOrFail();
+
+        return Inertia::render('DetailProject', [
+            'data' => compact('project'),
+        ]);
     }
 
     /**

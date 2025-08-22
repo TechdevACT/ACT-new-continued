@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\FrontEnd;
+use App\Models\Project;
+use App\Models\ProjectCategory;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +23,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'akun_test@email.com',
             'password' => bcrypt('TestAkun!@#'),
         ]);
+
+        ProjectCategory::factory(4)->create();
+        
+        Project::factory(10)->create();
 
         $this->call([
             FrontEndSeeder::class,
