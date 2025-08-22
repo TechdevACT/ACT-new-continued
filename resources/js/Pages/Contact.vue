@@ -25,10 +25,10 @@ const icons = [
 
         <section class="px-4 mb-10">
             <div class="grid sm:flex gap-4 mb-10">
-                <div class="sm:w-1/3 h-96">
+                <div class="sm:w-1/3 h-96 animate-fade-right transition-all duration-500">
                     <img :src="images[0]" alt="" class="w-full h-full object-cover rounded-3xl shadow-xl">
                 </div>
-                <div class="sm:w-2/3 h-96">
+                <div class="sm:w-2/3 h-96 animate-fade-left transition-all duration-500">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.362476116002!2d112.63348289999999!3d-7.961441200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629cfeb241105%3A0xce3fb2bbfc3db8ef!2sAct*21%20Digital%20Agency%20Branch%20Malang!5e0!3m2!1sen!2sid!4v1751596705599!5m2!1sen!2sid"
                         class="w-full h-full rounded-3xl shadow-xl" style="border:0;" allowfullscreen="" loading="lazy"
@@ -38,7 +38,7 @@ const icons = [
             </div>
 
             <div class="grid sm:flex gap-4">
-                <div class="sm:w-1/3">
+                <div class="sm:w-1/3 animate-fade-right transition-all duration-500">
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">ADDRESS:</h2>
                         <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">1234 Creative Street, Suite 567,
@@ -77,7 +77,7 @@ const icons = [
                         </div>
                     </div>
                 </div>
-                <div class="sm:w-2/3">
+                <div class="sm:w-2/3 animate-fade-left transition-all duration-500">
                     <h2 class="text-3xl sm:text-6xl dark:text-white font-bold mb-4">GET IN TOUCH WITH US</h2>
                     <p class="text-xl text-justify font-medium dark:text-gray-300 mb-10">We’d love to hear from you! Whether you have a project
                         in mind,

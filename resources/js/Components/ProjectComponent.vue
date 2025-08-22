@@ -39,7 +39,7 @@ const loadMore = () => {
 </script>
 
 <template>
-    <div class="flex flex-col justify-center items-center my-10 sm:my-20 animate-fade-up px-4">
+    <div class="flex flex-col justify-center items-center mb-16 animate-fade-up transition-all duration-500 px-4">
         <div
             class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-gray-200 dark:bg-gray-300 rounded-xl font-bold transition-colors duration-500 p-1.5 sm:p-2">
             <div v-for="category in props.categories" :key="category" @click="setFilter(category)" :class="[
@@ -54,7 +54,7 @@ const loadMore = () => {
         </div>
     </div>
 
-    <div class="flex flex-col justify-center items-center mb-10">
+    <div class="flex flex-col justify-center items-center mb-10 animate-fade-up transition-all duration-500">
         <TransitionGroup tag="div" name="project" class="w-full flex flex-wrap gap-10 justify-center px-4 mb-10">
             <div v-for="project in displayedProjects" :key="project.title"
                 class="flex flex-col justify-center items-center">
@@ -63,7 +63,7 @@ const loadMore = () => {
                         :src="project.image" :alt="project.title" />
                 </div>
                 <div class="w-full max-w-sm flex justify-between items-center py-4 transition-colors duration-500">
-                    <h3 class="text-2xl uppercase font-bold text-black dark:text-white">{{ project.title }}</h3>
+                    <h3 class="text-2xl uppercase font-bold text-black dark:text-white">{{ project.title.length > 20 ? project.title.substring(0, 20) + ' ...' : project.title }}</h3>
                     <h4 class="text-lg text-gray-500 dark:text-gray-400">{{ project.type }}</h4>
                 </div>
             </div>
