@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <DefaultLayout title="Our Projects -">
+    <DefaultLayout :title="data.data.project.title + `-`">
         <template #meta>
             <meta name="description" content="Meta Description Here" />
         </template>
@@ -33,8 +33,7 @@ onMounted(() => {
         <section class="flex flex-col gap-4 py-16">
             <h1
                 class="text-4xl sm:text-6xl font-bold uppercase dark:text-white pb-7 border-b-2 animate-fade-right transition-all duration-500">
-                {{
-                    data.data.project.title }}
+                {{ data.data.project.title }}
             </h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-7 animate-fade-left transition-all duration-500">
@@ -50,7 +49,7 @@ onMounted(() => {
         </section>
 
         <template #fullwidth2>
-            <section id="parallax" class="relative h-[50rem] bg-center bg-cover"
+            <section id="parallax" class="relative h-[20rem] sm:h-[50rem] bg-center bg-cover"
                 style="background-image: url('https://placehold.co/1080x500')">
             </section>
         </template>
@@ -58,11 +57,11 @@ onMounted(() => {
         <template #afterFullwidth2>
             <section class="py-16">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <h1 class="text-4xl sm:text-6xl font-bold uppercase dark:text-white">
+                    <h1 class="text-4xl sm:text-6xl mb-6 sm:mb-0 font-bold uppercase dark:text-white">
                         Challenges & Objectives
                     </h1>
 
-                    <div class="flex flex-col gap-8">
+                    <div class="flex flex-col gap-8 dark:text-white">
                         <div class="flex flex-col gap-4">
                             <h2 class="text-2xl font-semibold">/ Project Overview</h2>
                             <p class="text-xl text-medium">{{ data.data.project.project_overview }}</p>
@@ -83,8 +82,8 @@ onMounted(() => {
                 Disini berisi galeri project
             </section>
 
-            <section class="flex justify-center items-center py-16">
-                <div class="flex flex-col w-1/2 justify-center items-center gap-4">
+            <section class="flex justify-center items-center py-16 dark:text-white">
+                <div class="flex flex-col sm:w-1/2 justify-center items-center gap-4">
                     <h2 class="text-2xl font-semibold">/ Final Outcome</h2>
                     <p class="text-xl text-medium text-center">{{ data.data.project.project_final_outcome }}</p>
                 </div>

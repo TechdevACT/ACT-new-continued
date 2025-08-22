@@ -17,7 +17,7 @@ const icons = [
         <div
             class="max-w-7xl mx-auto px-4 pt-16 pb-0 sm:pb-16 flex flex-col sm:grid sm:grid-cols-4 sm:items-end text-black dark:text-white">
             <div class="sm:col-span-2 mb-6 sm:mb-0">
-                <h2 class="text-4xl sm:text-4xl font-bold">Lets make it happen</h2>
+                <h2 class="text-4xl sm:text-7xl font-bold uppercase">Lets make it happen</h2>
             </div>
             <div class="flex flex-col gap-2 mb-6 sm:mb-0">
                 <h2 class="text-xl font-semibold">Social Media</h2>
