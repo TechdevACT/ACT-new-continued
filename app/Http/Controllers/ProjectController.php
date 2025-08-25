@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $project = Project::with('category')->where('slug', $project->slug)->firstOrFail();
+        $project = Project::with('category', 'projectGalleries')->where('slug', $project->slug)->firstOrFail();
 
         return Inertia::render('DetailProject', [
             'data' => compact('project'),

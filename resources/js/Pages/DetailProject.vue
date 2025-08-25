@@ -1,10 +1,19 @@
 <script setup>
+import Lightbox from '@/Components/Lightbox.vue';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { onMounted, onUnmounted } from 'vue';
 
 const data = defineProps({
     data: Object
 })
+
+// const image_gallery = data.data.project.project_galleries.map(item => item.image);
+const image_gallery = [
+    'https://placehold.co/1080x1080',
+    'https://placehold.co/1080x500',
+    'https://placehold.co/1080x1080',
+    'https://placehold.co/1080x500',
+];
 
 onMounted(() => {
     const parallax = document.getElementById("parallax");
@@ -79,7 +88,9 @@ onMounted(() => {
             </section>
 
             <section class="py-16">
-                Disini berisi galeri project
+
+                <Lightbox :images="image_gallery"/>
+
             </section>
 
             <section class="flex justify-center items-center py-16 dark:text-white">

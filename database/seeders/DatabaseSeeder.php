@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\FrontEnd;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\ProjectGallery;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,8 +26,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         ProjectCategory::factory(4)->create();
-        
+
         Project::factory(10)->create();
+
+        ProjectGallery::factory(40)->create();
 
         $this->call([
             FrontEndSeeder::class,

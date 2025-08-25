@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('heading_big')->required();
             $table->string('heading_big2')->required();
             $table->string('heading')->required();
-            $table->string('description')->required();
+            $table->text('description')->required();
             $table->string('approach_title')->required();
             $table->string('approach_heading')->required();
-            $table->string('approach_description')->required();
+            $table->text('approach_description')->required();
             $table->string('expertise_title')->required();
             $table->string('emphasis_title')->required();
             $table->string('emphasis_heading')->required();
-            $table->string('emphasis_description')->required();
+            $table->text('emphasis_description')->required();
             $table->timestamps();
         });
     }

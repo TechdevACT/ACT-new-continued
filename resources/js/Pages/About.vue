@@ -11,33 +11,6 @@ const props = defineProps({
     },
 })
 
-const teams = [
-    {
-        name: "Bruce Wayne",
-        role: "CEO",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/Professional-Portrait-of-a-Man.webp",
-        facebook: "https://www.facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://www.linkedin.com",
-    },
-    {
-        name: "John Doe",
-        role: "Developer",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/fnk_avatar_2.webp",
-        facebook: "https://www.facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://www.linkedin.com",
-    },
-    {
-        name: "Harley Quinn",
-        role: "Designer",
-        image: "https://theme.madsparrow.me/osty/wp-content/uploads/2025/03/Autumn-Radiance.webp",
-        facebook: "https://www.facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://www.linkedin.com",
-    },
-];
-
 const clients = [
     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
@@ -58,18 +31,15 @@ const clients = [
             <section
                 class="w-full h-screen bg-[url('/images/about/bg-about.png')] dark:bg-[url('/images/about/bg-about-dark.jpg')] bg-cover bg-center py-12 -mt-[102px] sm:-mt-[88px] animate-fade transition-all duration-500">
                 <div class="text-center text-3xl font-bold h-full flex items-center justify-center">
-                    <div class="flex flex-col gap-2 uppercase max-w-4xl">
-                        <h2 class="text-4xl sm:text-8xl text-white dark:text-black transition-all duration-500">
-                            {{ data_about.data_about.heading_big }}</h2>
-                        <h2
-                            class="text-4xl sm:text-8xl text-yellow-200 dark:text-yellow-500 transition-all duration-500">
-                            {{ data_about.data_about.heading_big2 }}</h2>
+                    <div class="flex flex-col gap-2 uppercase max-w-7xl">
+                        <h2 class="text-4xl sm:text-6xl text-white dark:text-black transition-all duration-500">
+                            {{ data_about.data_about.heading_big + " " + data_about.data_about.heading_big2 }}</h2>
                     </div>
                 </div>
             </section>
         </template>
 
-        <section class="py-16 mx-4">
+        <section class="py-10 mx-4">
             <div class="flex flex-col w-full">
                 <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
                     {{ data_about.data_about.heading }}
@@ -81,39 +51,10 @@ const clients = [
                         </h2>
                     </div>
                 </div>
-                <div class="grid sm:grid-cols-3 gap-10">
-                    <div v-for="team in teams">
-                        <div class="flex rounded-3xl h-96 items-end bg-cover"
-                            :style="{ backgroundImage: `url('${team.image}')` }">
-                            <div
-                                class="flex m-3 p-1 gap-2 rounded-2xl bg-white dark:bg-gray-600 transition-all duration-300">
-                                <a :href="team.facebook" target="_blank"
-                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
-                                    <FontAwesomeIcon :icon="faFacebookF"
-                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
-                                </a>
-                                <a :href="team.twitter" target="_blank"
-                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
-                                    <FontAwesomeIcon :icon="faXTwitter"
-                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
-                                </a>
-                                <a :href="team.linkedin" target="_blank"
-                                    class="group bg-white dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer transition-all duration-300">
-                                    <FontAwesomeIcon :icon="faLinkedinIn"
-                                        class="text-md text-black dark:text-white group-hover:scale-75 transition-all duration-300" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex flex-col mt-2">
-                            <h2 class="text-2xl font-bold dark:text-white">{{ team.name }}</h2>
-                            <h2 class="text-lg dark:text-white">{{ team.role }}</h2>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <section class="sm:py-16 mx-4">
+        <section class="sm:py-10 mx-4">
             <span class="text-2xl font-medium">/ {{ data_about.data_about.approach_title }}</span>
             <div class="flex flex-col w-full mt-2">
                 <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
@@ -121,15 +62,15 @@ const clients = [
                 </h2>
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
-                        <h2 class="text-xl font-semibold dark:text-white">
-                            {{ data_about.data_about.approach_description }}
+                        <h2 class="text-xl text-justify font-semibold dark:text-white">
+                            <div v-html="data_about.data_about.approach_description"></div>
                         </h2>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="sm:py-16 mx-4 mb-10">
+        <section class="sm:py-10 mx-4 mb-10">
             <span class="text-2xl font-medium">/ {{ data_about.data_about.expertise_title }}</span>
             <div class="relative flex overflow-hidden group pb-10 text-black dark:text-white">
                 <div class="flex whitespace-nowrap group-hover:paused animate-scroll" aria-hidden="true">
@@ -178,7 +119,7 @@ const clients = [
         </template>
 
         <template #afterFullwidth2>
-            <section class="sm:py-16 mx-4 my-10">
+            <section class="sm:py-10 mx-4 my-10">
                 <span class="text-2xl font-medium">/ {{ data_about.data_about.emphasis_title }}</span>
                 <div class="flex flex-col w-full mt-2">
                     <h2 class="text-4xl sm:text-7xl font-bold dark:text-white mb-4">
@@ -186,7 +127,7 @@ const clients = [
                     </h2>
                     <div class="flex justify-end mb-4 sm:mb-10">
                         <div class="sm:w-1/2">
-                            <h2 class="text-xl font-semibold dark:text-white">
+                            <h2 class="text-xl text-justify font-semibold dark:text-white">
                                 {{ data_about.data_about.emphasis_description }}
                             </h2>
                         </div>

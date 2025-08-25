@@ -15,18 +15,18 @@ return new class extends Migration
             $table->id()->index();
             $table->string('hero_title')->required();
             $table->string('hero_title2')->required();
-            $table->string('hero_description')->required();
+            $table->text('hero_description')->required();
             $table->string('about_title')->required();
-            $table->string('about_description')->required();
+            $table->text('about_description')->required();
             $table->string('expertise_title')->required();
             $table->string('expertise_heading')->required();
-            $table->string('expertise_description')->required();
+            $table->text('expertise_description')->required();
             $table->string('industry_title')->required();
             $table->string('industry_heading')->required();
-            $table->string('industry_description')->required();
+            $table->text('industry_description')->required();
             $table->string('blog_title')->required();
             $table->string('blog_heading')->required();
-            $table->string('blog_description')->required();
+            $table->text('blog_description')->required();
             $table->timestamps();
         });
     }
