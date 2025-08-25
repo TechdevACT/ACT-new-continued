@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ref } from 'vue';
 
 const data = defineProps({
-    data: Array
+    data: Object
 })
 
 const categoryTest = ref([
@@ -43,7 +43,7 @@ const categoryTest = ref([
                         </h3>
 
                         <h3 class="text-6xl sm:text-9xl font-bold ml-4 uppercase">Discover our work
-                            <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                            <FontAwesomeIcon :icon="faArrowDownLong" class="text-yellow-500" />
                         </h3>
                     </div>
                 </div>

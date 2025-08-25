@@ -56,7 +56,7 @@ const loadMore = () => {
     </div>
 
     <div class="flex flex-col justify-center items-center mb-10 animate-fade-up transition-all duration-500">
-        <TransitionGroup tag="div" name="project" class="w-full flex flex-wrap gap-10 justify-center px-4 mb-10">
+        <!-- <TransitionGroup tag="div" name="project" class="w-full flex flex-wrap gap-10 justify-center px-4 mb-10">
             <div v-for="project in displayedProjects" :key="project.title"
                 class="flex flex-col justify-center items-center">
                 <Link :href="`/projects/` + project.slug">
@@ -71,7 +71,27 @@ const loadMore = () => {
                 </div>
                 </Link>
             </div>
+        </TransitionGroup> -->
+
+        <TransitionGroup tag="div" name="project"
+            class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4 mb-10">
+            <div v-for="project in displayedProjects" :key="project.title"
+                class="flex flex-col justify-center items-center">
+                <Link :href="`/projects/` + project.slug">
+                <div class="w-full h-auto aspect-square overflow-hidden rounded-3xl relative group shadow-xl">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        :src="project.image" :alt="project.title" />
+                </div>
+                <div class="w-full flex justify-between items-center py-4 transition-colors duration-500">
+                    <h3 class="text-2xl uppercase font-bold text-black dark:text-white">
+                        {{ project.title.length > 20 ? project.title.substring(0, 20) + ' ...' : project.title }}
+                    </h3>
+                    <h4 class="text-lg text-gray-500 dark:text-gray-400">{{ project.type }}</h4>
+                </div>
+                </Link>
+            </div>
         </TransitionGroup>
+
 
         <button v-if="filteredProjects.length > 0 && visibleProjectsCount < filteredProjects.length" @click="loadMore"
             class="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
