@@ -4,6 +4,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectSetting;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Foundation\Application;
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('blog', NewsController::class);
+    Route::resource('projectsSetting', ProjectSetting::class);
     Route::resource('projects', ProjectController::class);
 });
 

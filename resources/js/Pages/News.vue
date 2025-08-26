@@ -41,7 +41,7 @@ const props = defineProps({
 
         <section class="max-w-7xl px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
-                <div class="col-span-2 ">
+                <!-- <div class="col-span-2 ">
                     <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
                         <div v-for="p in props.data.news_all.data" :key="p.slug"
                             class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
@@ -65,7 +65,67 @@ const props = defineProps({
                             </Link>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="col-span-2">
+                    <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
+                        <div v-for="p in props.data.news_all.data" :key="p.slug"
+                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
+                            <Link :href="`/blog/` + p.slug" class="flex flex-col flex-1">
+                            <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
+                                <span class="text-gray-500">
+                                    {{ new Date(p.created_at).toLocaleDateString('id-ID', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    }) }}
+                                </span>
+                                <h3 class="text-xl font-bold">{{ p.title }}</h3>
+                                <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
+                            </div>
+
+                            <div class="flex-1">
+                                <img :src="p.image || 'https://placehold.co/400x200'" alt=""
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                            </div>
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mt-10">
+                        <nav class="flex items-center space-x-2">
+                            <template v-for="(link, index) in props.data.news_all.links" :key="index">
+
+                                <!-- Sembunyikan tombol Prev di halaman pertama -->
+                                <template
+                                    v-if="!(link.label.includes('Previous') && props.data.news_all.current_page === 1)
+                                        && !(link.label.includes('Next') && props.data.news_all.current_page === props.data.news_all.last_page)">
+
+                                    <Link v-if="link.url" :href="link.url"
+                                        class="px-4 py-2 rounded-xl transition-all duration-300" :class="{
+                                            'bg-black dark:bg-white text-white dark:text-black': link.active,
+                                            'bg-gray-300 dark:bg-zinc-900 text-gray-600 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-zinc-400': !link.active
+                                        }">
+                                    <span v-if="link.label.includes('Previous')">Prev</span>
+                                    <span v-else-if="link.label.includes('Next')">Next</span>
+                                    <span v-else v-html="link.label"></span>
+                                    </Link>
+
+                                    <span v-else class="px-4 py-2 rounded-xl text-gray-400">
+                                        <span v-if="link.label.includes('Previous')">Prev</span>
+                                        <span v-else-if="link.label.includes('Next')">Next</span>
+                                        <span v-else v-html="link.label"></span>
+                                    </span>
+                                </template>
+
+                            </template>
+                        </nav>
+                    </div>
+
+
                 </div>
+
+
                 <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left dark:text-white">
                     <img src="https://placehold.co/400x200" alt="" class="rounded-2xl">
                     <span class="text-lg mb-10">It’s all about creative design, website,

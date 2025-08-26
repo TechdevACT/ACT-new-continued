@@ -208,29 +208,36 @@ const mobileTransformStyles = [
         <template #afterFullwidth2>
             <section class="py-10 px-4 sm:px-0">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-                    <h3 class="text-md sm:text-2xl text-black dark:text-white font-medium">/ {{ data_fe.data_fe[0].blog_title }}
+                    <h3 class="text-md sm:text-2xl text-black dark:text-white font-medium">/ {{
+                        data_fe.data_fe[0].blog_title }}
                     </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium">{{ data_fe.data_fe[0].blog_description }}</h4>
+                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium">{{ data_fe.data_fe[0].blog_description }}
+                        </h4>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 animate-fade-up">
-                    <div class="flex flex-col" v-for="blog in data_fe.blog">
+                <div class="grid sm:grid-cols-3 gap-10 pt-10 animate-fade-up">
+                    <div v-for="blog in data_fe.blog" :key="blog.slug"
+                        class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
                         <Link :href="`/blog/` + blog.slug" class="flex flex-col flex-1">
-                        <div
-                            class="flex flex-col bg-gray-200 dark:bg-zinc-900 p-6 rounded-t-3xl transition-all duration-500">
-                            <span class="text-sm text-gray-500 dark:text-gray-200">{{ new
-                                Date(blog.created_at).toLocaleDateString('en-GB', {
-                                    day: '2-digit', month: 'long', year:
-                                        'numeric'
-                                }) }}</span>
-                            <h3 class="text-md font-bold sm:text-xl dark:text-white">{{ blog.title }}</h3>
-                            <span>{{ blog.excerpt }}</span>
+                        <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
+                            <span class="text-gray-500">
+                                {{ new Date(blog.created_at).toLocaleDateString('id-ID', {
+                                    day: '2-digit',
+                                    month: 'long',
+                                    year: 'numeric'
+                                }) }}
+                            </span>
+                            <h3 class="text-xl font-bold">{{ blog.title }}</h3>
+                            <p class="text-md dark:text-gray-400">{{ blog.excerpt }}</p>
                         </div>
-                        <img :src="blog.news_images[0]?.image ?? 'https://placehold.co/1080x500'" alt=""
-                            class="object-cover max-h-60 rounded-b-3xl">
+
+                        <div class="flex-1">
+                            <img :src="blog.image || 'https://placehold.co/400x200'" alt=""
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                        </div>
                         </Link>
                     </div>
                 </div>

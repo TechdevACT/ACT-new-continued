@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\FrontEnd;
+use App\Models\News;
+use App\Models\NewsImages;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\ProjectGallery;
@@ -17,26 +19,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test Akun',
-            'email' => 'akun_test@email.com',
-            'password' => bcrypt('TestAkun!@#'),
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test Akun',
+        //     'email' => 'akun_test@email.com',
+        //     'password' => bcrypt('TestAkun!@#'),
+        // ]);
 
-        ProjectCategory::factory(4)->create();
+        // ProjectCategory::factory(4)->create();
 
-        Project::factory(10)->create();
+        // Project::factory(10)->create();
 
-        ProjectGallery::factory(40)->create();
+        // ProjectGallery::factory(40)->create();
 
-        $this->call([
-            FrontEndSeeder::class,
-        ]);
+        News::factory(10)->create();
 
-        $this->call([
-            AboutOptionSeeder::class,
-        ]);
+        NewsImages::factory(10)->create();
+
+        // $this->call([
+        //     FrontEndSeeder::class,
+        // ]);
+
+        // $this->call([
+        //     AboutOptionSeeder::class,
+        // ]);
     }
 }

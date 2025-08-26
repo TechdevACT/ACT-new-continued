@@ -3,12 +3,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Create from './Create.vue';
-import DataBlog from '@/Components/DataBlog.vue';
-
-// const activeTab = ref('allBlog');
+import DataProject from '@/Components/DataProject.vue';
 
 const props = defineProps({
-    news: Object,
+    projects: Object,
     filters: Object
 });
 
@@ -17,7 +15,7 @@ const showForm = ref(false);
 const editItem = ref(null);
 
 const handleSearch = () => {
-    router.get(route('blog.index'), { search: search.value }, { preserveState: true });
+    router.get(route('projectsSetting.index'), { search: search.value }, { preserveState: true });
 };
 
 const addNew = () => {
@@ -34,17 +32,17 @@ const editData = (item) => {
 
 <template>
 
-    <Head title="Blog" />
+    <Head title="Projects" />
 
     <AuthenticatedLayout>
         <template #header>
             <div class="flex justify-between">
                 <h2 class="text-lg text-center sm:text-left sm:text-xl font-semibold leading-tight text-gray-800">
-                    All Blog
+                    All Projects
                 </h2>
 
                 <button class='py-1 px-4 rounded-xl bg-gray-300' @click="addNew">
-                    Add New Blog
+                    Add New Project
                 </button>
             </div>
         </template>
@@ -61,11 +59,11 @@ const editData = (item) => {
                 </div>
 
                 <!-- Table -->
-                <DataBlog :news="news" @edit="editData" />
+                <DataProject :projects="projects" @edit="editData" />
 
                 <!-- Pagination -->
                 <div class="flex justify-center mt-4 space-x-2">
-                    <button v-for="page in news.links" :key="page.url" @click="page.url && router.get(page.url)"
+                    <button v-for="page in projects.links" :key="page.url" @click="page.url && router.get(page.url)"
                         v-html="page.label"
                         :class="['px-3 py-1 rounded', page.active ? 'bg-indigo-500 text-white' : 'bg-gray-200']" />
                 </div>
