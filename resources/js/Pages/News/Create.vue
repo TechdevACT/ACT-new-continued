@@ -67,11 +67,16 @@ const submit = () => {
     form.content = doc.body.innerHTML;
 
     if (props.formData?.id) {
-        console.log(form);
-        form.put(route('blog.update', props.formData.id), {
+        form.transform(data => ({
+            ...data,
+            _method: 'PUT',
+        })).post(route('blog.update', props.formData.id), {
             onSuccess: () => {
                 form.reset();
                 emit('cancel');
+            },
+            onError: (errors) => {
+                console.error(errors);
             }
         });
     } else {

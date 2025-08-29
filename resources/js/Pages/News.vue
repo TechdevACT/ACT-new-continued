@@ -42,14 +42,14 @@ const props = defineProps({
         <section class="max-w-7xl px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
 
-                <div class="col-span-2">
+                <div v-if="props.data.news_all.data.length > 0" class="col-span-2">
 
                     <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
                         <div v-for="p in props.data.news_all.data" :key="p.slug"
                             class="flex flex-col shadow-xl group rounded-2xl overflow-hidden bg-gray-200">
                             <Link :href="`/blog/` + p.slug">
                             <div class="overflow-hidden aspect-video">
-                                <img :src="p.news_images[0].image || 'https://placehold.co/1600x900'" alt=""
+                                <img :src="p.news_images[0]?.image || 'https://placehold.co/1600x900'" alt=""
                                     class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110" />
                             </div>
 
@@ -101,6 +101,9 @@ const props = defineProps({
 
                 </div>
 
+                <div v-else class="col-span-2 text-center text-2xl text-gray-500 dark:text-gray-200">
+                    No data available
+                </div>
 
                 <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left dark:text-white">
                     <img src="https://placehold.co/400x200" alt="" class="rounded-2xl">

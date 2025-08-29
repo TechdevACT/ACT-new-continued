@@ -6,11 +6,14 @@ import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     project: Object,
     categories: Array
 });
+
+const projectGalleries = ref(props.project.project_galleries);
 
 const form = useForm({
     _method: 'PUT',
@@ -49,7 +52,7 @@ const deleteGalleryImage = (imageId, index) => {
         router.delete(route('gallery.delete', imageId), {
             preserveScroll: true,
             onSuccess: () => {
-                props.project.galleries.splice(index, 1);
+                projectGalleries.value.splice(index, 1);
             }
         });
     }
@@ -172,7 +175,7 @@ const deleteGalleryImage = (imageId, index) => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-4">
                                 <InputLabel for="galleries" value="Add New Gallery Images" />
                                 <input type="file" @input="form.galleries = $event.target.files" multiple
@@ -181,17 +184,23 @@ const deleteGalleryImage = (imageId, index) => {
 
                                 <div v-if="project.project_galleries.length > 0" class="mt-6">
                                     <p class="text-sm font-medium text-gray-700">Current Gallery:</p>
-                                    <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                        <div v-for="(gallery, index) in project.project_galleries" :key="gallery.id"
-                                            class="relative group">
-                                            <img :src="`/storage/${gallery.image}`" alt="Gallery Image"
-                                                class="h-32 w-full object-cover rounded-md">
-                                            <div
-                                                class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <DangerButton @click="deleteGalleryImage(gallery.id, index)"
-                                                    type="button">
-                                                    Delete
-                                                </DangerButton>
+                                    <div class="mt-2 grid gap-4">
+                                        <div class="mt-2 grid grid-cols-1 md:grid-cols-4 gap-4">
+                                            <div v-for="(gallery, index) in projectGalleries" :key="gallery.id"
+                                                class="relative group">
+
+                                                <div class="relative w-full" style="padding-top: 100%;">
+                                                    <img :src="`/storage/${gallery.image}`" alt="Gallery Image"
+                                                        class="absolute inset-0 w-full h-full object-cover rounded-md">
+                                                </div>
+
+                                                <div
+                                                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
+                                                    <DangerButton @click="deleteGalleryImage(gallery.id, index)"
+                                                        type="button">
+                                                        Delete
+                                                    </DangerButton>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
