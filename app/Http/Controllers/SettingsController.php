@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage; // Impor fasad Storage
 use Inertia\Inertia;
 
 class SettingsController extends Controller
@@ -21,10 +22,12 @@ class SettingsController extends Controller
         $industry_image = ImageFrontEnd::where('type', 'industry')->take(5)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(6)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
-        return Inertia::render('Settings/Settings',
-    [
-        'data_fe' => compact('data_fe', 'data_about', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
-    ]);
+        return Inertia::render(
+            'Settings/Settings',
+            [
+                'data_fe' => compact('data_fe', 'data_about', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
+            ]
+        );
     }
 
     public function heroUpdate(Request $request)
@@ -37,23 +40,22 @@ class SettingsController extends Controller
             'description' => 'required',
         ]);
 
-        if ($request->file('images')) {
-            $data_hero_image = ImageFrontEnd::where('type', 'hero')->get();
-
-            foreach ($data_hero_image as $image) {
-                $filePath = public_path($image->path);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
+        if ($request->hasFile('images')) {
+            // Hapus gambar lama
+            $old_images = ImageFrontEnd::where('type', 'hero')->get();
+            foreach ($old_images as $image) {
+                // Hapus file dari storage
+                Storage::disk('public')->delete(str_replace('/storage/', '', $image->path));
+                // Hapus record dari database
                 $image->delete();
             }
 
+            // Simpan gambar baru
             foreach ($request->file('images') as $image) {
-                $imageName = $image->hashName();
-                $image->move(public_path('storage/images/frontEnd'), $imageName);
+                $path = $image->store('images/frontEnd', 'public');
                 ImageFrontEnd::create([
                     'type' => 'hero',
-                    'path' => '/storage/images/frontEnd/' . $imageName
+                    'path' => '/storage/' . $path
                 ]);
             }
         }
@@ -93,40 +95,32 @@ class SettingsController extends Controller
             if ($request->hasFile('banner')) {
                 $oldBanner = ImageFrontEnd::where('type', 'bannerHome')->first();
                 if ($oldBanner) {
-                    $filePath = public_path($oldBanner->path);
-                    if (file_exists($filePath)) {
-                        unlink($filePath);
-                    }
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $oldBanner->path));
                     $oldBanner->delete();
                 }
 
                 $image = $request->file('banner')[0];
-                $imageName = $image->hashName();
-                $image->move(public_path('storage/images/frontEnd'), $imageName);
+                $path = $image->store('images/frontEnd', 'public');
 
                 ImageFrontEnd::create([
                     'type' => 'bannerHome',
-                    'path' => '/storage/images/frontEnd/' . $imageName,
+                    'path' => '/storage/' . $path,
                 ]);
             }
 
             if ($request->hasFile('images')) {
                 $oldImages = ImageFrontEnd::where('type', 'clients')->get();
                 foreach ($oldImages as $image) {
-                    $filePath = public_path($image->path);
-                    if (file_exists($filePath)) {
-                        unlink($filePath);
-                    }
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $image->path));
                     $image->delete();
                 }
 
                 foreach ($request->file('images') as $image) {
-                    $imageName = $image->hashName();
-                    $image->move(public_path('storage/images/clients'), $imageName);
+                    $path = $image->store('images/clients', 'public');
 
                     ImageFrontEnd::create([
                         'type' => 'clients',
-                        'path' => '/storage/images/clients/' . $imageName,
+                        'path' => '/storage/' . $path,
                     ]);
                 }
             }
@@ -171,23 +165,18 @@ class SettingsController extends Controller
             'description' => 'required',
         ]);
 
-        if ($request->file('images')) {
-            $data_hero_image = ImageFrontEnd::where('type', 'industry')->get();
-
-            foreach ($data_hero_image as $image) {
-                $filePath = public_path($image->path);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
+        if ($request->hasFile('images')) {
+            $old_images = ImageFrontEnd::where('type', 'industry')->get();
+            foreach ($old_images as $image) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $image->path));
                 $image->delete();
             }
 
             foreach ($request->file('images') as $image) {
-                $imageName = $image->hashName();
-                $image->move(public_path('storage/images/frontEnd'), $imageName);
+                $path = $image->store('images/frontEnd', 'public');
                 ImageFrontEnd::create([
                     'type' => 'industry',
-                    'path' => '/storage/images/frontEnd/' . $imageName
+                    'path' => '/storage/' . $path
                 ]);
             }
         }

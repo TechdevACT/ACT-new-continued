@@ -6,13 +6,11 @@ use App\Models\News;
 use App\Models\NewsImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $search = $request->get('search');
@@ -38,28 +36,19 @@ class NewsController extends Controller
         ]);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:news,slug',
             'content' => 'required',
             'excerpt' => 'required',
         ]);
-
 
         $news = News::create([
             'user_id' => Auth::id(),
@@ -70,22 +59,17 @@ class NewsController extends Controller
             'excerpt' => $request->excerpt
         ]);
 
-        if ($request->file('image')) {
-            $imageName = $request->file('image')->hashName();
-            $request->file('image')->move(public_path('storage/images/news'), $imageName);
-
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/news', 'public');
             NewsImages::create([
                 'news_id' => $news->id,
-                'image' => '/storage/images/news/'. $imageName,
+                'image' => '/storage/' . $path,
             ]);
         }
 
         return redirect()->route('blog.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(News $blog)
     {
         $blog = News::with('user', 'newsImages')->where('slug', $blog->slug)->firstOrFail();
@@ -95,49 +79,56 @@ class NewsController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(String $id, Request $request)
     {
-        dd($request->all());
+        $news = News::findOrFail($id);
         $request->validate([
             'title' => 'required',
             'slug' => 'required|unique:news,slug,' . $id,
             'content' => 'required',
+            'excerpt' => 'required',
         ]);
 
-        if ($request->file('image')) {
-            $imageName = $request->file('image')->hashName();
-            $request->file('image')->move(public_path('storage/images/news'), $imageName);
-
+        if ($request->hasFile('image')) {
             $newsImage = NewsImages::where('news_id', $id)->first();
-            $newsImage->update([
-                'image' => '/storage/images/news/' . $imageName
-            ]);
+
+            if ($newsImage && $newsImage->image) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $newsImage->image));
+            }
+
+            $path = $request->file('image')->store('images/news', 'public');
+
+            if ($newsImage) {
+                $newsImage->update(['image' => '/storage/' . $path]);
+            } else {
+                NewsImages::create([
+                    'news_id' => $id,
+                    'image' => '/storage/' . $path,
+                ]);
+            }
         }
 
-        $news = News::findOrFail($id);
-        $news->update($request->all());
+        $news->update($request->except('image'));
 
         return redirect()->route('blog.index')->with('success', 'News updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(String $id)
     {
         $news = News::findOrFail($id);
+        $newsImage = $news->newsImages()->first();
+
+        if ($newsImage && $newsImage->image) {
+            Storage::disk('public')->delete(str_replace('/storage/', '', $newsImage->image));
+        }
+
         $news->delete();
         return back()->with('success', 'News deleted!');
     }
 }
+

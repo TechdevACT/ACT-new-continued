@@ -8,12 +8,17 @@ use App\Http\Controllers\ProjectSetting;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
