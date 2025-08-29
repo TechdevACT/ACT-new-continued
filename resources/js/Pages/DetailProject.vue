@@ -11,10 +11,13 @@ const image_gallery = data.data.project.project_galleries.map(item => item.image
 
 onMounted(() => {
     const parallax = document.getElementById("parallax");
+    if (!parallax) return;
 
     const handleScroll = () => {
-        let offset = window.scrollY * 0.1 - (window.innerHeight / 2);
-        parallax.style.backgroundPositionY = offset + "px";
+        const rect = parallax.getBoundingClientRect();
+        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const clampedPercent = Math.max(0, Math.min(1, scrollPercent));
+        parallax.style.backgroundPosition = `center ${clampedPercent * 100}%`;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -52,8 +55,8 @@ onMounted(() => {
         </section>
 
         <template #fullwidth2>
-            <section id="parallax" class="relative h-[20rem] sm:h-[50rem] bg-center bg-cover bg-no-repeat"
-                :style="`background-image: url('/storage/` + data.data.project.background + `'); background-position: center`">
+            <section id="parallax" class="relative h-[20rem] sm:h-[50rem] bg-center bg-no-repeat"
+                :style="`background-image: url('/storage/` + data.data.project.background + `'); background-size: auto 150%;`">
             </section>
         </template>
 
@@ -83,7 +86,7 @@ onMounted(() => {
 
             <section class="py-16">
 
-                <Lightbox :images="image_gallery"/>
+                <Lightbox :images="image_gallery" />
 
             </section>
 

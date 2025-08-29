@@ -1,56 +1,46 @@
 <script setup>
-import { nextTick, onMounted, ref } from 'vue'
-import gsap from 'gsap'
+import { ref, onMounted, onUnmounted } from 'vue';
 
-const cursor = ref(null)
-const mouse = { x: 0, y: 0 }
-const pos = { x: 0, y: 0 }
+// Posisi target mouse (posisi asli kursor)
+const targetX = ref(0);
+const targetY = ref(0);
 
-onMounted(async () => {
-    await nextTick()
+// Posisi follower saat ini (akan bergerak secara bertahap ke target)
+const followerX = ref(0);
+const followerY = ref(0);
 
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX
-        mouse.y = e.clientY
-    })
+const dampingFactor = 0.1; // Seberapa cepat follower mengejar kursor (0.01 - 1.0)
 
-    gsap.ticker.add(() => {
-        pos.x += (mouse.x - pos.x) * 0.15
-        pos.y += (mouse.y - pos.y) * 0.15
-        if (cursor.value) {
-            gsap.set(cursor.value, { x: pos.x, y: pos.y })
-        }
-    })
+// Fungsi untuk memperbarui posisi target saat mouse bergerak.
+const updateMousePosition = (event) => {
+    targetX.value = event.clientX;
+    targetY.value = event.clientY;
+};
 
+// Fungsi untuk "lerping" follower ke posisi target
+const animateFollower = () => {
+    // Lerp followerX ke targetX
+    followerX.value += (targetX.value - followerX.value) * dampingFactor;
+    // Lerp followerY ke targetY
+    followerY.value += (targetY.value - followerY.value) * dampingFactor;
 
-    document.addEventListener('mouseover', (e) => {
-        if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
-            gsap.to(cursor.value, {
-                scale: 2,
-                backgroundColor: '#f7c133',
-                opacity: 0.9,
-                duration: 0.2,
-                ease: 'power3.out',
-            })
-        }
-    })
+    // Lakukan requestAnimationFrame lagi untuk frame berikutnya
+    requestAnimationFrame(animateFollower);
+};
 
-    document.addEventListener('mouseout', (e) => {
-        if (e.target.closest('a, button, .cursor-pointer, .group, input, textarea')) {
-            gsap.to(cursor.value, {
-                scale: 1,
-                backgroundColor: '#fdce79',
-                opacity: 0.7,
-                duration: 0.2,
-                ease: 'power3.out',
-            })
-        }
-    })
-})
+onMounted(() => {
+    window.addEventListener('mousemove', updateMousePosition);
+    // Mulai animasi saat komponen di-mount
+    requestAnimationFrame(animateFollower);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('mousemove', updateMousePosition);
+});
 </script>
 
 <template>
-    <div ref="cursor"
-        class="hidden sm:block fixed top-0 left-0 w-4 h-4 bg-[#fdce79]/70 rounded-full outline outline-1 outline-[#f7d033]/70 outline-offset-8 pointer-events-none z-[9999]">
+    <div :style="{ transform: `translate(${followerX}px, ${followerY}px)` }"
+        class="fixed w-8 h-8 bg-yellow-400/30 rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-50 hidden md:block">
     </div>
 </template>
