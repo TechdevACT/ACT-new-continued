@@ -48,7 +48,7 @@ class PageController extends Controller
 
     public function news()
     {
-        $news_all = News::where('status', 'published')->orderBy('created_at', 'desc')->paginate(4);
+        $news_all = News::with('newsImages')->where( 'status', 'published')->orderBy('created_at', 'desc')->paginate(4);
         return Inertia::render('News',  [
             'data' => compact('news_all'),
         ]);

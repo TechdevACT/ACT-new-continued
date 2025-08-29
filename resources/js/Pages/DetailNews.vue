@@ -3,6 +3,7 @@ import SecondLayout from '@/Layouts/SecondLayout.vue';
 import { faFacebookF, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     data: Object
@@ -46,52 +47,35 @@ const props = defineProps({
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-0 max-w-5xl mx-auto animate-fade-up pb-10 px-4 dark:text-white">
-                <div class="flex flex-col sm:border-r border-black pr-4 dark:border-white">
-                    <span class="text-gray-500">Previous News</span>
-                    <h4 class="w-2/3 text-xl font-bold">A Step-by-Step Guide to Mastering Technical Design</h4>
-                </div>
-                <div class="flex flex-col items-end sm:border-l border-black pr-4 dark:text-white">
+                <Link :href="route('blog.show', data.next_blog.slug)" class="flex flex-col sm:border-r border-black pr-4 dark:border-white">
                     <span class="text-gray-500">Next News</span>
-                    <h4 class="w-2/3 text-right text-xl font-bold">A Step-by-Step Guide to Mastering Technical Design
+                    <h4 class="w-2/3 text-xl font-bold">{{ data.next_blog.title }}</h4>
+                </Link>
+                <Link :href="route('blog.show', data.prev_blog.slug)" class="flex flex-col items-end sm:border-l border-black pr-4 dark:text-white">
+                    <span class="text-gray-500">Previous News</span>
+                    <h4 class="w-2/3 text-right text-xl font-bold">{{ data.prev_blog.title }}
                     </h4>
-                </div>
+                </Link>
             </div>
         </section>
 
         <template #fullwidth2>
-            <section class="bg-gray-200 dark:bg-zinc-900 mx-4 rounded-3xl mb-10">
+            <section class="bg-gray-200 dark:bg-zinc-900 mx-10 rounded-3xl mb-10">
                 <div
                     class="flex flex-col px-4 py-6 mx-auto max-w-3xl flex-grow transition-colors duration-500 w-full dark:text-white">
                     <h2 class="text-2xl font-bold">Read other news</h2>
-                    <div class="flex gap-4 mt-6 items-center border-b border-gray-400 pb-6">
-                        <img src="https://placehold.co/200x200" alt="" class="h-32 rounded-2xl">
-                        <div class="flex flex-col gap-2">
-                            <h4 class="text-lg font-bold">A Step-by-Step Guide to Mastering Technical Design</h4>
-                            <span class="text-gray-500">12 Aug, 2025</span>
-                            <p class="text-md text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, quibusdam?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 mt-6 items-center border-b border-gray-400 pb-6">
-                        <img src="https://placehold.co/200x200" alt="" class="h-32 rounded-2xl">
-                        <div class="flex flex-col gap-2">
-                            <h4 class="text-lg font-bold">A Step-by-Step Guide to Mastering Technical Design</h4>
-                            <span class="text-gray-500">12 Aug, 2025</span>
-                            <p class="text-md text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, quibusdam?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 mt-6 items-center border-b border-gray-400 pb-6">
-                        <img src="https://placehold.co/200x200" alt="" class="h-32 rounded-2xl">
-                        <div class="flex flex-col gap-2">
-                            <h4 class="text-lg font-bold">A Step-by-Step Guide to Mastering Technical Design</h4>
-                            <span class="text-gray-500">12 Aug, 2025</span>
-                            <p class="text-md text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, quibusdam?
-                            </p>
-                        </div>
+
+                    <div v-for="blog in data.random_blog">
+                        <Link :href="route('blog.show', blog.slug)" class="flex gap-4 p-2 mt-6 justify-center items-center bg-white dark:bg-zinc-600 rounded-2xl shadow-xl hover:scale-105 hover:bg-gray-200 transition-all duration-300">
+                            <img :src="blog.news_images[0].image ?? `https://placehold.co/640x480`" alt="" class="hidden sm:block w-32 h-32 rounded-2xl object-cover">
+                            <div class="flex flex-col gap-2">
+                                <h4 class="text-md sm:text-lg font-bold">{{ blog.title }}</h4>
+                                <span class="text-xs text-gray-500 dark:text-gray-200">{{ new Date(blog.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) }}</span>
+                                <p class="text-sm sm:text-md text-gray-600 dark:text-gray-200">
+                                    {{ blog.excerpt }}
+                                </p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </section>

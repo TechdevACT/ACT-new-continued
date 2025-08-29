@@ -73,9 +73,20 @@ class NewsController extends Controller
     public function show(News $blog)
     {
         $blog = News::with('user', 'newsImages')->where('slug', $blog->slug)->firstOrFail();
+        $next_blog = News::select('title', 'slug')->where('id', '>', $blog->id)->first() ?? News::latest('id')->first();
+        $prev_blog = News::select('title', 'slug')->where('id', '<', $blog->id)->orderBy('id', 'desc')->first() ?? News::latest('id')->first();
+        $random_blog = News::with('newsImages')
+            ->select('id', 'title', 'slug', 'excerpt', 'created_at')
+            ->inRandomOrder()
+            ->limit(3)
+            ->get()
+            ->map(function ($blog) {
+                $blog->newsImages = $blog->newsImages->pluck('image');
+                return $blog;
+            });
 
         return Inertia::render('DetailNews', [
-            'data' => compact('blog'),
+            'data' => compact('blog', 'next_blog', 'prev_blog', 'random_blog'),
         ]);
     }
 
@@ -131,4 +142,3 @@ class NewsController extends Controller
         return back()->with('success', 'News deleted!');
     }
 }
-

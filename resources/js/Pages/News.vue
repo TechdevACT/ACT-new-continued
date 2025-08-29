@@ -41,37 +41,18 @@ const props = defineProps({
 
         <section class="max-w-7xl px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
-                <!-- <div class="col-span-2 ">
-                    <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
-                        <div v-for="p in props.data.news_all.data" :key="p.slug"
-                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
-                            <Link :href="`/blog/` + p.slug" class="flex flex-col flex-1">
-                            <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
-                                <span class="text-gray-500">
-                                    {{ new Date(p.created_at).toLocaleDateString('id-ID', {
-                                        day: '2-digit',
-                                        month: 'long',
-                                    year: 'numeric'
-                                    }) }}
-                                </span>
-                                <h3 class="text-xl font-bold">{{ p.title }}</h3>
-                                <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
-                            </div>
-
-                            <div class="flex-1">
-                                <img :src="p.image || 'https://placehold.co/400x200'" alt=""
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            </div>
-                            </Link>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="col-span-2">
+
                     <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
                         <div v-for="p in props.data.news_all.data" :key="p.slug"
-                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
-                            <Link :href="`/blog/` + p.slug" class="flex flex-col flex-1">
+                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden bg-gray-200">
+                            <Link :href="`/blog/` + p.slug">
+                            <div class="overflow-hidden aspect-video">
+                                <img :src="p.news_images[0].image || 'https://placehold.co/1600x900'" alt=""
+                                    class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110" />
+                            </div>
+
                             <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
                                 <span class="text-gray-500">
                                     {{ new Date(p.created_at).toLocaleDateString('id-ID', {
@@ -82,11 +63,6 @@ const props = defineProps({
                                 </span>
                                 <h3 class="text-xl font-bold">{{ p.title }}</h3>
                                 <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
-                            </div>
-
-                            <div class="flex-1">
-                                <img :src="p.image || 'https://placehold.co/400x200'" alt=""
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                             </div>
                             </Link>
                         </div>
