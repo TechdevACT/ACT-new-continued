@@ -23,6 +23,6 @@ class Project extends Model
 
     public function projectGalleries()
     {
-        return $this->hasMany(ProjectGallery::class, 'project_id', 'id');
+        return $this->hasMany(ProjectGallery::class);
     }
 }

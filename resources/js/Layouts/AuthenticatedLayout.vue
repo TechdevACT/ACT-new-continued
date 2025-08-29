@@ -30,13 +30,15 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('settings.index')" :active="route().current('settings.index') || route().current('settings.edit')">
+                                <NavLink :href="route('settings.index')"
+                                    :active="route().current('settings.index') || route().current('settings.edit')">
                                     Settings
                                 </NavLink>
                                 <NavLink :href="route('blog.index')" :active="route().current('blog.index')">
                                     Blog
                                 </NavLink>
-                                <NavLink :href="route('projectsSetting.index')" :active="route().current('projectsSetting.index')">
+                                <NavLink :href="route('projectsSetting.index')"
+                                    :active="route().current('projectsSetting.index')">
                                     Project
                                 </NavLink>
                             </div>
@@ -51,7 +53,8 @@ const showingNavigationDropdown = ref(false);
                                             <button type="button"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
 
-                                                <img v-if="$page.props.auth.user.avatar" class="h-8 w-8 rounded-full mr-2"
+                                                <img v-if="$page.props.auth.user.avatar"
+                                                    class="h-8 w-8 rounded-full mr-2"
                                                     :src="$page.props.auth.user.avatar"
                                                     :alt="$page.props.auth.user.name">
 
@@ -112,6 +115,17 @@ const showingNavigationDropdown = ref(false);
                     <div class="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('settings.index')"
+                            :active="route().current('settings.index') || route().current('settings.edit')">
+                            Settings
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('blog.index')" :active="route().current('blog.index')">
+                            Blog
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('projectsSetting.index')"
+                            :active="route().current('projectsSetting.index')">
+                            Project
                         </ResponsiveNavLink>
                     </div>
 

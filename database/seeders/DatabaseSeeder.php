@@ -20,28 +20,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // User::factory()->create([
-        //     'name' => 'Test Akun',
-        //     'email' => 'akun_test@email.com',
-        //     'password' => bcrypt('TestAkun!@#'),
-        // ]);
+        User::factory()->create([
+            'name' => 'Test Akun',
+            'email' => 'akun_test@email.com',
+            'password' => bcrypt('TestAkun!@#'),
+        ]);
 
-        // ProjectCategory::factory(4)->create();
+        ProjectCategory::factory(4)->create();
 
-        // Project::factory(10)->create();
+        Project::factory(10)->create();
 
-        // ProjectGallery::factory(40)->create();
+        ProjectGallery::factory(40)->create();
 
         News::factory(10)->create();
 
         NewsImages::factory(10)->create();
 
-        // $this->call([
-        //     FrontEndSeeder::class,
-        // ]);
+        $this->call([
+            FrontEndSeeder::class,
+        ]);
 
-        // $this->call([
-        //     AboutOptionSeeder::class,
-        // ]);
+        $this->call([
+            AboutOptionSeeder::class,
+        ]);
     }
 }

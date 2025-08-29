@@ -80,7 +80,7 @@ const loadMore = () => {
                 <Link :href="`/projects/` + project.slug">
                 <div class="w-full h-auto aspect-square overflow-hidden rounded-3xl relative group shadow-xl">
                     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        :src="project.image" :alt="project.title" />
+                        :src="`/storage/` + project.image" :alt="project.title" />
                 </div>
                 <div class="w-full flex justify-between items-center py-4 transition-colors duration-500">
                     <h3 class="text-2xl uppercase font-bold text-black dark:text-white">

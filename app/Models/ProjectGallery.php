@@ -12,6 +12,6 @@ class ProjectGallery extends Model
 
     public function projects()
     {
-        return $this->belongsTo(Project::class, 'project_id', 'id');
+        return $this->belongsTo(Project::class);
     }
 }

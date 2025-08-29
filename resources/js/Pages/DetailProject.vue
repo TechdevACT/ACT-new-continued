@@ -7,19 +7,13 @@ const data = defineProps({
     data: Object
 })
 
-// const image_gallery = data.data.project.project_galleries.map(item => item.image);
-const image_gallery = [
-    'https://placehold.co/1080x1080',
-    'https://placehold.co/1080x500',
-    'https://placehold.co/1080x1080',
-    'https://placehold.co/1080x500',
-];
+const image_gallery = data.data.project.project_galleries.map(item => item.image);
 
 onMounted(() => {
     const parallax = document.getElementById("parallax");
 
     const handleScroll = () => {
-        let offset = window.scrollY * 0.1;
+        let offset = window.scrollY * 0.1 - (window.innerHeight / 2);
         parallax.style.backgroundPositionY = offset + "px";
     };
 
@@ -58,8 +52,8 @@ onMounted(() => {
         </section>
 
         <template #fullwidth2>
-            <section id="parallax" class="relative h-[20rem] sm:h-[50rem] bg-center bg-cover"
-                style="background-image: url('https://placehold.co/1080x500')">
+            <section id="parallax" class="relative h-[20rem] sm:h-[50rem] bg-center bg-cover bg-no-repeat"
+                :style="`background-image: url('/storage/` + data.data.project.background + `'); background-position: center`">
             </section>
         </template>
 

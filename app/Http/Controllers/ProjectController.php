@@ -16,6 +16,7 @@ class ProjectController extends Controller
     {
         $allProjects = Project::with('category:id,name')
         ->select('id', 'title', 'slug', 'thumbnail', 'category_id')
+        ->orderBy('created_at', 'desc')
         ->get()
         ->map(function ($project) {
             return [

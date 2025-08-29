@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('blog', NewsController::class);
     Route::resource('projectsSetting', ProjectSetting::class);
     Route::resource('projects', ProjectController::class);
+    Route::delete('/gallery/{projectGallery}', [ProjectSetting::class, 'deleteGalleryImage'])
+    ->name('gallery.delete');
 });
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])

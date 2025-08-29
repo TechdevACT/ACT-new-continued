@@ -47,10 +47,10 @@ onBeforeUnmount(() => {
 
 <template>
     <section>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-10">
             <div v-for="(image, index) in images" :key="index" @click="openLightbox(index)"
                 class="cursor-pointer rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition duration-300 ease-in-out">
-                <img :src="image" class="w-full h-full object-cover" alt="project gallery" />
+                <img :src="`/storage/` + image" class="w-full h-full object-cover" alt="project gallery" />
             </div>
         </div>
     </section>
@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
                 ‹
             </button>
 
-            <img :src="images[currentIndex]"
+            <img :src="`/storage/` + images[currentIndex]"
                 class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl transition-all duration-500" />
 
             <button @click="nextImage"
