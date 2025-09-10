@@ -67,7 +67,7 @@ const props = defineProps({
 
                     <div v-for="blog in data.random_blog">
                         <Link :href="route('blog.show', blog.slug)" class="flex gap-4 p-2 mt-6 justify-center items-center bg-white dark:bg-zinc-600 rounded-2xl shadow-xl hover:scale-105 hover:bg-gray-200 transition-all duration-300">
-                            <img :src="blog.news_images[0].image ?? `https://placehold.co/640x480`" alt="" class="hidden sm:block w-32 h-32 rounded-2xl object-cover">
+                            <img :src="blog.news_images[0]?.image ?? `https://placehold.co/640x480`" alt="" class="hidden sm:block w-32 h-32 rounded-2xl object-cover">
                             <div class="flex flex-col gap-2">
                                 <h4 class="text-md sm:text-lg font-bold">{{ blog.title }}</h4>
                                 <span class="text-xs text-gray-500 dark:text-gray-200">{{ new Date(blog.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) }}</span>

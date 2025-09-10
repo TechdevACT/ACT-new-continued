@@ -235,8 +235,8 @@ const mobileTransformStyles = [
                         </div>
 
                         <div class="flex-1">
-                            <img :src="blog.image || 'https://placehold.co/400x200'" alt=""
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                            <img :src="blog.news_images[0]?.image || 'https://placehold.co/400x200'" alt=""
+                                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
                         </div>
                         </Link>
                     </div>
