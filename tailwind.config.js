@@ -30,6 +30,9 @@ export default {
             colors: {
                 'brand-purple': '#573280'
             },
+            borderRadius: {
+                '4xl': '2.5rem'
+            }
         },
     },
 
