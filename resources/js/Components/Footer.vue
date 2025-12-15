@@ -19,7 +19,7 @@ const icons = [
             <div class="sm:col-span-2 mb-6 sm:mb-0">
                 <h2 class="text-4xl sm:text-7xl font-bold uppercase">Let's make <br> it happen</h2>
             </div>
-            <div class="flex flex-col gap-2 mb-6 sm:mb-0">
+            <div class="flex flex-col gap-2 mb-6 items-start sm:mb-0 sm:items-end">
                 <h2 class="text-xl font-semibold">Social Media</h2>
                 <div class="flex -ml-3">
                     <a v-for="(icon, index) in icons" :key="index" :href="icon.link" target="_blank"
@@ -31,7 +31,7 @@ const icons = [
                     </a>
                 </div>
             </div>
-            <div class="mb-6 sm:mb-0">
+            <div class="mb-6 text-start sm:mb-0 sm:text-end">
                 <h2 class="text-xl font-semibold">Contact</h2>
                 <h2 class="text-gray-700 dark:text-gray-300 h-10 mt-2">info@actdigital.agency</h2>
             </div>
@@ -43,30 +43,30 @@ const icons = [
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
 
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Photography
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
 
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Company Profile
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Company Profile
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
 
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Packaging
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Packaging
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Creative Creation
-                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
-                </h3>
-
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Photography
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Creative Creation
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
 
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Company Profile
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Photography
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
 
-                <h3 class="text-6xl sm:text-9xl font-bold ml-4">Packaging
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Company Profile
+                    <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
+                </h3>
+
+                <h3 class="text-6xl sm:text-9xl font-bold ml-4 inline-flex items-center">Packaging
                     <FontAwesomeIcon :icon="faStarOfLife" class="text-yellow-500" />
                 </h3>
             </div>
