@@ -26,4 +26,9 @@ class News extends Model
     {
         return $this->hasMany(NewsImages::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
+    }
 }

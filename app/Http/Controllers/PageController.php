@@ -6,6 +6,7 @@ use App\Models\AboutOption;
 use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
 use App\Models\News;
+use App\Models\NewsCategory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,11 +47,33 @@ class PageController extends Controller
         return Inertia::render('Services');
     }
 
-    public function news()
+    public function news(Request $request)
     {
-        $news_all = News::with('newsImages')->where( 'status', 'published')->orderBy('created_at', 'desc')->paginate(4);
+        $categorySlug = $request->get('category');
+
+        $news_all = News::with('newsImages', 'category')
+        ->where( 'status', 'published')
+        ->when($categorySlug, function ($query) use ($categorySlug) {
+            $query->whereHas('category', function ($q) use ($categorySlug) {
+                $q->where('slug', $categorySlug);
+            });
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate(4)
+        ->withQueryString();
+
+        $categories = NewsCategory::withCount(['news' => function ($query) {
+            $query->where('status', 'published');
+        }])
+        ->having('news_count', '>', 0)
+        ->orderBy('name')
+        ->get();
+
         return Inertia::render('News',  [
-            'data' => compact('news_all'),
+            'data' => compact('news_all', 'categories'),
+            'filter' => [
+                'category' => $categorySlug,
+            ]
         ]);
     }
 

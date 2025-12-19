@@ -12,6 +12,11 @@ const destroyItem = (id) => {
         router.delete(route('blog.destroy', id), { preserveScroll: true });
     }
 };
+
+const limitTitle = (text, limit = 50) => {
+    if (!text) return '';
+    return text.length > limit ? text.substring(0, limit) + '...' : text;
+};
 </script>
 
 <template>
@@ -21,6 +26,7 @@ const destroyItem = (id) => {
                 <tr class="bg-gray-100">
                     <th class="px-4 py-2 text-center">Gambar</th>
                     <th class="px-4 py-2 text-left">Judul</th>
+                    <th class="px-4 py-2 text-left">Kategori</th>
                     <th class="px-4 py-2 text-left">Status</th>
                     <th class="px-4 py-2 text-left">Tanggal</th>
                     <th class="px-4 py-2 text-center">Aksi</th>
@@ -34,7 +40,16 @@ const destroyItem = (id) => {
                                 class="h-10 object-cover"></img>
                         </div>
                     </td>
-                    <td class="px-4 py-2">{{ item.title }}</td>
+                    <td class="px-4 py-2">{{ limitTitle(item.title) }}</td>
+                    <td class="px-4 py-2">
+                        <span v-if="item.category"
+                            class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                            {{ item.category.name }}
+                        </span>
+                        <span v-else class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
+                            None
+                        </span>
+                    </td>
                     <td
                         :class="'px-4 py-2 capitalize' + (item.status === 'published' ? ' text-green-500' : ' text-red-500')">
                         {{ item.status }}</td>
