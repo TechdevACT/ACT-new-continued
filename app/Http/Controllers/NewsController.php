@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\NewsCategory;
 use App\Models\NewsImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,18 +17,25 @@ class NewsController extends Controller
         $search = $request->get('search');
         $sortField = $request->get('sortField', 'created_at');
         $sortDirection = $request->get('sortDirection', 'desc');
+        $categoryFilter = $request->get('category');
 
-        $news = News::with('user', 'newsImages')
+        $news = News::with('user', 'newsImages', 'category')
             ->when($search, function ($query) use ($search) {
                 $query->where('title', 'like', "%{$search}%")
                     ->orWhere('slug', 'like', "%{$search}%");
+            })
+            ->when($categoryFilter, function ($query) use ($categoryFilter){
+                $query->where('category_id', $categoryFilter);
             })
             ->orderBy($sortField, $sortDirection)
             ->paginate(10)
             ->withQueryString();
 
+            $categories = NewsCategory::all();
+
         return Inertia::render('News/Index', [
             'news' => $news,
+            'categories' => $categories,
             'filters' => [
                 'search' => $search,
                 'sortField' => $sortField,
@@ -48,6 +56,7 @@ class NewsController extends Controller
             'slug' => 'required|unique:news,slug',
             'content' => 'required',
             'excerpt' => 'required',
+            'category_id' => 'nullable|exists:news_categories,id',
         ]);
 
         $news = News::create([
@@ -56,7 +65,8 @@ class NewsController extends Controller
             'slug' => $request->slug,
             'content' => $request->content,
             'status' => 'published',
-            'excerpt' => $request->excerpt
+            'excerpt' => $request->excerpt,
+            'category_id' => $request->category_id,
         ]);
 
         if ($request->hasFile('image')) {
@@ -103,6 +113,7 @@ class NewsController extends Controller
             'slug' => 'required|unique:news,slug,' . $id,
             'content' => 'required',
             'excerpt' => 'required',
+            'category_id' => 'nullable|exists:news_categories,id',
         ]);
 
         if ($request->hasFile('image')) {

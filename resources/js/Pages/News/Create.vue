@@ -12,10 +12,12 @@ const form = useForm({
     excerpt: '',
     image: null,
     content: '',
+    category_id: null,
 });
 
 const props = defineProps({
-    formData: { type: Object, default: null }
+    formData: { type: Object, default: null },
+    categories: {type: Array, default: () => [] }
 });
 
 watch(
@@ -25,6 +27,7 @@ watch(
         form.slug = val?.slug ?? '';
         form.content = val?.content ?? '';
         form.excerpt = val?.excerpt ?? '';
+        form.category_id = val?.category_id ?? null;
     },
     { immediate: true }
 );
@@ -110,6 +113,18 @@ const submit = () => {
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     placeholder="Masukkan slug" />
                 <div v-if="form.errors.slug" class="text-red-500 text-sm mt-1">{{ form.errors.slug }}</div>
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700 ">Kategori</label>
+                <select id="category" v-model="form.category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <option :value="null">Pilih Kategori</option>
+                    <option v-for="cat in categories" :key="cat.id" :value="cat.id">
+                        {{ cat.name }}
+                    </option>
+                </select>
+                <div v-if="form.errors.category_id" class="text-red-500 text-sm mt-1">{{ form.errors.category_id }}</div>
             </div>
 
             <!-- Gambar -->

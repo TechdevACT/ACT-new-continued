@@ -223,24 +223,24 @@ const mobileTransformStyles = [
 
                 <div class="grid sm:grid-cols-3 gap-10 pt-10 animate-fade-up">
                     <div v-for="blog in data_fe.blog" :key="blog.slug"
-                        class="flex flex-col shadow-xl group rounded-2xl overflow-hidden">
-                        <Link :href="`/blog/` + blog.slug" class="flex flex-col flex-1">
-                        <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
-                            <span class="text-gray-500">
-                                {{ new Date(blog.created_at).toLocaleDateString('id-ID', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric'
-                                }) }}
-                            </span>
-                            <h3 class="text-xl font-bold">{{ blog.title }}</h3>
-                            <p class="text-md dark:text-gray-400">{{ blog.excerpt }}</p>
-                        </div>
+                        class="flex flex-col shadow-xl group rounded-2xl overflow-hidden h-full">
+                        <Link :href="`/blog/` + blog.slug" class="flex flex-col h-full">
+                            <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
+                                <span class="text-gray-500">
+                                    {{ new Date(blog.created_at).toLocaleDateString('id-ID', {
+                                        day: '2-digit',
+                                        month: 'long',
+                                        year: 'numeric'
+                                    }) }}
+                                </span>
+                                <h3 class="text-xl font-bold min-h-[3.5rem] line-clamp-2">{{ blog.title }}</h3>
+                                <p class="text-md dark:text-gray-400 line-clamp-3">{{ blog.excerpt }}</p>
+                            </div>
 
-                        <div class="flex-1">
-                            <img :src="blog.news_images[0]?.image || 'https://placehold.co/400x200'" alt=""
-                                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
-                        </div>
+                            <div class="flex-1">
+                                <img :src="blog.news_images[0]?.image || 'https://placehold.co/400x200'" alt=""
+                                    class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
+                            </div>
                         </Link>
                     </div>
                 </div>

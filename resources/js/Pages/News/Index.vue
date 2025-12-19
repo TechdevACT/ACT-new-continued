@@ -9,15 +9,17 @@ import DataBlog from '@/Components/DataBlog.vue';
 
 const props = defineProps({
     news: Object,
+    categories: Array,
     filters: Object
 });
 
 const search = ref(props.filters.search || '');
+const categoryFilter = ref(props.filters.category || '');
 const showForm = ref(false);
 const editItem = ref(null);
 
 const handleSearch = () => {
-    router.get(route('blog.index'), { search: search.value }, { preserveState: true });
+    router.get(route('blog.index'), { search: search.value, category: categoryFilter.value }, { preserveState: true });
 };
 
 const addNew = () => {
@@ -51,13 +53,21 @@ const editData = (item) => {
 
         <div class="py-4 mx-4">
             <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                <Create v-if="showForm" :key="editItem?.id || 'new'" :form-data="editItem"
+                <Create v-if="showForm" :key="editItem?.id || 'new'" :form-data="editItem" :categories="categories"
                     @cancel="showForm = false; editItem = null" />
 
                 <!-- Search & Add -->
                 <div class="flex justify-between">
                     <input v-model="search" @keyup.enter="handleSearch" type="text" placeholder="Cari..."
                         class="border rounded-lg px-3 py-2 w-1/3" />
+
+                    <select v-model="categoryFilter" @change="handleSearch"
+                        class="border rounded-lg px-3 py-2">
+                        <option value="">All Categories</option>
+                        <option v-for="cat in categories" :key="cat.id" :value="cat.id">
+                            {{ cat.name }}
+                        </option>
+                    </select>
                 </div>
 
                 <!-- Table -->
