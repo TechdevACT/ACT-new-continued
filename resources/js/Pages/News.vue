@@ -67,7 +67,7 @@ const clearFilter = () => {
                     <div v-if="selectedCategory" class="mb-6 flex items-center gap-2">
                         <span class="text-gray-600 dark:text-gray-400">Filtered by:</span>
                         <span
-                            class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm flex items-center gap-2">
+                            class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm flex items-center gap-2">
                             {{props.data.categories.find(c => c.slug === selectedCategory)?.name}}
                             <button @click="clearFilter" class="hover:text-red-600">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ const clearFilter = () => {
                                             year: 'numeric'
                                         }) }}
                                         <span v-if="p.category"
-                                            class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-tx rounded-full">
+                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-tx rounded-full">
                                             {{ p.category.name }}
                                         </span>
                                     </span>
@@ -150,7 +150,7 @@ const clearFilter = () => {
                         {{ selectedCategory ? 'Try selecting a different category' : 'No articles available at the moment' }}
                     </p>
                     <button v-if="selectedCategory" @click="clearFilter"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        class="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
                         View All Articles
                     </button>
                 </div>
@@ -183,8 +183,8 @@ const clearFilter = () => {
                                     :class="[
                                         'text-lg font-medium mb-4 transition-colors',
                                         !selectedCategory
-                                            ? 'text-blue-600'
-                                            : 'hover:text-blue-600'
+                                            ? 'text-yellow-600'
+                                            : 'hover:text-yellow-600'
                                     ]"
                                 >
                                     All Articles
@@ -202,8 +202,8 @@ const clearFilter = () => {
                                     :class="[
                                         'text-lg font-medium mb-4 transition-colors',
                                         selectedCategory === cat.slug
-                                            ? 'text-blue-600'
-                                            : 'hover:text-blue-600'
+                                            ? 'text-yellow-600'
+                                            : 'hover:text-yellow-600'
                                     ]"
                                 >
                                     {{ cat.name }}
