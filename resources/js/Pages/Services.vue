@@ -1,5 +1,8 @@
 <script setup>
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import SecondLayout from '@/Layouts/SecondLayout.vue';
+import { ref } from 'vue';
+
 
 const cards = [
     {
@@ -70,10 +73,24 @@ const whyUs = [
         image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_1_f.svg'
     },
 ]
+
+const maxSubChars = 120;
+const expanded = ref({});
+const toggleExpand = (id) => {
+    expanded.value[id] = !expanded.value[id];
+}
+
+const displaySubText = (card) => {
+    const full = card.subText;
+    if(expanded.value[card.id]) return full;
+    return full.length > maxSubChars ? full.slice(0, maxSubChars) + '...' : full;
+};
+
 </script>
 
 <template>
-    <SecondLayout title="Services -">
+    <!-- <SecondLayout title="Services -"> -->
+    <DefaultLayout title="Services -">
 
         <template #meta>
             <meta name="description" content="Meta Description Here" />
@@ -95,51 +112,57 @@ const whyUs = [
         </section>
 
         <template #fullwidth2>
-            <div class="relative mb-10 animate-fade-up" :style="{ height: `${cards.length * 65}vh` }">
-                <div v-for="(card, index) in cards" :key="card.id"
-                    class="sticky top-20 h-[65vh] flex items-start justify-center pt-10 transition-all duration-700"
-                    :style="{ zIndex: index + 1 }">
-                    <div class="relative h-[60vh] mx-2 sm:mx-6 px-6 rounded-3xl dark:border-2 dark:border-gray-600 flex flex-col gap-6 justify-center  w-full overflow-hidden"
-                        :style="{
-                            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: '10% center',
-                            backgroundRepeat: 'no-repeat'
-                        }">
-                        <div class="flex items-center">
-                            <div class="w-3 sm:w-5 h-3 sm:h-10 border-l-2 border-white dark:border-white/60">
+            <section>
+                <div class="mx-auto w-11/12 sm:w-10/12">
+                    <div class="relative mb-10 animate-fade-up" :style="{ height: `${cards.length * 70}vh` }">
+                        <div v-for="(card, index) in cards" :key="card.id"
+                            class="sticky top-20 h-[70vh] flex items-start justify-center pt-10 transition-all duration-700"
+                            :style="{ zIndex: index + 1 }">
+                            <div class="relative h-[65vh] px-6 rounded-3xl shadow dark:border-2 dark:border-gray-600 flex flex-col gap-6 justify-center  w-full overflow-hidden"
+                                :style="{
+                                    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.1)), url(${card.bg})`,
 
-                            </div>
-                            <h3 class="text-white text-2xl sm:text-7xl font-medium">{{ card.no }}</h3>
-                        </div>
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: '10% center',
+                                    backgroundRepeat: 'no-repeat'
+                                }">
+                                <div class="flex items-center">
+                                    <div class="w-3 sm:w-5 h-3 sm:h-10 border-l-2 border-white dark:border-white/60">
 
-                        <div class="flex flex-col gap-2 sm:w-1/2">
-                            <h3 class="text-white text-5xl sm:text-7xl font-semibold">
-                                {{ card.text }}
-                            </h3>
-                            <p class="text-white text-lg sm:text-2xl">
-                                {{ card.subText }}
-                            </p>
-
-                            <button
-                                class="group w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
-                                <div
-                                    class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
+                                    </div>
+                                    <h3 class="text-white text-2xl sm:text-7xl font-medium">{{ card.no }}</h3>
                                 </div>
-                                <span class="relative flex items-center">
-                                    Load More
-                                    <span class="ml-3 flex items-center gap-1">
-                                        <span
-                                            class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
-                                        <span
-                                            class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
-                                    </span>
-                                </span>
-                            </button>
+
+                                <div class="flex flex-col gap-2 sm:w-3/4">
+                                    <h3 class="text-white text-5xl sm:text-7xl font-semibold">
+                                        {{ card.text }}
+                                    </h3>
+                                    <p class="text-white text-lg sm:text-2xl font-medium">
+                                        {{ displaySubText(card) }}
+                                    </p>
+
+                                    <button @click="toggleExpand(card.id)"
+                                        class="group w-full sm:w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black boder border-transparent">
+                                        <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0 transition-all duration-500 group-hover:w-full group-hover:bg-black"></div>
+                                        <div
+                                            class="absolute inset-0 h-full w-0 bg-black transition-all  duration-500 ease-out group-hover:w-full dark:bg-white">
+                                        </div>
+                                        <span class="relative flex items-center">
+                                            {{ expanded[card.id] ? "Show Less" : 'Load More' }}
+                                            <span class="ml-3 flex items-center gap-1">
+                                                <span
+                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                                                <span
+                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                                            </span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </template>
 
         <template #afterFullwidth2>
@@ -160,7 +183,8 @@ const whyUs = [
             </div>
         </template>
 
-    </SecondLayout>
+    <!-- </SecondLayout> -->
+    </DefaultLayout>
 
 
 </template>
