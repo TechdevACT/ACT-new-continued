@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InteractiveCards from '@/Components/InteractiveCards.vue';
 import Industries from '@/Components/Industries.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     data_fe: Object,
@@ -66,6 +67,17 @@ const mobileTransformStyles = [
     "rotate(5deg) translate(60px)",
     "rotate(-5deg) translate(120px)"
 ];
+
+const maxSubChars = 120;
+const expanded = ref({});
+const toggleExpand = (id) => {
+    expanded.value[id] = !expanded.value[id];
+};
+const displaySubText = (card) => {
+    const full = card.subText;
+    if(expanded.value[card.id]) return full;
+    return full.length > maxSubChars ? full.slice(0,maxSubChars) + '...' : full;
+};
 
 </script>
 
@@ -176,24 +188,22 @@ const mobileTransformStyles = [
                                         {{ card.text }}
                                     </h3>
                                     <p class="text-white text-lg sm:text-2xl font-medium">
-                                        {{ card.subText }}
+                                        <!-- {{ card.subText }} -->
+                                        {{ displaySubText(card)}}
                                     </p>
+                                    <button @click="toggleExpand(card.id)"
+                                            class="group w-full sm:w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black border border-transparent">
+                                            <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0 transition-all duration-500 group-hover:w-full group-hover:bg-black"></div>
 
-                                    <button
-                                        class="group w-full sm:w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
-                                        <div class="absolute inset-0 bg-yellow-400 w-full h-full"></div>
-                                        <div
-                                            class="absolute inset-0 h-full w-0 bg-black transition-all  duration-500 ease-out group-hover:w-full dark:bg-white">
-                                        </div>
-                                        <span class="relative flex items-center">
-                                            Load More
-                                            <span class="ml-3 flex items-center gap-1">
-                                                <span
-                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
-                                                <span
-                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                                            <div class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
+                                            </div>
+                                            <span class="relative flex items-center">
+                                                {{ expanded[card.id] ? 'Show Less' : 'Load More' }}
+                                                <span class="ml-3 flex items-center gap-1">
+                                                    <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black"></span>
+                                                    <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black"></span>
+                                                </span>
                                             </span>
-                                        </span>
                                     </button>
                                 </div>
                             </div>
