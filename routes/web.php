@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/services', [PageController::class, 'services'])->name('services');
     Route::get('/news', [PageController::class, 'news'])->name('news');
     Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
+    Route::get('/shop', [PageController::class, 'shop'])->name('shop');
 
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingsController::class, 'index'])->name('index');

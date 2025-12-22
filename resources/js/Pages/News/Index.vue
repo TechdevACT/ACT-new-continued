@@ -45,7 +45,7 @@ const editData = (item) => {
                     All Blog
                 </h2>
 
-                <button class='py-1 px-4 rounded-xl bg-gray-300' @click="addNew">
+                <button class='py-1 px-4 rounded-xl bg-gray-300 right-0' @click="addNew">
                     Add New Blog
                 </button>
             </div>

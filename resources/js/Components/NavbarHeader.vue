@@ -22,6 +22,10 @@ const menu = [
         link: '/services',
     },
     {
+        name: 'Shop',
+        link: '/shop',
+    },
+    {
         name: 'News',
         link: '/news',
     },
