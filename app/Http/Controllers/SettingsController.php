@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutOption;
 use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
+use App\Models\Testimonial;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,10 +23,12 @@ class SettingsController extends Controller
         $industry_image = ImageFrontEnd::where('type', 'industry')->take(5)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(6)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
+        $testimonials = Testimonial::all();
         return Inertia::render(
             'Settings/Settings',
             [
                 'data_fe' => compact('data_fe', 'data_about', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
+                'testimonials' => $testimonials,
             ]
         );
     }

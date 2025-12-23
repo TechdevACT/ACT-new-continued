@@ -10,11 +10,13 @@ import HomeServices from './HomeSettings/HomeServices.vue';
 import HomeIndustry from './HomeSettings/HomeIndustry.vue';
 import HomeBlog from './HomeSettings/HomeBlog.vue';
 import AboutHeading from './AboutSettings/AboutHeading.vue';
+import Testimonialmanager from './AboutSettings/Testimonialmanager.vue';
 
 const activeTab = ref('home');
 
 const props = defineProps({
-    data_fe: Object
+    data_fe: Object,
+    testimonials: Array
 })
 </script>
 
@@ -73,6 +75,9 @@ const props = defineProps({
                 <!-- About Setting Components -->
                 <template v-if="activeTab === 'about'">
                     <AboutHeading :data_about="data_fe.data_about[0]"/>
+                    <div class="bg-white p-4 shadow rounded-lg sm:p-8 mt-6">
+                        <Testimonialmanager :testimonials="testimonials" />
+                    </div>
                 </template>
             </div>
         </div>

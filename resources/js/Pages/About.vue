@@ -9,16 +9,20 @@ const props = defineProps({
     data_about: {
         type: Object
     },
+    testimonials: {
+        type: Array,
+        default: () => []
+    }
 })
 
-const clients = [
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-4.svg',
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-2.svg',
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector.svg',
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-1.svg'
-];
+// const clients = [
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-4.svg',
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-2.svg',
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector.svg',
+//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-1.svg'
+// ];
 </script>
 
 <template>
@@ -115,7 +119,7 @@ const clients = [
         </section>
 
         <template #fullwidth2>
-            <Testimonials />
+            <Testimonials :items="testimonials"/>
         </template>
 
         <template #afterFullwidth2>

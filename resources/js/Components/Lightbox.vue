@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
         <div class="grid grid-cols-3 sm:grid-cols-3 gap-10">
             <div v-for="(image, index) in images" :key="index" @click="openLightbox(index)"
                 class="cursor-pointer rounded-2xl overflow-hidden hover:scale-105 transition duration-300 ease-in-out flex items-center">
-                <img :src="`/storage/` + image" class="mx-auto block max-w-auto shadow-xl h-auto rounded-2xl" alt="project gallery" />
+                <img :src="`/storage/` + image" class="mx-auto block max-w-auto shadow-xl h-auto rounded-3xl" alt="project gallery" />
             </div>
         </div>
     </section>
