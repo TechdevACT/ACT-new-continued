@@ -86,4 +86,9 @@ class PageController extends Controller
     {
         return Inertia::render('Shop');
     }
+
+    public function shopDetail()
+    {
+        return Inertia::render('DetailShop');
+    }
 }

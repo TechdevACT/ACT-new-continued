@@ -156,7 +156,8 @@ const clearFilter = () => {
                 </div>
 
                 <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left dark:text-white">
-                    <img src="https://placehold.co/400x200" alt="" class="rounded-2xl">
+                    <!-- <img src="https://placehold.co/400x200" alt="" class="rounded-2xl"> -->
+                    <img src="https://picsum.photos/1080/500" alt="" class="rounded-2xl">
                     <span class="text-lg mb-10">It’s all about creative design, website,
                         and everything in digital.</span>
                     <h3 class="text-xl sm:text-2xl font-bold">Recent Posts</h3>

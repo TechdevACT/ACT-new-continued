@@ -144,7 +144,8 @@ const displaySubText = (card) => {
 
         <section class="flex flex-col py-5 sm:pt-10 mx-4 animate-fade-up transition-all duration-500">
             <div class="mb-10">
-                <img src="https://placehold.co/1080x500" class="w-full rounded-3xl">
+                <!-- <img src="https://placehold.co/1080x500" class="w-full rounded-3xl"> -->
+                <img src="https://picsum.photos/1080/500" class="w-full rounded-3xl">
             </div>
             <div class="grid grid-cols-5 gap-6 pt-10">
                 <div v-for="clients in clientsImage" class="flex items-center justify-center">
