@@ -7,6 +7,7 @@ use App\Models\FrontEnd;
 use App\Models\ImageFrontEnd;
 use App\Models\News;
 use App\Models\NewsCategory;
+use App\Models\Testimonial;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +38,10 @@ class PageController extends Controller
     public function about()
     {
         $data_about = AboutOption::where('id', 1)->first();
+        $testimonials = Testimonial::all();
         return Inertia::render('About', [
             'data_about' => compact('data_about'),
+            'testimonials' => $testimonials,
         ]);
     }
 

@@ -1,35 +1,41 @@
-<script setup>
+<!-- <script setup>
 import { ref, computed } from 'vue';
 
-const testimonials = ref([
-    {
-        name: 'Olivia Brown',
-        title: 'Designer',
-        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        quote: 'Working with the Osty team has been an outstanding experience for us at Nova. They adapted effortlessly to our workflow, functioning as a true extension of our internal team.'
-    },
-    {
-        name: 'William Taylor',
-        title: 'Project Manager',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        quote: 'At Ember, working with Osty has been nothing short of exceptional. Their deep understanding of product design, combined with their ability to execute both large-scale and granular design tasks.'
-    },
-    {
-        name: 'Emily Johnson',
-        title: 'Graphic Designer',
-        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        quote: 'Osty has been a game-changer for our brand at Vireo. Their team quickly understood our vision and executed it flawlessly across various platforms.'
-    },
-    {
-        name: 'Michael Chen',
-        title: 'Lead Developer',
-        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        quote: 'The technical proficiency and collaborative spirit of the Osty team are top-notch. They delivered a robust and scalable solution ahead of schedule. Highly recommended.'
-    },
-]);
-
+const props = defineProps({
+    items: {
+        type: Array,
+        default: () => []
+    }
+});
+// const testimonials = ref([
+//     {
+//         name: 'Olivia Brown',
+//         title: 'Designer',
+//         avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+//         quote: 'Working with the Osty team has been an outstanding experience for us at Nova. They adapted effortlessly to our workflow, functioning as a true extension of our internal team.'
+//     },
+//     {
+//         name: 'William Taylor',
+//         title: 'Project Manager',
+//         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+//         quote: 'At Ember, working with Osty has been nothing short of exceptional. Their deep understanding of product design, combined with their ability to execute both large-scale and granular design tasks.'
+//     },
+//     {
+//         name: 'Emily Johnson',
+//         title: 'Graphic Designer',
+//         avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+//         quote: 'Osty has been a game-changer for our brand at Vireo. Their team quickly understood our vision and executed it flawlessly across various platforms.'
+//     },
+//     {
+//         name: 'Michael Chen',
+//         title: 'Lead Developer',
+//         avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+//         quote: 'The technical proficiency and collaborative spirit of the Osty team are top-notch. They delivered a robust and scalable solution ahead of schedule. Highly recommended.'
+//     },
+// ]);
+const testimonials = computed(() => props.items);
 const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
-const slidesToShow = isDesktop ? 3 : 1;
+const slidesToShow = isDesktop ? 1 : 1;
 const cloneCount = slidesToShow;
 
 const currentIndex = ref(cloneCount);
@@ -85,8 +91,107 @@ const handleTransitionEnd = () => {
         isTransitioning.value = true;
     });
 };
-</script>
+</script> -->
 
+
+<script setup>
+import { ref, computed } from 'vue';
+
+const props = defineProps({
+    items: {
+        type: Array,
+        default: () => []
+    }
+});
+
+// Menggunakan data dari props
+const testimonials = computed(() => props.items);
+
+// Konfigurasi Slider
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+const slidesToShow = isDesktop ? 3 : 1; // Kembalikan ke 3 jika ingin tampilan desktop 3 kolom
+const cloneCount = slidesToShow; // Jumlah item yang diduplikasi untuk loop
+
+const currentIndex = ref(cloneCount); // Mulai dari clone pertama (item asli pertama)
+const isTransitioning = ref(true); // Mengontrol CSS transition
+const isScrolling = ref(false); // PENAMBAHAN BARU: Mengunci klik saat animasi
+
+const originalSlidesCount = computed(() => testimonials.value.length);
+
+// Membuat array item dengan clone di awal dan akhir
+const extendedTestimonials = computed(() => {
+    if (testimonials.value.length === 0) return [];
+
+    // Clone item akhir taruh di depan
+    const startClones = testimonials.value.slice(-cloneCount);
+    // Clone item awal taruh di belakang
+    const endClones = testimonials.value.slice(0, cloneCount);
+
+    return [...startClones, ...testimonials.value, ...endClones];
+});
+
+// Menghitung dot navigasi yang aktif
+const activeDotIndex = computed(() => {
+    if (originalSlidesCount.value === 0) return 0;
+    return (currentIndex.value - cloneCount + originalSlidesCount.value) % originalSlidesCount.value;
+});
+
+// Style untuk pergeseran slider
+const sliderStyle = computed(() => {
+    const slideWidthPercentage = 100 / slidesToShow;
+    return {
+        transform: `translateX(-${currentIndex.value * slideWidthPercentage}%)`,
+        transition: isTransitioning.value ? 'transform 0.5s ease-in-out' : 'none',
+    };
+});
+
+// Fungsi Navigasi (Next/Prev)
+const navigate = (direction) => {
+    // KUNCI: Jangan biarkan user klik jika sedang animasi atau transisi dimatikan (saat reset)
+    if (isScrolling.value || !isTransitioning.value) return;
+
+    isScrolling.value = true; // Kunci tombol
+    currentIndex.value += direction;
+};
+
+const next = () => navigate(1);
+const prev = () => navigate(-1);
+
+const goToSlide = (index) => {
+    if (isScrolling.value || !isTransitioning.value) return;
+    isScrolling.value = true;
+    currentIndex.value = index + cloneCount;
+}
+
+// Fungsi Reset Loop (Infinite Scroll Logic)
+const handleTransitionEnd = () => {
+    isScrolling.value = false; // Buka kunci tombol setelah animasi selesai
+
+    const totalSlides = extendedTestimonials.value.length;
+
+    // Jika sampai di Clone Akhir (setelah item asli terakhir) -> Lompat ke Item Asli Awal
+    if (currentIndex.value >= totalSlides - cloneCount) {
+        isTransitioning.value = false; // Matikan animasi agar lompatan instan
+        currentIndex.value = currentIndex.value - originalSlidesCount.value;
+
+        // Hidupkan kembali animasi di frame berikutnya
+        setTimeout(() => {
+            isTransitioning.value = true;
+        }, 20);
+    }
+
+    // Jika sampai di Clone Awal (sebelum item asli pertama) -> Lompat ke Item Asli Terakhir
+    else if (currentIndex.value < cloneCount) {
+        isTransitioning.value = false; // Matikan animasi
+        currentIndex.value = currentIndex.value + originalSlidesCount.value;
+
+        // Hidupkan kembali animasi di frame berikutnya
+        setTimeout(() => {
+            isTransitioning.value = true;
+        }, 20);
+    }
+};
+</script>
 
 <template>
     <div class="bg-[url('/images/about/bg-about.png')] py-16 sm:py-24 antialiased">
