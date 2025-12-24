@@ -30,12 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/auth/{provider}/delete/callback', [SocialiteController::class, 'deleteCallback'])
         ->name('auth.delete.callback');
 
-    Route::get('/', [PageController::class, 'home'])->name('home');
-    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-    Route::get('/about', [PageController::class, 'about'])->name('about');
-    Route::get('/services', [PageController::class, 'services'])->name('services');
-    Route::get('/news', [PageController::class, 'news'])->name('news');
-    Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
+    // Route::get('/', [PageController::class, 'home'])->name('home');
+    // Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    // Route::get('/about', [PageController::class, 'about'])->name('about');
+    // Route::get('/services', [PageController::class, 'services'])->name('services');
+    // Route::get('/news', [PageController::class, 'news'])->name('news');
+    // Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
     // Route::get('/shop', [PageController::class, 'shop'])->name('shop');
     // Route::get('/shop/detail', [PageController::class, 'shopDetail'])->name('shopDetail');
 
@@ -57,6 +57,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/gallery/{projectGallery}', [ProjectSetting::class, 'deleteGalleryImage'])
     ->name('gallery.delete');
 });
+
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/news', [PageController::class, 'news'])->name('news');
+Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
     ->name('auth.redirect');

@@ -80,7 +80,7 @@ const getImageUrl = (path) => {
                             <div class="flex justify-center mt-4 space-x-2">
                                 <button v-for="page in projects.links" :key="page.url"
                                     @click="page.url && router.get(page.url)" v-html="page.label"
-                                    :class="['px-3 py-1 rounded', page.active ? 'bg-indigo-500 text-white' : 'bg-gray-200']" />
+                                    :class="['px-3 py-1 rounded', page.active ? 'bg-[#99ca3d] text-white' : 'bg-gray-200']" />
                             </div>
                         </div>
                     </div>
