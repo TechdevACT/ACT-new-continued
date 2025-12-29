@@ -2,12 +2,44 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
-// Simulasi Data (Nanti bisa diganti dengan props dari Controller)
+const props = defineProps({
+    count: Object,
+    recent: Array,
+});
+
 const stats = [
-    { name: 'Total Projects', value: '12', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', color: 'text-blue-600', bg: 'bg-blue-50' },
-    { name: 'Published News', value: '24', icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z', color: 'text-purple-600', bg: 'bg-purple-50' },
-    { name: 'Testimonials', value: '8', icon: 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z', color: 'text-orange-600', bg: 'bg-orange-50' },
-    { name: 'Services Active', value: '4', icon: 'M13 10V3L4 14h7v7l9-11h-7z', color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    {
+        name: 'Total Projects',
+        value: props.count.projects,
+        icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+        color: 'text-blue-600',
+        bg: 'bg-blue-50',
+        route: 'projectsSetting.index',
+    },
+    {
+        name: 'Published News',
+        value: props.count.news,
+        icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z',
+        color: 'text-purple-600',
+        bg: 'bg-purple-50',
+        route: 'blog.index',
+    },
+    {
+        name: 'Testimonials',
+        value: props.count.testimonials,
+        icon: 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z',
+        color: 'text-orange-600',
+        bg: 'bg-orange-50',
+        route: 'settings.index',
+    },
+    {
+        name: 'Services Active',
+        value: props.count.services,
+        icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        route: 'dashboard',
+    },
 ];
 
 const recentProjects = [
@@ -15,6 +47,7 @@ const recentProjects = [
     { id: 2, title: 'Mobile App UI/UX', category: 'Design', status: 'In Progress', date: '1 week ago' },
     { id: 3, title: 'E-Commerce Integration', category: 'Web Development', status: 'Pending', date: '2 weeks ago' },
 ];
+console.log(props.recent);
 </script>
 
 <template>
@@ -64,7 +97,7 @@ const recentProjects = [
                         </div>
                         <div class="bg-gray-50 px-5 py-3">
                             <div class="text-sm">
-                                <a href="#" class="font-medium text-[#99ca3d] hover:text-[#86b333]">View all</a>
+                                <Link :href="route(stat.route)" class="text-sm font-medium text-[#99ca3d] hover:text-[#86b333]">View All</Link>
                             </div>
                         </div>
                     </div>
@@ -89,20 +122,20 @@ const recentProjects = [
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-100">
-                                        <tr v-for="project in recentProjects" :key="project.id" class="hover:bg-gray-50 transition-colors">
+                                        <tr v-for="project in props.recent" :key="project.id" class="hover:bg-gray-50 transition-colors">
                                             <td class="px-6 py-4 font-medium text-gray-900">{{ project.title }}</td>
                                             <td class="px-6 py-4">{{ project.category }}</td>
                                             <td class="px-6 py-4">
                                                 <span :class="{
-                                                    'bg-green-100 text-green-700': project.status === 'Completed',
-                                                    'bg-blue-100 text-blue-700': project.status === 'In Progress',
+                                                    'bg-green-100 text-green-700': project.status === 'In Progress',
+                                                    'bg-blue-100 text-blue-700': project.status === 'Published',
                                                     'bg-gray-100 text-gray-700': project.status === 'Pending'
                                                 }" class="inline-flex rounded-full px-2 py-1 text-xs font-medium">
                                                     {{ project.status }}
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 text-right">
-                                                <button class="font-medium text-gray-400 hover:text-[#99ca3d]">Edit</button>
+                                                <Link :href="route('projectsSetting.edit',project.id)" class="font-medium text-gray-400 hover:text-[#99ca3d]">Edit</Link>
                                             </td>
                                         </tr>
                                     </tbody>

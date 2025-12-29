@@ -7,17 +7,77 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectSetting;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialiteController;
+use App\Models\News;
+use App\Models\Project;
+use App\Models\Testimonial;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+
+    $counts = [
+        'projects' => Project::count(),
+        'news' => News::count(),
+        'testimonials' => Testimonial::count(),
+        'services' => 4,
+    ];
+
+    $recentProjects = Project::with('category')
+                        ->latest()
+                        ->take(5)
+                        ->get()
+                        ->map(function ($project) {
+                            return [
+                                'id' => $project->id,
+                                'title' => $project->title,
+                                'category' => $project->category->name ?? '-',
+                                'status' => 'Published',
+                                'date' => $project->created_at->diffForHumans(),
+                            ];
+                        });
+
+    return Inertia::render('Dashboard',[
+        'count' => $counts,
+        'recent' => $recentProjects,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/symlink', function () {
     Artisan::call('storage:link');
+});
+
+Route::get('/fix-symlink-permanent', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = public_path('storage');
+
+    echo "<h1>Perbaikan Symlink</h1>";
+
+    // 1. Bersihkan jalur lama (Hapus folder/link yang salah)
+    if (file_exists($linkFolder)) {
+        if (is_link($linkFolder)) {
+            unlink($linkFolder);
+            echo "ink lama yang rusak sudah dibuang.<br>";
+        } else {
+            // Jika ternyata itu folder asli (bukan link), kita rename biar aman
+            rename($linkFolder, public_path('storage_backup_'.rand()));
+            echo "Folder 'public/storage' penghalang sudah dipinggirkan (di-rename).<br>";
+        }
+    } else {
+        echo "Tidak ditemukan link/folder lama (Aman).<br>";
+    }
+
+    // 2. Bangun Jembatan Baru
+    try {
+        symlink($targetFolder, $linkFolder);
+        echo "<b>SUKSES!</b> Symlink baru telah dibuat.<br>";
+        echo "Target Gudang: " . $targetFolder . "<br>";
+        echo "Link Etalase: " . $linkFolder . "<br>";
+        echo "<br>Sekarang coba upload gambar baru, pasti langsung muncul!";
+    } catch (\Exception $e) {
+        echo "GAGAL: " . $e->getMessage();
+    }
 });
 
 Route::middleware('auth')->group(function () {
@@ -52,7 +112,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('blog', NewsController::class);
     Route::resource('projectsSetting', ProjectSetting::class);
-    Route::resource('projects', ProjectController::class);
+    // Route::resource('projects', ProjectController::class);
     Route::resource('testimonials', \App\Http\Controllers\TestimonialController::class)->only(['store', 'update', 'destroy']);
     Route::delete('/gallery/{projectGallery}', [ProjectSetting::class, 'deleteGalleryImage'])
     ->name('gallery.delete');
@@ -64,6 +124,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
+Route::resource('projects', ProjectController::class)->only(['index','show']);
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
     ->name('auth.redirect');
