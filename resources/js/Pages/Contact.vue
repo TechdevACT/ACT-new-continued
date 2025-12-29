@@ -41,15 +41,18 @@ const icons = [
                 <div class="sm:w-1/3 animate-fade-right transition-all duration-500">
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">ADDRESS:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">1234 Creative Street, Suite 567,
+                        <!-- <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">1234 Creative Street, Suite 567,
                             New
-                            York, NY</h3>
+                            York, NY</h3> -->
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Jl. Nongko Jajar IV No.1,
+                            Lowokwaru, Kec.
+                            Lowokwaru, Kota Malang</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">PHONE:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+1 (123) 456-7890</h3>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+1 (123) 456-7291</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+62 812-8137-1326</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+62 812-8137-1326</h3>
                     </div>
 
                     <div class="grid mb-10">
@@ -59,7 +62,7 @@ const icons = [
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">BUSSINESS:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Monday – Friday: 9 AM – 6 PM
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Monday – Friday: 8 AM – 5 PM
                         </h3>
                         <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Saturday – Sunday: Closed
                         </h3>
