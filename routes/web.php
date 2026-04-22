@@ -110,7 +110,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/aboutPage', [SettingsController::class, 'aboutPageUpdate'])->name('aboutPageUpdate');
     });
 
-    Route::resource('blog', NewsController::class);
+    Route::resource('blog', NewsController::class)->except(['show', 'index']);
     Route::resource('projectsSetting', ProjectSetting::class);
     // Route::resource('projects', ProjectController::class);
     Route::resource('testimonials', \App\Http\Controllers\TestimonialController::class)->only(['store', 'update', 'destroy']);
@@ -124,6 +124,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
+Route::get('/blog/{blog}', [NewsController::class, 'show'])->name('blog.show');
 Route::resource('projects', ProjectController::class)->only(['index','show']);
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
