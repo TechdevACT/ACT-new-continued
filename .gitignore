@@ -21,3 +21,10 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# CI/CD — Jangan di-commit ke git
+/vendor.zip
+/scripts/extract-vendor.php
+
+# Deploy state (dibuat otomatis oleh FTP Deploy Action)
+.ftp-deploy-sync-state.json
