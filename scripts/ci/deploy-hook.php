@@ -100,6 +100,13 @@ $log[]  = ['info' => "PHP binary ditemukan: $phpBin"];
 // ── Baca parameter opsional ──────────────────────────────────────────────────
 $runMigration = ($_GET['migrate'] ?? 'false') === 'true';
 
+// ── Fix permissions vendor jika perlu ───────────────────────────────────────
+$vendorPath = LARAVEL_ROOT . '/vendor';
+$log[]      = ['info' => 'Memperbaiki permission vendor...'];
+shell_exec("find $vendorPath -type f -exec chmod 644 {} \; 2>&1");
+shell_exec("find $vendorPath -type d -exec chmod 755 {} \; 2>&1");
+$log[]      = ['info' => 'Permission vendor selesai diperbaiki'];
+
 // ── Jalankan post-deploy tasks ───────────────────────────────────────────────
 
 // 1. Bersihkan semua cache lama
