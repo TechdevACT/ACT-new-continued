@@ -3,21 +3,49 @@
  * ============================================================
  *  ACT DISAIN — Post-Deploy Hook
  * ============================================================
- *  Dipanggil oleh GitHub Actions setelah FTP upload selesai.
+ *  Dipanggil manual dari browser setelah GitHub Actions selesai.
  *
  *  ENDPOINT:
  *  https://actdisain.com/deploy-hook.php?token=TOKEN
  *  https://actdisain.com/deploy-hook.php?token=TOKEN&migrate=true
- *
- *  KEAMANAN:
- *  Token wajib cocok dengan DEPLOY_TOKEN di GitHub Secrets
  * ============================================================
  */
 
 // ── Konfigurasi ─────────────────────────────────────────────────────────────
 define('DEPLOY_TOKEN', getenv('DEPLOY_TOKEN') ?: 'ACT-Deploy-2024-kJ9x');
 define('LARAVEL_ROOT', dirname(__DIR__));
-define('PHP_BIN',      '/usr/bin/php');
+
+// ── Deteksi PHP binary yang benar ────────────────────────────────────────────
+// Shared hosting cPanel mempunyai PHP CLI di path yang berbeda-beda.
+// Script ini mencoba satu per satu sampai ketemu yang bekerja.
+function findPhpBin(): string
+{
+    $candidates = [
+        '/opt/cpanel/ea-php82/root/usr/bin/php',  // cPanel EasyApache PHP 8.2
+        '/opt/cpanel/ea-php81/root/usr/bin/php',  // cPanel EasyApache PHP 8.1
+        '/opt/cpanel/ea-php80/root/usr/bin/php',  // cPanel EasyApache PHP 8.0
+        '/usr/local/bin/php82',
+        '/usr/local/bin/php81',
+        '/usr/local/bin/php80',
+        '/usr/local/bin/php',
+        '/usr/bin/php82',
+        '/usr/bin/php81',
+        '/usr/bin/php',
+        'php82',
+        'php81',
+        'php',
+    ];
+
+    foreach ($candidates as $bin) {
+        // Coba jalankan php -r "echo 'ok';" untuk tes
+        $test = shell_exec("$bin -r \"echo 'cli_ok';\" 2>&1");
+        if ($test !== null && str_contains($test, 'cli_ok')) {
+            return $bin;
+        }
+    }
+
+    return 'php'; // fallback
+}
 
 // ── Helper: Kirim JSON response ─────────────────────────────────────────────
 function respond(int $code, string $message, array $log = []): void
@@ -34,11 +62,11 @@ function respond(int $code, string $message, array $log = []): void
 }
 
 // ── Helper: Jalankan artisan command ────────────────────────────────────────
-function artisan(string $command): array
+function artisan(string $command, string $phpBin): array
 {
     $artisan = LARAVEL_ROOT . '/artisan';
-    $php     = PHP_BIN;
-    $cmd     = "$php $artisan $command 2>&1";
+    // Pastikan tidak ada environment CGI yang mengganggu
+    $cmd     = "TERM=dumb $phpBin -d display_errors=0 $artisan $command 2>&1";
     $start   = microtime(true);
     $output  = shell_exec($cmd);
     $elapsed = round((microtime(true) - $start) * 1000) . 'ms';
@@ -56,47 +84,49 @@ if (!in_array($_SERVER['REQUEST_METHOD'] ?? 'GET', ['GET', 'POST'])) {
 
 $token = $_GET['token'] ?? $_POST['token'] ?? '';
 if (!hash_equals(DEPLOY_TOKEN, $token)) {
-    // Delay untuk mencegah brute force
     sleep(2);
     respond(403, 'Forbidden: token tidak valid');
 }
 
 if (!function_exists('shell_exec')) {
-    respond(500, 'shell_exec tidak tersedia. Hubungi hosting support untuk mengaktifkannya.');
+    respond(500, 'shell_exec tidak tersedia. Hubungi hosting support.');
 }
+
+// ── Temukan PHP binary yang benar ────────────────────────────────────────────
+$phpBin = findPhpBin();
+$log    = [];
+$log[]  = ['info' => "PHP binary ditemukan: $phpBin"];
 
 // ── Baca parameter opsional ──────────────────────────────────────────────────
 $runMigration = ($_GET['migrate'] ?? 'false') === 'true';
 
 // ── Jalankan post-deploy tasks ───────────────────────────────────────────────
-$log = [];
 
 // 1. Bersihkan semua cache lama
-$log[] = artisan('cache:clear');
+$log[] = artisan('cache:clear', $phpBin);
 
-// 2. Cache konfigurasi (wajib setelah deploy)
-$log[] = artisan('config:cache');
+// 2. Cache konfigurasi
+$log[] = artisan('config:cache', $phpBin);
 
 // 3. Cache route
-$log[] = artisan('route:cache');
+$log[] = artisan('route:cache', $phpBin);
 
 // 4. Cache view/blade
-$log[] = artisan('view:cache');
+$log[] = artisan('view:cache', $phpBin);
 
-// 5. Storage link — buat symlink public/storage → storage/app/public
-//    Aman dijalankan berulang, tidak akan error jika sudah ada
-$log[] = artisan('storage:link');
+// 5. Storage link
+$log[] = artisan('storage:link', $phpBin);
 
-// 6. [OPSIONAL] Migration — hanya jika diminta secara eksplisit
+// 6. [OPSIONAL] Migration
 if ($runMigration) {
     $log[] = ['info' => '⚠️ Menjalankan migration karena parameter migrate=true'];
-    $log[] = artisan('migrate --force');
+    $log[] = artisan('migrate --force', $phpBin);
 } else {
     $log[] = ['info' => '⏭️ Migration dilewati (gunakan ?migrate=true untuk menjalankan)'];
 }
 
-// 7. Optimasi aplikasi
-$log[] = artisan('optimize');
+// 7. Optimasi
+$log[] = artisan('optimize', $phpBin);
 
 // ── Response ─────────────────────────────────────────────────────────────────
 respond(200, 'Post-deploy selesai! 🎉', $log);
