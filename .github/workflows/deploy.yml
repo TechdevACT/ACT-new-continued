@@ -115,38 +115,23 @@ jobs:
           port: 21
           dangerous-clean-slate: false
 
-      # ── STEP 6: Trigger post-deploy hook ─────────────────────────────────────
-      # continue-on-error: true → agar push PERTAMA tidak gagal
-      # (vendor & .env belum ada saat pertama kali, hook akan fail — itu normal)
-      - name: ⚡ Jalankan post-deploy tasks
-        continue-on-error: true
+      # ── STEP 6: Reminder post-deploy ─────────────────────────────────────────
+      # Cloudflare memblokir request dari GitHub Actions ke deploy-hook.php
+      # Jadi hook harus dijalankan manual dari browser setelah deploy selesai
+      - name: 📋 Reminder post-deploy manual
         run: |
-          # Tentukan apakah migration dijalankan
-          MIGRATE_FLAG="false"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.run_migration }}" = "true" ]; then
-            MIGRATE_FLAG="true"
-            echo "⚠️  Mode: Deploy + Migration"
-          else
-            echo "✅ Mode: Deploy biasa (tanpa migration)"
-          fi
-
-          echo "Memicu post-deploy hook..."
-          RESPONSE=$(curl -s -w "\n%{http_code}" \
-            "https://actdisain.com/deploy-hook.php?token=${{ secrets.DEPLOY_TOKEN }}&migrate=${MIGRATE_FLAG}")
-          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-          BODY=$(echo "$RESPONSE" | head -n -1)
-
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "Response dari server:"
-          echo "$BODY"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "HTTP Status: $HTTP_CODE"
-
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ Hook gagal dengan status $HTTP_CODE"
-            exit 1
-          fi
-          echo "✅ Post-deploy selesai!"
+          echo "================================================"
+          echo "  ✅ File berhasil di-upload ke server!"
+          echo "================================================"
+          echo ""
+          echo "  ⚠️  LANGKAH SELANJUTNYA (lakukan manual):"
+          echo ""
+          echo "  Buka browser dan akses URL ini untuk refresh cache:"
+          echo "  https://actdisain.com/deploy-hook.php?token=DEPLOY_TOKEN_KAMU"
+          echo ""
+          echo "  Ini perlu dilakukan karena Cloudflare memblokir"
+          echo "  request otomatis dari GitHub Actions."
+          echo "================================================"
 
       # ── STEP 7: Notifikasi sukses ─────────────────────────────────────────────
       - name: ✅ Deploy selesai
