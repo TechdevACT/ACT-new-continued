@@ -1,0 +1,157 @@
+name: 🚀 Deploy ACT Disain
+
+on:
+  push:
+    branches:
+      - main
+
+  # Trigger manual dari GitHub UI dengan opsi tambahan
+  workflow_dispatch:
+    inputs:
+      run_migration:
+        description: 'Jalankan php artisan migrate? (hanya jika ada migration baru)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      sync_storage:
+        description: 'Upload ulang storage/app/public ke server? (setup awal / jika ada file baru)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB: Build & Deploy
+  # ─────────────────────────────────────────────────────────────────────────────
+  build-and-deploy:
+    name: 🏗️ Build & Deploy to actdisain.com
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── STEP 1: Checkout kode ────────────────────────────────────────────────
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      # ── STEP 2: Setup Node.js & Build aset Vite ──────────────────────────────
+      - name: ⚙️ Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install NPM dependencies
+        run: npm ci
+
+      - name: 🎨 Build aset (Vite)
+        run: npm run build
+
+      # ── STEP 3: Deploy file aplikasi via FTP ─────────────────────────────────
+      # Mengecualikan: vendor, .env, node_modules, storage files (user-uploaded)
+      - name: 🚀 Upload file aplikasi via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/actdisain.com/
+          protocol: ftps
+          port: 21
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            .env
+            .env.*
+            *.zip
+            *.log
+            /public/hot
+            /storage/logs/**
+            /storage/framework/cache/**
+            /storage/framework/sessions/**
+            /storage/framework/views/**
+            /storage/app/public/**
+            scripts/extract-vendor.php
+            phpunit.xml
+            README.md
+            .editorconfig
+            .phpunit*
+            Homestead.*
+            auth.json
+
+      # ── STEP 4: Upload deploy-hook.php ke public/ ────────────────────────────
+      - name: 📤 Upload deploy hook script
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/actdisain.com/public/
+          local-dir: ./scripts/ci/
+          protocol: ftps
+          port: 21
+          dangerous-clean-slate: false
+
+      # ── STEP 5: [OPSIONAL] Sync storage ke server ────────────────────────────
+      # Hanya berjalan jika: trigger manual DAN sync_storage = true
+      - name: 🖼️ Upload storage/app/public ke server
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.sync_storage == 'true' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/actdisain.com/storage/app/public/
+          local-dir: ./storage/app/public/
+          protocol: ftps
+          port: 21
+          dangerous-clean-slate: false
+
+      # ── STEP 6: Trigger post-deploy hook ─────────────────────────────────────
+      # continue-on-error: true → agar push PERTAMA tidak gagal
+      # (vendor & .env belum ada saat pertama kali, hook akan fail — itu normal)
+      - name: ⚡ Jalankan post-deploy tasks
+        continue-on-error: true
+        run: |
+          # Tentukan apakah migration dijalankan
+          MIGRATE_FLAG="false"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.run_migration }}" = "true" ]; then
+            MIGRATE_FLAG="true"
+            echo "⚠️  Mode: Deploy + Migration"
+          else
+            echo "✅ Mode: Deploy biasa (tanpa migration)"
+          fi
+
+          echo "Memicu post-deploy hook..."
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            "https://actdisain.com/deploy-hook.php?token=${{ secrets.DEPLOY_TOKEN }}&migrate=${MIGRATE_FLAG}")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Response dari server:"
+          echo "$BODY"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "HTTP Status: $HTTP_CODE"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Hook gagal dengan status $HTTP_CODE"
+            exit 1
+          fi
+          echo "✅ Post-deploy selesai!"
+
+      # ── STEP 7: Notifikasi sukses ─────────────────────────────────────────────
+      - name: ✅ Deploy selesai
+        run: |
+          echo "================================================"
+          echo "  🎉 ACT Disain berhasil di-deploy!"
+          echo "  🌐 https://actdisain.com"
+          echo "================================================"
