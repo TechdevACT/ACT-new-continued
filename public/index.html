@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coming Soon — ACT Disain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #F4F4F1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .logo {
+      width: 48px; height: 48px;
+      background: #111;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 40px;
+      animation: fadeUp .5s both;
+    }
+    .logo span { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #7EE63E; }
+    .pill {
+      background: #7EE63E; color: #111;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 99px;
+      margin-bottom: 20px;
+      animation: fadeUp .5s .1s both;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800; color: #111;
+      text-align: center; line-height: 1.2;
+      margin-bottom: 16px;
+      animation: fadeUp .5s .2s both;
+    }
+    h1 em { color: #7EE63E; font-style: normal; }
+    .sub {
+      color: #666; font-size: 1rem; line-height: 1.7;
+      text-align: center; max-width: 380px;
+      margin-bottom: 48px;
+      animation: fadeUp .5s .3s both;
+    }
+    .cd { display: flex; gap: 12px; margin-bottom: 48px; animation: fadeUp .5s .4s both; }
+    .cd-item {
+      text-align: center; background: #fff;
+      border-radius: 16px; padding: 16px 20px;
+      min-width: 68px; border: 1.5px solid #eee;
+    }
+    .cd-item .angka {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800; color: #111;
+      display: block; line-height: 1;
+    }
+    .cd-item .label {
+      font-size: 10px; color: #aaa;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-top: 5px; display: block;
+    }
+    hr {
+      border: none; border-top: 1.5px solid #e5e5e5;
+      width: 100%; max-width: 340px;
+      margin-bottom: 28px;
+      animation: fadeUp .5s .5s both;
+    }
+    .kontak { font-size: .9rem; color: #888; text-align: center; animation: fadeUp .5s .6s both; }
+    .kontak a { color: #111; font-weight: 600; text-decoration: none; border-bottom: 1.5px solid #7EE63E; }
+    .kontak a:hover { color: #7EE63E; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 400px) {
+      .cd-item { min-width: 56px; padding: 12px 14px; }
+      .cd-item .angka { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo"><span>!</span></div>
+  <span class="pill">🛠️ &nbsp;Under Development</span>
+  <h1>We're Crafting<br/><em>Something Special</em><br/>Just for You ✨</h1>
+  <p class="sub">
+    Our website is currently under development.<br/>
+    We'll be launching soon — stay tuned!
+  </p>
+  <div class="cd">
+    <div class="cd-item"><span class="angka" id="hari">00</span><span class="label">Days</span></div>
+    <div class="cd-item"><span class="angka" id="jam">00</span><span class="label">Hours</span></div>
+    <div class="cd-item"><span class="angka" id="menit">00</span><span class="label">Minutes</span></div>
+    <div class="cd-item"><span class="angka" id="detik">00</span><span class="label">Seconds</span></div>
+  </div>
+  <hr/>
+  <p class="kontak">
+    Have a question? Reach us at<br/>
+    <a href="mailto:info@actdisain.com">info@actdisain.com</a>
+  </p>
+  <script>
+    // Ubah tanggal launch sesuai target kamu
+    const TANGGAL_LAUNCH = new Date('2026-05-01T00:00:00');
+    const tambahNol = n => String(n).padStart(2, '0');
+    function hitungMundur() {
+      const selisih = Math.max(0, TANGGAL_LAUNCH - new Date());
+      document.getElementById('hari').textContent   = tambahNol(Math.floor(selisih / 86400000));
+      document.getElementById('jam').textContent    = tambahNol(Math.floor(selisih % 86400000 / 3600000));
+      document.getElementById('menit').textContent  = tambahNol(Math.floor(selisih % 3600000 / 60000));
+      document.getElementById('detik').textContent  = tambahNol(Math.floor(selisih % 60000 / 1000));
+    }
+    hitungMundur();
+    setInterval(hitungMundur, 1000);
+  </script>
+</body>
+</html>
