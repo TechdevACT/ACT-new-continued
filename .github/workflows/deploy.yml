@@ -61,8 +61,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/actdisain.com/
-          protocol: ftps
+          server-dir: /
+          protocol: ftp
           port: 21
           exclude: |
             **/.git*
@@ -94,9 +94,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/actdisain.com/public/
+          server-dir: /public/
           local-dir: ./scripts/ci/
-          protocol: ftps
+          protocol: ftp
           port: 21
           dangerous-clean-slate: false
 
@@ -109,9 +109,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/actdisain.com/storage/app/public/
+          server-dir: /storage/app/public/
           local-dir: ./storage/app/public/
-          protocol: ftps
+          protocol: ftp
           port: 21
           dangerous-clean-slate: false
 
