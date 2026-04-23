@@ -65,14 +65,14 @@ function respond(int $code, string $message, array $log = []): void
 function artisan(string $command, string $phpBin): array
 {
     $artisan = LARAVEL_ROOT . '/artisan';
-    // Pastikan tidak ada environment CGI yang mengganggu
-    $cmd     = "TERM=dumb $phpBin -d display_errors=0 $artisan $command 2>&1";
+    // display_errors=1 agar error PHP terlihat di output
+    $cmd     = "TERM=dumb $phpBin -d display_errors=1 -d error_reporting=32767 $artisan $command 2>&1";
     $start   = microtime(true);
     $output  = shell_exec($cmd);
     $elapsed = round((microtime(true) - $start) * 1000) . 'ms';
     return [
         'cmd'     => "artisan $command",
-        'output'  => trim($output ?? '(no output)'),
+        'output'  => trim($output ?? '(no output — shell_exec returned null)'),
         'elapsed' => $elapsed,
     ];
 }
