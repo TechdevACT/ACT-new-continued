@@ -110,6 +110,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/aboutPage', [SettingsController::class, 'aboutPageUpdate'])->name('aboutPageUpdate');
     });
 
+    Route::get('/blog', [NewsController::class, 'index'])->name('blog.index');
     Route::resource('blog', NewsController::class)->except(['show', 'index']);
     Route::resource('projectsSetting', ProjectSetting::class);
     // Route::resource('projects', ProjectController::class);
