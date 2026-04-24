@@ -100,12 +100,21 @@ $log[]  = ['info' => "PHP binary ditemukan: $phpBin"];
 // ── Baca parameter opsional ──────────────────────────────────────────────────
 $runMigration = ($_GET['migrate'] ?? 'false') === 'true';
 
-// ── Fix permissions vendor jika perlu ───────────────────────────────────────
+// ── Fix permissions vendor ───────────────────────────────────────────────────
 $vendorPath = LARAVEL_ROOT . '/vendor';
 $log[]      = ['info' => 'Memperbaiki permission vendor...'];
 shell_exec("find $vendorPath -type f -exec chmod 644 {} \; 2>&1");
 shell_exec("find $vendorPath -type d -exec chmod 755 {} \; 2>&1");
 $log[]      = ['info' => 'Permission vendor selesai diperbaiki'];
+
+// ── Fix permissions public/build (FTP upload sering set 600 → 503 error) ─────
+$buildPath = LARAVEL_ROOT . '/public/build';
+if (is_dir($buildPath)) {
+    $log[]  = ['info' => 'Memperbaiki permission public/build...'];
+    shell_exec("find $buildPath -type f -exec chmod 644 {} \; 2>&1");
+    shell_exec("find $buildPath -type d -exec chmod 755 {} \; 2>&1");
+    $log[]  = ['info' => 'Permission public/build selesai diperbaiki'];
+}
 
 // ── Jalankan post-deploy tasks ───────────────────────────────────────────────
 
