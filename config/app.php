@@ -123,4 +123,18 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Maintenance Gate
+    |--------------------------------------------------------------------------
+    |
+    | Toggle the custom maintenance page on/off and set the bypass password.
+    | Set MAINTENANCE_MODE=false in .env to disable the maintenance page.
+    |
+    */
+
+    'maintenance_mode' => env('MAINTENANCE_MODE', true),
+
+    'maintenance_password' => env('MAINTENANCE_PASSWORD', 'actdigital2026'),
+
 ];
