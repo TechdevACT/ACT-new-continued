@@ -177,7 +177,7 @@ onUnmounted(() => {
                     </div>
                     <div class="info-text">
                         <span class="info-label">Estimated Downtime</span>
-                        <span class="info-value">A few hours</span>
+                        <span class="info-value">A few days</span>
                     </div>
                 </div>
                 <div class="info-box">
@@ -189,7 +189,7 @@ onUnmounted(() => {
                     </div>
                     <div class="info-text">
                         <span class="info-label">Contact Us</span>
-                        <span class="info-value">hello@actdigital.id</span>
+                        <span class="info-value">info@actdisain.com</span>
                     </div>
                 </div>
             </div>
