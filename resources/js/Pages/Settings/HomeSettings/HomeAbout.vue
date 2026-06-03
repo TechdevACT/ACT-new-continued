@@ -4,6 +4,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const props = defineProps({
     data_fe: {
         type: Object
@@ -49,8 +51,7 @@ function submit() {
             <div>
                 <InputLabel for="descriptionAbout" value="Deskripsi" required />
 
-                <TextInput id="descriptionAbout" type="text" class="mt-1 block w-full" v-model="form.descriptionAbout"
-                    required />
+                <QuillEditor theme="snow" v-model:content="form.descriptionAbout" content-type="html" class="bg-white" style="height: 300px" />
 
                 <InputError class="mt-2" :message="form.errors.descriptionAbout" />
             </div>

@@ -29,11 +29,8 @@ const icons = [
                     <img :src="images[0]" alt="" class="w-full h-full object-cover rounded-3xl shadow-xl">
                 </div>
                 <div class="sm:w-2/3 h-96 animate-fade-left transition-all duration-500">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.362476116002!2d112.63348289999999!3d-7.961441200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629cfeb241105%3A0xce3fb2bbfc3db8ef!2sAct*21%20Digital%20Agency%20Branch%20Malang!5e0!3m2!1sen!2sid!4v1751596705599!5m2!1sen!2sid"
-                        class="w-full h-full rounded-3xl shadow-xl" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d319.00214362690235!2d106.70355953597587!3d-6.148004831408336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f80daf1bb089%3A0x76961fa10e5e159e!2sKOMPLEKS%20RUKO%20KALIDERES%20MEGAH!5e0!3m2!1sen!2sid!4v1780470520479!5m2!1sen!2sid" class="w-full h-full rounded-3xl shadow-xl" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -44,27 +41,28 @@ const icons = [
                         <!-- <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">1234 Creative Street, Suite 567,
                             New
                             York, NY</h3> -->
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Jl. Nongko Jajar IV No.1,
-                            Lowokwaru, Kec.
-                            Lowokwaru, Kota Malang</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">
+                            Komp. Ruko Kalideres Megah A/36 Jl. Peta Selatan No.20, RT.10/RW.14, Kalideres, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11840
+
+                        </h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">PHONE:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+62 812-8137-1326</h3>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">+62 812-8137-1326</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">(+62-21) 5437 7940</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">(+62-21) 5439 3331</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">EMAIL:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">info@actdigital.agency</h3>
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">info@actdisain.com</h3>
                     </div>
 
                     <div class="grid mb-10">
                         <h2 class="text-lg sm:text-2xl dark:text-white font-bold">BUSSINESS:</h2>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Monday – Friday: 8 AM – 5 PM
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Mon – Fri: 8Am – 5PM (GMT +7)
                         </h3>
-                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Saturday – Sunday: Closed
+                        <h3 class="text-md sm:text-xl text-gray-600 dark:text-gray-300 font-medium">Sat, Sun, and Public Holiday - Closed
                         </h3>
                     </div>
                     <div class="grid mb-10">

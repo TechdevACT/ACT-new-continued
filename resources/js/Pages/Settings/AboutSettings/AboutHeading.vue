@@ -4,6 +4,8 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const props = defineProps({
     data_about: {
         type: Object
@@ -84,8 +86,7 @@ function submit() {
                     <div>
                         <InputLabel for="description" value="Deskripsi" required />
 
-                        <TextInput id="description" type="text" class="mt-1 block w-full" v-model="form.description"
-                            required />
+                        <QuillEditor theme="snow" v-model:content="form.description" content-type="html" class="bg-white" style="height: 300px" />
 
                         <InputError class="mt-2" :message="form.errors.description" />
                     </div>
@@ -118,8 +119,7 @@ function submit() {
                     <div class="sm:col-span-2">
                         <InputLabel for="approach_description" value="Deskripsi" required />
 
-                        <TextInput id="approach_description" type="text" class="mt-1 block w-full"
-                            v-model="form.approach_description" required />
+                        <QuillEditor theme="snow" v-model:content="form.approach_description" content-type="html" class="bg-white" style="height: 300px" />
 
                         <InputError class="mt-2" :message="form.errors.approach_description" />
                     </div>
@@ -169,8 +169,7 @@ function submit() {
                     <div class="sm:col-span-2">
                         <InputLabel for="emphasis_description" value="Deskripsi" required />
 
-                        <TextInput id="emphasis_description" type="text" class="mt-1 block w-full"
-                            v-model="form.emphasis_description" required />
+                        <QuillEditor theme="snow" v-model:content="form.emphasis_description" content-type="html" class="bg-white" style="height: 300px" />
 
                         <InputError class="mt-2" :message="form.errors.emphasis_description" />
                     </div>

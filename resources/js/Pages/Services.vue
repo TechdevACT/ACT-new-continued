@@ -4,35 +4,57 @@ import SecondLayout from '@/Layouts/SecondLayout.vue';
 import { ref } from 'vue';
 
 
+// No props needed for hardcoded cards
+
 const cards = [
     {
         id: 1,
         no: '01',
-        text: 'Creative Creation',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Creative & Branding',
+        description: 'We help brands build strong visual identities and meaningful communication that connect with their audience.',
+        servicesList: ['Branding & Visual Identity', 'Graphic Design', 'Campaign Creative Development', 'Marketing Collateral', 'Presentation Design', 'Social Media Creative', 'Content & Visual Production'],
         bg: '/images/services/bg-card-1.png'
     },
     {
         id: 2,
         no: '02',
-        text: 'Photography',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Digital & Technology',
+        description: 'We develop digital solutions that combine functionality, usability, and modern technology to support business growth.',
+        servicesList: ['Website Development', 'Web Application Development', 'Mobile Application Development', 'UI/UX Design', 'Startup Prototyping', 'Interactive Multimedia', 'System & Software Integration', 'Digital Platform Development', 'Content & Multimedia'],
         bg: '/images/services/bg-card-2.png'
     },
     {
         id: 3,
         no: '03',
-        text: 'Company Profile',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Content & Multimedia',
+        description: 'We create engaging multimedia experiences that help brands communicate more effectively across digital platforms.',
+        servicesList: ['Photography', 'Videography', 'Motion Graphics', 'Animation', 'Video Editing', 'Interactive Content', 'Product & Commercial Visual Production'],
         bg: '/images/services/bg-card-3.png'
     },
     {
         id: 4,
         no: '04',
-        text: 'Packaging',
-        subText: 'We offer professional photography services for products, events, and corporate needs. Our photographers capture high-quality images that tell your story and highlight the unique aspects of your brand.',
+        text: 'Marketing & Activation',
+        description: 'We support brands through integrated marketing activities designed to increase engagement, visibility, and audience interaction.',
+        servicesList: ['Digital Campaign Strategy', 'Brand Activation', 'Social Media Campaign', 'Digital Advertising Support', 'Event Creative Support', 'Community & Engagement Campaign'],
         bg: '/images/services/bg-card-4.png'
     },
+    {
+        id: 5,
+        no: '05',
+        text: 'e-Commerce & Digital Commerce',
+        description: 'With hands-on experience in marketplace and digital commerce ecosystems, we help brands better understand and optimize their digital selling journey.',
+        servicesList: ['Marketplace Optimization', 'Product Content Development', 'E-Commerce Creative Assets', 'Marketplace Branding', 'Digital Commerce Strategy', 'Campaign & Promotion Support', 'Consumer Experience Optimization'],
+        bg: '/images/services/bg-card-1.png'
+    },
+    {
+        id: 6,
+        no: '06',
+        text: 'Future-Driven Solutions',
+        description: 'As technology and Artificial Intelligence continue to evolve, act! also explores more adaptive and efficient creative systems to help brands work smarter and scale faster.',
+        servicesList: ['We continuously develop workflows and solutions that integrate creativity, technology, automation, and AI to support more effective digital experiences and business growth.'],
+        bg: '/images/services/bg-card-2.png'
+    }
 ];
 
 const whyUs = [
@@ -80,11 +102,7 @@ const toggleExpand = (id) => {
     expanded.value[id] = !expanded.value[id];
 }
 
-const displaySubText = (card) => {
-    const full = card.subText;
-    if(expanded.value[card.id]) return full;
-    return full.length > maxSubChars ? full.slice(0, maxSubChars) + '...' : full;
-};
+// No need for displaySubText anymore since we use conditional rendering
 
 </script>
 
@@ -99,15 +117,8 @@ const displaySubText = (card) => {
         <section class="animate-fade-up">
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Our Services</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">Capturing moments that tell a story, I create striking images
-                    that leave
-                    a
-                    lasting
-                    impression. <br>From
-                    vivid
-                    portraits to cinematic landscapes, every shot is crafted with precision, emotion, and a unique
-                    artistic
-                    vision.</h2>
+                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">We provide integrated creative, digital, and technology solutions designed to help brands grow, adapt, and stay relevant in the evolving digital landscape. By combining creativity, strategy, and innovation, we help transform ideas into impactful and future-ready experiences.
+</h2>
             </div>
         </section>
 
@@ -134,26 +145,38 @@ const displaySubText = (card) => {
                                 </div>
 
                                 <div class="flex flex-col gap-2 sm:w-3/4">
-                                    <h3 class="text-white text-5xl sm:text-7xl font-semibold">
+                                    <h3 class="text-white text-4xl sm:text-6xl font-semibold mb-2">
                                         {{ card.text }}
                                     </h3>
-                                    <p class="text-white text-lg sm:text-2xl font-medium">
-                                        {{ displaySubText(card) }}
+                                    <p class="text-white text-base sm:text-lg font-normal mb-2 leading-relaxed">
+                                        {{ card.description }}
                                     </p>
+                                    
+                                    <!-- Services List (Toggled by Show More) -->
+                                    <div v-if="expanded[card.id] && card.servicesList && card.servicesList.length > 0" class="animate-fade-up">
+                                        <p v-if="card.id !== 6" class="text-white font-medium mb-2 mt-2">Services include:</p>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-white text-sm sm:text-base font-light">
+                                            <li v-for="item in card.servicesList" :key="item" class="flex items-start gap-2">
+                                                <span v-if="card.id !== 6" class="text-yellow-400 mt-1">&bull;</span>
+                                                <span class="leading-relaxed">{{ item }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
 
                                     <button @click="toggleExpand(card.id)"
-                                        class="group w-full sm:w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black boder border-transparent">
-                                        <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0 transition-all duration-500 group-hover:w-full group-hover:bg-black"></div>
-                                        <div
-                                            class="absolute inset-0 h-full w-0 bg-black transition-all  duration-500 ease-out group-hover:w-full dark:bg-white">
-                                        </div>
-                                        <span class="relative flex items-center">
+                                        class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border border-yellow-400 hover:text-white">
+                                        
+                                        <!-- Default Yellow Background -->
+                                        <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
+                                        
+                                        <!-- Sliding Black Background (Side to Side) -->
+                                        <div class="absolute left-0 top-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full z-10"></div>
+                                        
+                                        <span class="relative z-20 flex items-center">
                                             {{ expanded[card.id] ? "Show Less" : 'Load More' }}
                                             <span class="ml-3 flex items-center gap-1">
-                                                <span
-                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
-                                                <span
-                                                    class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                                                <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
+                                                <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
                                             </span>
                                         </span>
                                     </button>
@@ -168,10 +191,24 @@ const displaySubText = (card) => {
         <template #afterFullwidth2>
             <div class="flex flex-col gap-2 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Why Us?</h1>
-                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">Exceptional photography isn’t just about capturing images—it’s
-                    about
-                    creating stories that resonate. With a keen eye for detail, a passion for visual storytelling, and a
-                    commitment to quality, we deliver powerful imagery that speaks for itself.</h2>
+                <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">
+                    Because great ideas need more than 
+                    <br>
+                    creativity — they need strategy, adaptability, and real execution.
+                    <br>
+                    <br>
+                    At act! digital agency, we combine creative thinking, technology, 
+                    <br>
+                    and real industry experience to create solutions that are not only visually 
+                    <br>
+                    engaging, but also functional, relevant, and impactful. From branding and 
+                    <br>
+                    digital development to e-Commerce insights and AI-driven innovation, 
+                    <br>
+                    we help brands navigate change, connect with audiences, and grow with 
+                    <br>
+                    confidence in an ever-evolving digital world.
+                </h2>
             </div>
 
             <div class="grid sm:grid-cols-3 gap-28 mb-16 mx-4 sm:mx-0">
