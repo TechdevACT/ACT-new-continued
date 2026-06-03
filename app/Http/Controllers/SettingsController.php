@@ -24,11 +24,13 @@ class SettingsController extends Controller
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(6)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
         $testimonials = Testimonial::all();
+        $services = \App\Models\Service::all();
         return Inertia::render(
             'Settings/Settings',
             [
                 'data_fe' => compact('data_fe', 'data_about', 'hero_image', 'industry_image', 'clients_image', 'banner_image'),
                 'testimonials' => $testimonials,
+                'services' => $services,
             ]
         );
     }

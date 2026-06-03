@@ -9,36 +9,14 @@ const props = defineProps({
     data_fe: Object,
 })
 
-const cards = [
-    {
-        id: 1,
-        no: '01',
-        text: 'Creative Creation',
-        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
-        bg: '/images/services/bg-card-1.png'
-    },
-    {
-        id: 2,
-        no: '02',
-        text: 'Web Application',
-        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
-        bg: '/images/services/bg-card-2.png'
-    },
-    {
-        id: 3,
-        no: '03',
-        text: 'Motion Graphics',
-        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
-        bg: '/images/services/bg-card-3.png'
-    },
-    {
-        id: 4,
-        no: '04',
-        text: 'Content Creation',
-        subText: "Explore our featured work. From stunning web design to impactful digital campaigns, each project proves our commitment to exceptional results. We're proud of what we build and eager to help bring your vision to life.",
-        bg: '/images/services/bg-card-4.png'
-    },
-];
+const cards = (props.data_fe.services || []).map((service, index) => ({
+    id: service.id,
+    no: String(index + 1).padStart(2, '0'),
+    text: service.name,
+    subText: service.description,
+    bg: service.image || '/images/services/bg-card-1.png',
+    url: service.url
+}));
 
 const clientsImage = props.data_fe.clients_image.map(item => item.path);
 
@@ -112,8 +90,8 @@ const displaySubText = (card) => {
 
         <section class="flex flex-col justify-center items-center pb-10 sm:py-10 animate-fade-up px-4">
             <div class="w-full flex justify-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-medium text-center text-gray-800 dark:text-gray-300">
-                    {{ data_fe.data_fe[0].hero_description }}
+                <h2 class="text-lg lg:text-2xl font-medium text-center text-gray-800 dark:text-gray-300"
+                    v-html="data_fe.data_fe[0].hero_description">
                 </h2>
             </div>
             <div class="flex flex-row gap-4 sm:gap-8 font-semibold">
@@ -135,9 +113,7 @@ const displaySubText = (card) => {
                 </div>
 
                 <div class="animate-fade-up transition-all duration-500">
-                    <h3 class="text-lg sm:text-2xl dark:text-white font-medium">
-                        {{ data_fe.data_fe[0].about_description }}
-                    </h3>
+                    <div class="text-lg sm:text-2xl dark:text-white font-medium" v-html="data_fe.data_fe[0].about_description"></div>
                 </div>
             </div>
         </section>
@@ -156,7 +132,7 @@ const displaySubText = (card) => {
                 <div class="flex flex-col gap-4 mx-4 sm:mx-0 dark:text-white">
                     <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
                     <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
-                    <h2 class="text-lg sm:text-2xl sm:w-3/4 font-medium">{{ data_fe.data_fe[0].expertise_description }}
+                    <h2 class="text-lg sm:text-2xl sm:w-3/4 font-medium" v-html="data_fe.data_fe[0].expertise_description">
                     </h2>
                 </div>
             </div>
@@ -188,23 +164,26 @@ const displaySubText = (card) => {
                                     <h3 class="text-white text-5xl sm:text-7xl font-semibold">
                                         {{ card.text }}
                                     </h3>
-                                    <p class="text-white text-lg sm:text-2xl font-medium">
+                                    <p class="text-white text-lg sm:text-2xl font-medium whitespace-pre-line">
                                         <!-- {{ card.subText }} -->
                                         {{ displaySubText(card)}}
                                     </p>
                                     <button @click="toggleExpand(card.id)"
-                                            class="group w-full sm:w-1/3 mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black border border-transparent">
-                                            <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0 transition-all duration-500 group-hover:w-full group-hover:bg-black"></div>
-
-                                            <div class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
-                                            </div>
-                                            <span class="relative flex items-center">
-                                                {{ expanded[card.id] ? 'Show Less' : 'Load More' }}
-                                                <span class="ml-3 flex items-center gap-1">
-                                                    <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black"></span>
-                                                    <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black"></span>
-                                                </span>
+                                        class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border border-yellow-400 hover:text-white">
+                                        
+                                        <!-- Default Yellow Background -->
+                                        <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
+                                        
+                                        <!-- Sliding Black Background (Side to Side) -->
+                                        <div class="absolute left-0 top-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full z-10"></div>
+                                        
+                                        <span class="relative z-20 flex items-center">
+                                            {{ expanded[card.id] ? "Show Less" : 'Load More' }}
+                                            <span class="ml-3 flex items-center gap-1">
+                                                <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
+                                                <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
                                             </span>
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -227,7 +206,7 @@ const displaySubText = (card) => {
                     </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium">{{ data_fe.data_fe[0].blog_description }}
+                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium" v-html="data_fe.data_fe[0].blog_description">
                         </h4>
                     </div>
                 </div>

@@ -22,11 +22,12 @@ class PageController extends Controller
         $clients_image = ImageFrontEnd::where('type', 'clients')->take(5)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
         $blog = News::with('newsImages')->where('status', 'published')->orderBy('created_at', 'desc')->take(3)->get();
+        $services = \App\Models\Service::all();
 
         return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'data_fe' => compact('data_fe', 'hero_image', 'industry_image', 'clients_image', 'banner_image', 'blog'),
+        'data_fe' => compact('data_fe', 'hero_image', 'industry_image', 'clients_image', 'banner_image', 'blog', 'services'),
     ]);
 
     }

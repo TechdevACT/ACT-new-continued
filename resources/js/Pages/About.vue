@@ -51,7 +51,7 @@ const props = defineProps({
                 <div class="flex justify-end mb-10">
                     <div class="sm:w-1/2">
                         <h2 class="text-xl text-justify dark:text-white font-semibold">
-                            {{ data_about.data_about.description }}
+                            <div v-html="data_about.data_about.description"></div>
                         </h2>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ const props = defineProps({
                     <div class="flex justify-end mb-4 sm:mb-10">
                         <div class="sm:w-1/2">
                             <h2 class="text-xl text-justify font-semibold dark:text-white">
-                                {{ data_about.data_about.emphasis_description }}
+                                <div v-html="data_about.data_about.emphasis_description"></div>
                             </h2>
                         </div>
                     </div>

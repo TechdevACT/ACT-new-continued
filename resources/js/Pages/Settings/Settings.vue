@@ -16,7 +16,8 @@ const activeTab = ref('home');
 
 const props = defineProps({
     data_fe: Object,
-    testimonials: Array
+    testimonials: Array,
+    services: Array,
 })
 </script>
 
@@ -62,7 +63,7 @@ const props = defineProps({
                         <HomeExpertise :data_fe="data_fe.data_fe[0]" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
-                        <HomeServices />
+                        <HomeServices :services="services" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeIndustry :data_fe="data_fe.data_fe[0]" :images="data_fe.industry_image"/>
