@@ -42,7 +42,7 @@ const loadMore = () => {
 <template>
     <div class="flex flex-col justify-center items-center mb-16 animate-fade-up transition-all duration-500 px-4">
         <div
-            class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-gray-200 dark:bg-gray-300 rounded-xl font-bold transition-colors duration-500 p-1.5 sm:p-2">
+            class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-gray-200 dark:bg-gray-300 rounded-xl font-medium transition-colors duration-500 p-1.5 sm:p-2">
             <div v-for="category in props.categories" :key="category" @click="setFilter(category)" :class="[
                 'px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition-all ease-in-out duration-500 cursor-pointer',
                 {
