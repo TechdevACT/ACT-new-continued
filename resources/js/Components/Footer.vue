@@ -19,7 +19,8 @@ const icons = [
             <div class="sm:col-span-2 mb-6 sm:mb-0">
                 <h2 class="text-4xl sm:text-7xl font-bold uppercase">Let's make <br> it happen</h2>
             </div>
-            <div class="flex flex-col gap-2 mb-6 items-start sm:mb-0 sm:items-end">
+            <!-- ----------- sosmed ----------- -->
+            <!-- <div class="flex flex-col gap-2 mb-6 items-start sm:mb-0 sm:items-end">
                 <h2 class="text-xl font-semibold">Social Media</h2>
                 <div class="flex -ml-3">
                     <a v-for="(icon, index) in icons" :key="index" :href="icon.link" target="_blank"
@@ -30,8 +31,9 @@ const icons = [
                         <FontAwesomeIcon :icon="icon.icon" size="lg" class="relative z-10" />
                     </a>
                 </div>
-            </div>
-            <div class="mb-6 text-start sm:mb-0 sm:text-end">
+            </div> -->
+            <!-- ----------- contact ----------- -->
+            <div class="mb-6 text-end sm:mb-0 sm:text-end sm:col-start-4">
                 <h2 class="text-xl font-semibold">Contact</h2>
                 <h2 class="text-gray-700 dark:text-gray-300 h-10 mt-2">info@actdigital.agency</h2>
             </div>

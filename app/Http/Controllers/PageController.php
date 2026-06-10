@@ -48,7 +48,10 @@ class PageController extends Controller
 
     public function services()
     {
-        return Inertia::render('Services');
+        $services = \App\Models\Service::all();
+        return Inertia::render('Services', [
+            'services' => $services
+        ]);
     }
 
     public function news(Request $request)
@@ -63,7 +66,7 @@ class PageController extends Controller
             });
         })
         ->orderBy('created_at', 'desc')
-        ->paginate(4)
+        ->paginate(6)
         ->withQueryString();
 
         $categories = NewsCategory::withCount(['news' => function ($query) {

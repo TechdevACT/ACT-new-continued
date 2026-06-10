@@ -148,17 +148,21 @@ onUnmounted(() => {
                                 <div class="py-1">
                                     <template v-for="item in menu" :key="item.name">
                                         <Link v-if="!item.submenu" :href="item.link" @click="isMenuOpen = false"
-                                            class="block px-4 py-2 text-base text-white hover:text-yellow-500 transition-colors duration-200">
-                                        {{ item.name }}
+                                            :class="isActive(item.link) ? 'text-yellow-400' : 'text-white'"
+                                            class="block px-4 py-2 text-base hover:text-yellow-500 transition-colors duration-200">
+                                            {{ item.name }}
                                         </Link>
                                         <div v-else>
-                                            <h3
-                                                class="px-4 pt-2 pb-1 text-sm font-semibold text-gray-400 uppercase tracking-wider">
-                                                {{ item.name }}</h3>
+                                            <Link :href="item.link" @click="isMenuOpen = false"
+                                                :class="isActive(item.link) ? 'text-yellow-400' : 'text-white'"
+                                                class="block px-4 py-2 text-base hover:text-yellow-500 transition-colors duration-200">
+                                                {{ item.name }}
+                                            </Link>
                                             <Link v-for="subItem in item.submenu" :key="subItem.name"
                                                 :href="subItem.link" @click="isMenuOpen = false"
-                                                class="block pl-6 pr-4 py-2 text-base text-white hover:text-yellow-500 transition-colors duration-200">
-                                            {{ subItem.name }}
+                                                :class="isActive(subItem.link) ? 'text-yellow-400' : 'text-white'"
+                                                class="block pl-8 pr-4 py-2 text-base hover:text-yellow-500 transition-colors duration-200">
+                                                {{ subItem.name }}
                                             </Link>
                                         </div>
                                     </template>

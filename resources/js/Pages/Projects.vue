@@ -53,7 +53,7 @@ const categoryTest = ref([
 
         <section class="flex flex-col gap-4 py-16 animate-fade-right transition-all duration-500">
             <h1 class="text-4xl sm:text-6xl font-bold uppercase dark:text-white">Featured Work</h1>
-            <p class="sm:w-3/5 text-xl sm:text-2xl dark:text-white">Beautiful designs. Eye-catching interactions. Memorable experiences.
+            <p class="sm:w-3/5 text-xl sm:text-xl dark:text-white">Beautiful designs. Eye-catching interactions. Memorable experiences.
                 Development that delivers. Let the work do the talking.</p>
         </section>
 

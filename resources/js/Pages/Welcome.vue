@@ -90,7 +90,7 @@ const displaySubText = (card) => {
 
         <section class="flex flex-col justify-center items-center pb-10 sm:py-10 animate-fade-up px-4">
             <div class="w-full flex justify-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-medium text-center text-gray-800 dark:text-gray-300"
+                <h2 class="text-base sm:text-lg leading-relaxed font-inter font-normal text-center text-[#262626] dark:text-gray-300"
                     v-html="data_fe.data_fe[0].hero_description">
                 </h2>
             </div>
@@ -113,7 +113,7 @@ const displaySubText = (card) => {
                 </div>
 
                 <div class="animate-fade-up transition-all duration-500">
-                    <div class="text-lg sm:text-2xl dark:text-white font-medium" v-html="data_fe.data_fe[0].about_description"></div>
+                    <div class="text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal" v-html="data_fe.data_fe[0].about_description"></div>
                 </div>
             </div>
         </section>
@@ -130,9 +130,9 @@ const displaySubText = (card) => {
             </div>
             <div class="flex flex-col mt-16">
                 <div class="flex flex-col gap-4 mx-4 sm:mx-0 dark:text-white">
-                    <h3 class="text-md sm:text-2xl font-medium">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
+                    <h3 class="text-md sm:text-2xl font-medium mt-12">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
                     <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
-                    <h2 class="text-lg sm:text-2xl sm:w-3/4 font-medium" v-html="data_fe.data_fe[0].expertise_description">
+                    <h2 class="text-base sm:text-lg leading-relaxed sm:w-2/3 text-[#262626] dark:text-white font-inter font-normal mt-4"  v-html="data_fe.data_fe[0].expertise_description">
                     </h2>
                 </div>
             </div>
@@ -160,16 +160,16 @@ const displaySubText = (card) => {
                                     <h3 class="text-white text-2xl sm:text-7xl font-medium">{{ card.no }}</h3>
                                 </div>
 
-                                <div class="flex flex-col gap-2 sm:w-3/4">
+                                <div class="flex flex-col gap-2 sm:w-2/3 pl-3 sm:pl-5">
                                     <h3 class="text-white text-5xl sm:text-7xl font-semibold">
                                         {{ card.text }}
                                     </h3>
-                                    <p class="text-white text-lg sm:text-2xl font-medium whitespace-pre-line">
+                                    <p class="text-white text-base sm:text-lg font-inter font-normal whitespace-pre-line leading-relaxed mt-6 sm:mt-10">
                                         <!-- {{ card.subText }} -->
                                         {{ displaySubText(card)}}
                                     </p>
                                     <button @click="toggleExpand(card.id)"
-                                        class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border border-yellow-400 hover:text-white">
+                                        class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border-2 border-yellow-400 hover:text-white">
                                         
                                         <!-- Default Yellow Background -->
                                         <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
@@ -206,7 +206,7 @@ const displaySubText = (card) => {
                     </h3>
                     <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-black dark:text-white">
                         <h3 class="text-4xl sm:text-6xl font-bold">{{ data_fe.data_fe[0].blog_heading }}</h3>
-                        <h4 class="sm:w-3/4 text-lg sm:text-2xl font-medium" v-html="data_fe.data_fe[0].blog_description">
+                        <h4 class="sm:w-2/3 text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal" v-html="data_fe.data_fe[0].blog_description">
                         </h4>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ watch(
             <h3 class="text-md sm:text-2xl text-white font-medium">/ {{ text[0] }}</h3>
             <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-white">
                 <h3 class="sm:w-3/4 text-4xl sm:text-6xl font-bold">{{ text[1] }}</h3>
-                <h4 class="text-lg sm:text-2xl font-medium">{{ text[2] }}</h4>
+                <h4 class="sm:w-3/4 lg:w-2/3 text-base sm:text-lg leading-relaxed text-white font-inter font-normal">{{ text[2] }}</h4>
             </div>
         </div>
 
@@ -48,17 +48,16 @@ watch(
 
             <div class="flex w-full justify-center" v-if="displayedIndustries.length < industries.length">
                 <button @click="loadMoreIndustries"
-                    class="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-yellow-400 px-8 py-3 font-medium text-black transition-all duration-500 hover:text-white dark:text-black">
-                    <div
-                        class="absolute inset-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full dark:bg-white">
-                    </div>
-                    <span class="relative flex items-center">
+                    class="group relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3 font-medium text-black transition-all duration-500 border-2 border-yellow-400 hover:text-white">
+                    <!-- Default Yellow Background -->
+                    <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
+                    <!-- Sliding Black Background (Side to Side) -->
+                    <div class="absolute left-0 top-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full z-10"></div>
+                    <span class="relative z-20 flex items-center">
                         Load More
                         <span class="ml-3 flex items-center gap-1">
-                            <span
-                                class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
-                            <span
-                                class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400 dark:bg-black group-hover:dark:bg-black"></span>
+                            <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
+                            <span class="h-2 w-2 rounded-full bg-black transition-colors duration-500 group-hover:bg-yellow-400"></span>
                         </span>
                     </span>
                 </button>

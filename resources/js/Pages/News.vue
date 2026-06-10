@@ -80,27 +80,27 @@ const clearFilter = () => {
 
                     <div class="grid sm:grid-cols-2 gap-10 animate-fade-right">
                         <div v-for="p in props.data.news_all.data" :key="p.slug"
-                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden bg-gray-200">
-                            <Link :href="`/blog/` + p.slug">
-                                <div class="overflow-hidden aspect-video">
+                            class="flex flex-col shadow-xl group rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-900">
+                            <Link :href="`/blog/` + p.slug" class="flex flex-col h-full">
+                                <div class="overflow-hidden aspect-video flex-shrink-0">
                                     <img :src="p.news_images[0]?.image || 'https://placehold.co/1600x900'" alt=""
                                         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110" />
                                 </div>
 
-                                <div class="bg-gray-200 dark:bg-zinc-900 dark:text-white p-4">
-                                    <span class="text-gray-500">
-                                        {{ new Date(p.created_at).toLocaleDateString('id-ID', {
+                                <div class="flex flex-col flex-1 bg-gray-200 dark:bg-zinc-900 dark:text-white p-6">
+                                    <div class="mb-3 text-gray-500 text-sm flex items-center gap-2 flex-wrap">
+                                        <span>{{ new Date(p.created_at).toLocaleDateString('id-ID', {
                                             day: '2-digit',
                                             month: 'long',
                                             year: 'numeric'
-                                        }) }}
+                                        }) }}</span>
                                         <span v-if="p.category"
-                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-tx rounded-full">
+                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full">
                                             {{ p.category.name }}
                                         </span>
-                                    </span>
-                                    <h3 class="text-xl font-bold">{{ p.title }}</h3>
-                                    <p class="text-md dark:text-gray-400">{{ p.excerpt }}</p>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 line-clamp-2 min-h-[3.5rem]">{{ p.title }}</h3>
+                                    <p class="text-md dark:text-gray-400 line-clamp-3">{{ p.excerpt }}</p>
                                 </div>
                             </Link>
                         </div>
