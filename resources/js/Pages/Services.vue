@@ -83,15 +83,15 @@ const displaySubText = (card) => {
             <meta name="description" content="Meta Description Here" />
         </template>
 
-        <section class="animate-fade-up">
+        <!-- <section class="animate-fade-up">
             <div class="flex flex-col gap-2 pt-8 sm:pt-16 pb-0 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Our Services</h1>
                 <h2 class="text-lg sm:text-xl sm:w-3/4 font-medium">We provide integrated creative, digital, and technology solutions designed to help brands grow, adapt, and stay relevant in the evolving digital landscape. By combining creativity, strategy, and innovation, we help transform ideas into impactful and future-ready experiences.
-</h2>
+            </h2>
             </div>
-        </section>
+        </section> -->
 
-        <template #fullwidth2>
+        <!-- <template #fullwidth2>
             <section>
                 <div class="mx-auto w-11/12 sm:w-10/12">
                     <div class="relative mb-10 animate-fade-up" :style="{ height: `${cards.length * 70}vh` }">
@@ -118,16 +118,13 @@ const displaySubText = (card) => {
                                         {{ card.text }}
                                     </h3>
                                     <p class="text-white text-base sm:text-lg font-inter font-normal whitespace-pre-line leading-relaxed mt-6 sm:mt-10">
-                                        <!-- {{ card.subText }} -->
                                         {{ displaySubText(card)}}
                                     </p>
                                     <button @click="toggleExpand(card.id)"
                                         class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border-2 border-yellow-400 hover:text-white">
                                         
-                                        <!-- Default Yellow Background -->
                                         <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
                                         
-                                        <!-- Sliding Black Background (Side to Side) -->
                                         <div class="absolute left-0 top-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full z-10"></div>
                                         
                                         <span class="relative z-20 flex items-center">
@@ -144,18 +141,21 @@ const displaySubText = (card) => {
                     </div>
                 </div>
             </section>
-        </template>
+        </template> -->
 
         <template #afterFullwidth2>
             <div class="flex flex-col gap-6 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
-                <h1 class="text-5xl sm:text-7xl font-bold">Why Us?</h1>
+                <h1 class="text-5xl sm:text-7xl font-bold">Our Service</h1>
                 <div class="text-lg sm:text-xl w-full max-w-4xl font-medium flex flex-col gap-6 leading-relaxed">
+                    <p>
+                        We provide integrated creative, digital, and technology designed to help brands grow, adapt, and stay relevant in the evolving digital landscape. By combining creativity, strategy, and innovation, we help transform ideas into impactful and future-ready experiences.
+                    </p>
                     <p>
                         Because great ideas need more than creativity — they need strategy, adaptability, and real execution.
                     </p>
-                    <p>
+                    <!-- <p>
                         At act! digital agency, we combine creative thinking, technology, and real industry experience to create solutions that are not only visually engaging, but also functional, relevant, and impactful. From branding and digital development to e-Commerce insights and AI-driven innovation, we help brands navigate change, connect with audiences, and grow with confidence in an ever-evolving digital world.
-                    </p>
+                    </p> -->
                 </div>
             </div>
 
