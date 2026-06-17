@@ -18,6 +18,57 @@ const cards = (props.data_fe.services || []).map((service, index) => ({
     url: service.url
 }));
 
+const whyUs = [
+    {
+        id: 1,
+        title: 'Creativity Meets Technology',
+        text: 'We combine creative thinking with digital technology to create solutions that are not only visually engaging, but also functional, effective, and impactful.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_6_f.svg'
+    },
+    {
+        id: 2,
+        title: 'Adaptive & Future-Ready',
+        text: 'The digital landscape evolves rapidly, and so do we. act! continuously adapts to new trends, technologies, and market behaviour to ensure every solution stays relevant and forward-thinking.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_2_f.svg'
+    },
+    {
+        id: 3,
+        title: 'End-to-End Solutions',
+        text: 'From strategy, branding, design, content, and digital campaigns to website development, multimedia, and technology integration — we provide connected solutions under one ecosystem.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_5_f.svg'
+    },
+    {
+        id: 4,
+        title: 'Real Industry Experience',
+        text: 'We has also explored the e-Commerce industry directly through marketplace and digital commerce research and operations. This hands-on experience gives us a deeper understanding of digital consumer behaviour, platform trends, and business growth challenges.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_3_f.svg'
+    },
+    {
+        id: 5,
+        title: 'Human-Centered Approach',
+        text: 'We believe every brand has unique goals and challenges. That’s why we prioritize collaboration, listening, and understanding before creating solutions.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_4_f.svg'
+    },
+    {
+        id: 6,
+        title: 'Solution-Oriented Mindset',
+        text: 'We focus not only on ideas, but on how those ideas can work effectively in real execution and deliver measurable results.',
+        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_1_f.svg'
+    },
+        {
+        id: 7,
+        title: 'Continuous Innovation',
+        text: 'Curiosity and experimentation are part of our culture. We continuously explore new approaches, technologies, and possibilities — including AI-driven systems and automation — to help brands grow smarter and faster.',
+        image: '/images/fnk_services_7_f.svg'
+    },
+        {
+        id: 8,
+        title: 'Built on Trust',
+        text: 'Most of our growth comes through long-term relationships, client loyalty, and referrals. For us, trust is earned through consistency, communication, and quality work over time.',
+        image: '/images/fnk_services_8_f.svg'
+    }
+]
+
 const clientsImage = props.data_fe.clients_image.map(item => item.path);
 
 const images = props.data_fe.hero_image.map(item => item.path);
@@ -106,7 +157,7 @@ const displaySubText = (card) => {
             </div>
         </section>
 
-        <section class="py-5 sm:py-10 mx-4">
+        <section class="py-5 sm:py-10 mx-4 sm:mx-0">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-6">
                 <div class=" animate-fade-up transition-all duration-500">
                     <h3 class="text-md sm:text-2xl dark:text-white">/ {{ data_fe.data_fe[0].about_title }}</h3>
@@ -118,9 +169,8 @@ const displaySubText = (card) => {
             </div>
         </section>
 
-        <section class="flex flex-col py-5 sm:pt-10 mx-4 animate-fade-up transition-all duration-500">
+        <section class="flex flex-col py-5 sm:pt-10 mx-4 sm:mx-0 animate-fade-up transition-all duration-500">
             <div class="mb-10">
-                <!-- <img src="https://placehold.co/1080x500" class="w-full rounded-3xl"> -->
                 <img src="https://picsum.photos/1080/500" class="w-full rounded-3xl">
             </div>
             <div class="grid grid-cols-5 gap-6 pt-10">
@@ -129,7 +179,7 @@ const displaySubText = (card) => {
                 </div>
             </div>
             <div class="flex flex-col mt-16">
-                <div class="flex flex-col gap-4 mx-4 sm:mx-0 dark:text-white">
+                <div class="flex flex-col gap-4 dark:text-white">
                     <h3 class="text-md sm:text-2xl font-medium mt-12">/ {{ data_fe.data_fe[0].expertise_title }}</h3>
                     <h1 class="text-4xl sm:text-7xl font-bold">{{ data_fe.data_fe[0].expertise_heading }}</h1>
                     <h2 class="text-base sm:text-lg leading-relaxed sm:w-2/3 text-[#262626] dark:text-white font-inter font-normal mt-4"  v-html="data_fe.data_fe[0].expertise_description">
@@ -139,7 +189,8 @@ const displaySubText = (card) => {
         </section>
 
         <template #fullwidth2>
-            <section>
+            <!-- card parallax -->
+            <!-- <section>
                 <div class="mx-auto w-11/12 sm:w-10/12">
                     <div class="relative mb-10 animate-fade-up" :style="{ height: `${cards.length * 70}vh` }">
                         <div v-for="(card, index) in cards" :key="card.id"
@@ -165,16 +216,13 @@ const displaySubText = (card) => {
                                         {{ card.text }}
                                     </h3>
                                     <p class="text-white text-base sm:text-lg font-inter font-normal whitespace-pre-line leading-relaxed mt-6 sm:mt-10">
-                                        <!-- {{ card.subText }} -->
                                         {{ displaySubText(card)}}
                                     </p>
                                     <button @click="toggleExpand(card.id)"
                                         class="group w-max mt-4 relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-2 text-sm font-medium text-black transition-all duration-500 border-2 border-yellow-400 hover:text-white">
                                         
-                                        <!-- Default Yellow Background -->
                                         <div class="absolute inset-0 bg-yellow-400 w-full h-full z-0"></div>
                                         
-                                        <!-- Sliding Black Background (Side to Side) -->
                                         <div class="absolute left-0 top-0 h-full w-0 bg-black transition-all duration-500 ease-out group-hover:w-full z-10"></div>
                                         
                                         <span class="relative z-20 flex items-center">
@@ -190,8 +238,18 @@ const displaySubText = (card) => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>  -->
 
+            <!-- kolom services -->
+            <div class="mx-auto w-11/12 sm:w-10/12">
+                <div class="grid sm:grid-cols-4 gap-x-12 gap-y-20 mb-16 mx-4 sm:mx-0">
+                    <div v-for="wu in whyUs" :key="wu.id" class="flex flex-col gap-3 text-left items-start">
+                        <img :src="wu.image" alt="" class="mb-4">
+                        <h2 class="text-2xl font-bold dark:text-gray-300">{{ wu.title }}</h2>
+                        <h3 class="text-sm dark:text-gray-400 leading-relaxed">{{ wu.text }}</h3>
+                    </div>
+                </div>
+            </div> 
             <section class="bg-brand-purple py-10 px-4 sm:px-0">
                 <Industries :industries="industries" :text="industries_text" />
             </section>
