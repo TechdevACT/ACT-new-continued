@@ -107,27 +107,27 @@ const clearFilter = () => {
                     </div>
 
                     <div class="flex justify-center mt-10">
-                        <nav class="flex items-center space-x-2">
+                        <nav class="flex flex-wrap justify-center items-center gap-2">
                             <template v-for="(link, index) in props.data.news_all.links" :key="index">
 
                                 <!-- Sembunyikan tombol Prev di halaman pertama -->
                                 <template
-                                    v-if="!(link.label.includes('Previous') && props.data.news_all.current_page === 1)
-                                        && !(link.label.includes('Next') && props.data.news_all.current_page === props.data.news_all.last_page)">
+                                    v-if="!(link.label.toLowerCase().includes('previous') && props.data.news_all.current_page === 1)
+                                        && !(link.label.toLowerCase().includes('next') && props.data.news_all.current_page === props.data.news_all.last_page)">
 
                                     <Link v-if="link.url" :href="link.url"
                                         class="px-4 py-2 rounded-xl transition-all duration-300" :class="{
                                             'bg-black dark:bg-white text-white dark:text-black': link.active,
                                             'bg-gray-300 dark:bg-zinc-900 text-gray-600 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-zinc-400': !link.active
                                         }">
-                                        <span v-if="link.label.includes('Previous')">Prev</span>
-                                        <span v-else-if="link.label.includes('Next')">Next</span>
+                                        <span v-if="link.label.toLowerCase().includes('previous')">Prev</span>
+                                        <span v-else-if="link.label.toLowerCase().includes('next')">Next</span>
                                         <span v-else v-html="link.label"></span>
                                     </Link>
 
                                     <span v-else class="px-4 py-2 rounded-xl text-gray-400">
-                                        <span v-if="link.label.includes('Previous')">Prev</span>
-                                        <span v-else-if="link.label.includes('Next')">Next</span>
+                                        <span v-if="link.label.toLowerCase().includes('previous')">Prev</span>
+                                        <span v-else-if="link.label.toLowerCase().includes('next')">Next</span>
                                         <span v-else v-html="link.label"></span>
                                     </span>
                                 </template>
