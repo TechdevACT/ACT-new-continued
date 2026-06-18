@@ -47,7 +47,7 @@ onMounted(() => {
                     <span class="text-lg sm:text-xl text-gray-500 dark:text-gray-200">( Description )</span>
                 </div>
                 <div>
-                    <p class="text-lg sm:text-xl text-justify font-medium dark:text-white">{{
+                    <p class="text-base sm:text-lg text-justify font-normal text-[#262626] dark:text-white">{{
                         data.data.project.description }}
                     </p>
                 </div>
@@ -70,15 +70,15 @@ onMounted(() => {
                     <div class="flex flex-col gap-8 dark:text-white">
                         <div class="flex flex-col gap-4">
                             <h2 class="text-2xl font-semibold">/ Project Overview</h2>
-                            <p class="text-xl text-medium">{{ data.data.project.project_overview }}</p>
+                            <p class="text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal">{{ data.data.project.project_overview }}</p>
                         </div>
                         <div class="flex flex-col gap-4">
                             <h2 class="text-2xl font-semibold">/ Challanges</h2>
-                            <p class="text-xl text-medium">{{ data.data.project.project_challenges }}</p>
+                            <p class="text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal">{{ data.data.project.project_challenges }}</p>
                         </div>
                         <div class="flex flex-col gap-4">
                             <h2 class="text-2xl font-semibold">/ Objectives</h2>
-                            <p class="text-xl text-medium">{{ data.data.project.project_objectives }}</p>
+                            <p class="text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal">{{ data.data.project.project_objectives }}</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ onMounted(() => {
             <section class="flex justify-center items-center py-16 dark:text-white">
                 <div class="flex flex-col sm:w-1/2 justify-center items-center gap-4">
                     <h2 class="text-2xl font-semibold">/ Final Outcome</h2>
-                    <p class="text-xl text-medium text-center">{{ data.data.project.project_final_outcome }}</p>
+                    <p class="text-base sm:text-lg leading-relaxed text-[#262626] dark:text-white font-inter font-normal text-center">{{ data.data.project.project_final_outcome }}</p>
                 </div>
             </section>
 

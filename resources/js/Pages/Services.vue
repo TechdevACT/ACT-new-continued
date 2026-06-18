@@ -146,7 +146,7 @@ const displaySubText = (card) => {
         <template #afterFullwidth2>
             <div class="flex flex-col gap-6 py-8 sm:py-16 mx-4 sm:mx-0 dark:text-white">
                 <h1 class="text-5xl sm:text-7xl font-bold">Our Service</h1>
-                <div class="text-lg sm:text-xl w-full max-w-4xl font-medium flex flex-col gap-6 leading-relaxed">
+                <div class="text-base sm:text-lg text-[#262626] dark:text-white font-inter font-normal w-full max-w-4xl font-medium flex flex-col gap-6 leading-relaxed">
                     <p>
                         We provide integrated creative, digital, and technology designed to help brands grow, adapt, and stay relevant in the evolving digital landscape. By combining creativity, strategy, and innovation, we help transform ideas into impactful and future-ready experiences.
                     </p>
