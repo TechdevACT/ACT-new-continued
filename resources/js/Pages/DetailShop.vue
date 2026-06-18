@@ -248,27 +248,27 @@ const selectOptions = (prod) => {
                         <div class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-gray-200 dark:border-zinc-800">
                                 <div class="font-semibold text-gray-900 dark:text-white">Material</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.material }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.material }}</div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-gray-200 dark:border-zinc-800">
                                 <div class="font-semibold text-gray-900 dark:text-white">Design</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.design }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.design }}</div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-gray-200 dark:border-zinc-800">
                                 <div class="font-semibold text-gray-900 dark:text-white">Color</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.color }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.color }}</div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-gray-200 dark:border-zinc-800">
                                 <div class="font-semibold text-gray-900 dark:text-white">Size</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.size }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.size }}</div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-gray-200 dark:border-zinc-800">
                                 <div class="font-semibold text-gray-900 dark:text-white">Fit</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.fit }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.fit }}</div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4">
                                 <div class="font-semibold text-gray-900 dark:text-white">Features</div>
-                                <div class="col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.features }}</div>
+                                <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{{ product.additionalInfo.features }}</div>
                             </div>
                         </div>
                     </div>
