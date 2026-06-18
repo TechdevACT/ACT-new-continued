@@ -173,9 +173,15 @@ const displaySubText = (card) => {
             <div class="mb-10">
                 <img src="https://picsum.photos/1080/500" class="w-full rounded-3xl">
             </div>
-            <div class="grid grid-cols-5 gap-6 pt-10">
-                <div v-for="clients in clientsImage" class="flex items-center justify-center">
-                    <img :src="clients" alt="">
+            <div class="relative overflow-hidden w-full pt-10 pb-5" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+                <div class="flex w-max animate-marquee space-x-12 sm:space-x-24 items-center">
+                    <div v-for="(clients, index) in clientsImage" :key="'orig-' + index" class="flex items-center justify-center w-32 sm:w-48 flex-shrink-0">
+                        <img :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <!-- Duplicate array for seamless looping -->
+                    <div v-for="(clients, index) in clientsImage" :key="'dup-' + index" class="flex items-center justify-center w-32 sm:w-48 flex-shrink-0">
+                        <img :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col mt-16">
@@ -296,3 +302,16 @@ const displaySubText = (card) => {
         </template>
     </DefaultLayout>
 </template>
+
+<style scoped>
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+</style>
