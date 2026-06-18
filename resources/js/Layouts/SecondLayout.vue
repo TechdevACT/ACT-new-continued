@@ -20,7 +20,7 @@ import CursorFollower from '@/Components/CursorFollower.vue';
 
     <CursorFollower />
 
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen overflow-x-hidden">
         <NavbarSecondHeader/>
 
         <main>

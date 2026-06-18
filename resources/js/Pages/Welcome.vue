@@ -23,37 +23,37 @@ const whyUs = [
         id: 1,
         title: 'Creativity Meets Technology',
         text: 'We combine creative thinking with digital technology to create solutions that are not only visually engaging, but also functional, effective, and impactful.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_6_f.svg'
+        image: '/images/fnk_services_1_f.svg'
     },
     {
         id: 2,
         title: 'Adaptive & Future-Ready',
         text: 'The digital landscape evolves rapidly, and so do we. act! continuously adapts to new trends, technologies, and market behaviour to ensure every solution stays relevant and forward-thinking.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_2_f.svg'
+        image: '/images/fnk_services_2_f.svg'
     },
     {
         id: 3,
         title: 'End-to-End Solutions',
         text: 'From strategy, branding, design, content, and digital campaigns to website development, multimedia, and technology integration — we provide connected solutions under one ecosystem.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_5_f.svg'
+        image: '/images/fnk_services_3_f.svg'
     },
     {
         id: 4,
         title: 'Real Industry Experience',
         text: 'We has also explored the e-Commerce industry directly through marketplace and digital commerce research and operations. This hands-on experience gives us a deeper understanding of digital consumer behaviour, platform trends, and business growth challenges.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_3_f.svg'
+        image: '/images/fnk_services_4_f.svg'
     },
     {
         id: 5,
         title: 'Human-Centered Approach',
         text: 'We believe every brand has unique goals and challenges. That’s why we prioritize collaboration, listening, and understanding before creating solutions.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_4_f.svg'
+        image: '/images/fnk_services_5_f.svg'
     },
     {
         id: 6,
         title: 'Solution-Oriented Mindset',
         text: 'We focus not only on ideas, but on how those ideas can work effectively in real execution and deliver measurable results.',
-        image: 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/fnk_services_1_f.svg'
+        image: '/images/fnk_services_6_f.svg'
     },
         {
         id: 7,

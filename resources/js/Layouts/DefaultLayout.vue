@@ -28,7 +28,7 @@ defineProps({
 
     <CursorFollower />
 
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen overflow-x-hidden">
         <component :is="navbarType === 'inverse' ? NavbarHeaderDark : NavbarHeader" />
 
         <slot name="fullwidth" />

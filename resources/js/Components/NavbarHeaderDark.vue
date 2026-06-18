@@ -68,7 +68,7 @@ onUnmounted(() => {
 
 <template>
     <header
-        class="sticky top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-16 transition-[padding,background-color] duration-300 ease-in-out"
+        class="sticky top-0 w-full z-50 flex items-center justify-between px-4 sm:px-16 transition-[padding,background-color] duration-300 ease-in-out"
         :class="isScrolled ? 'py-3 bg-black/70 dark:bg-white/70 backdrop-blur-sm shadow-lg' : 'py-6 bg-transparent'">
 
         <div class="text-2xl font-bold text-white dark:text-black z-10">
