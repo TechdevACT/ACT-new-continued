@@ -51,8 +51,8 @@ const clearFilter = () => {
                 </div>
 
                 <div
-                    class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4 dark:text-white">
-                    <h2 class="text-5xl font-bold uppercase">We share brilliant stories</h2>
+                    class="sm:hidden flex flex-col h-96 justify-center items-center text-center gap-4 px-4 dark:text-white w-full overflow-hidden">
+                    <h2 class="text-4xl sm:text-5xl font-bold uppercase break-words">We share brilliant stories</h2>
                     <p class="text-lg">Building a standout portfolio is challenging let’s make it easier...</p>
                 </div>
             </section>
@@ -61,7 +61,7 @@ const clearFilter = () => {
         <section class="mx-auto px-4 mb-10 pt-10">
             <div class="grid sm:grid-cols-3 gap-10">
 
-                <div v-if="props.data.news_all.data.length > 0" class="col-span-2">
+                <div v-if="props.data.news_all.data.length > 0" class="sm:col-span-2">
 
                     <!-- Filter Badge (Tampilkan jika ada filter aktif) -->
                     <div v-if="selectedCategory" class="mb-6 flex items-center gap-2">
@@ -143,7 +143,7 @@ const clearFilter = () => {
                     No data available
                 </div> -->
 
-                <div v-else class="col-span-2 text-center py-20">
+                <div v-else class="sm:col-span-2 text-center py-20">
                     <div class="text-6xl mb-4">📭</div>
                     <h3 class="text-2xl font-bold text-gray-500 dark:text-gray-400 mb-2">No Articles Found</h3>
                     <p class="text-gray-400 dark:text-gray-500 mb-4">
@@ -155,7 +155,7 @@ const clearFilter = () => {
                     </button>
                 </div>
 
-                <div class="flex flex-col gap-4 col-span-2 sm:col-span-1 animate-fade-left dark:text-white">
+                <div class="flex flex-col gap-4 sm:col-span-1 animate-fade-left dark:text-white">
                     <!-- <img src="https://placehold.co/400x200" alt="" class="rounded-2xl"> -->
                     <img src="https://picsum.photos/1080/500" alt="" class="rounded-2xl">
                     <span class="text-lg mb-10">It’s all about creative design, website,
