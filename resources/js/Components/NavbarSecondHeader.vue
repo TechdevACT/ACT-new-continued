@@ -72,7 +72,9 @@ onUnmounted(() => {
 
         <div class="text-2xl font-bold text-black dark:text-white z-10">
             <Link href="/">
-            <img src="/images/logo.png" alt="">
+                <img src="/images/Logo-200x200px.png" alt="Logo"
+                    class="w-auto object-contain transition-all duration-300"
+                    :class="isScrolled ? 'h-12 sm:h-14' : 'h-16 sm:h-20'">
             </Link>
         </div>
 

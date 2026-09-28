@@ -11,6 +11,8 @@ import HomeIndustry from './HomeSettings/HomeIndustry.vue';
 import HomeBlog from './HomeSettings/HomeBlog.vue';
 import AboutHeading from './AboutSettings/AboutHeading.vue';
 import Testimonialmanager from './AboutSettings/Testimonialmanager.vue';
+import ContactImageSettings from './HomeSettings/ContactImageSettings.vue';
+import BannerAboutSettings from './HomeSettings/BannerAboutSettings.vue';
 
 const activeTab = ref('home');
 
@@ -46,6 +48,11 @@ const props = defineProps({
                         @click="activeTab = 'about'">
                         About
                     </button>
+                    <button
+                        :class="['py-1 px-4 rounded-xl', activeTab === 'contact' ? 'bg-gray-900 text-white' : 'bg-gray-300']"
+                        @click="activeTab = 'contact'">
+                        Contact
+                    </button>
                 </div>
 
                 <!-- Home Setting Components -->
@@ -55,6 +62,9 @@ const props = defineProps({
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeAbout :data_fe="data_fe.data_fe[0]" />
+                    </div>
+                    <div class="bg-white p-4 shadow rounded-lg sm:p-8">
+                        <BannerAboutSettings :banner-about-image="data_fe.banner_about_image" />
                     </div>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8">
                         <HomeImageClient :banner="data_fe.banner_image" :images="data_fe.clients_image"/>
@@ -78,6 +88,13 @@ const props = defineProps({
                     <AboutHeading :data_about="data_fe.data_about[0]"/>
                     <div class="bg-white p-4 shadow rounded-lg sm:p-8 mt-6">
                         <Testimonialmanager :testimonials="testimonials" />
+                    </div>
+                </template>
+
+                <!-- Contact Setting Components -->
+                <template v-if="activeTab === 'contact'">
+                    <div class="bg-white p-4 shadow rounded-lg sm:p-8">
+                        <ContactImageSettings :contact-image="data_fe.contact_image" />
                     </div>
                 </template>
             </div>

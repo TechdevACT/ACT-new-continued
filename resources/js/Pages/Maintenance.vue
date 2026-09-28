@@ -134,7 +134,7 @@ onUnmounted(() => {
             <!-- Logo -->
             <div class="logo-container" @click="handleLogoClick">
                 <div class="logo-glow"></div>
-                <img src="/images/logo.png" alt="ACT Digital" class="logo-img" />
+                <img src="/images/Logo-200x200px.png" alt="ACT Digital" class="logo-img" />
             </div>
 
             <!-- Badge -->

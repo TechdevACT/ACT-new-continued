@@ -75,6 +75,8 @@ const images = props.data_fe.hero_image.map(item => item.path);
 
 const industries = props.data_fe.industry_image.map(item => item.path);
 
+const bannerAbout = props.data_fe.banner_about_image?.path || '/images/banner-about.jpeg';
+
 const industries_text = [
     props.data_fe.data_fe[0].industry_title,
     props.data_fe.data_fe[0].industry_heading,
@@ -171,7 +173,7 @@ const displaySubText = (card) => {
 
         <section class="flex flex-col py-5 sm:pt-10 mx-4 sm:mx-0 animate-fade-up transition-all duration-500">
             <div class="mb-10">
-                <img src="https://picsum.photos/1080/500" class="w-full rounded-3xl">
+                <img :src="bannerAbout" class="w-full rounded-3xl">
             </div>
             <div class="grid grid-cols-5 gap-6 pt-10">
                 <div v-for="clients in clientsImage" class="flex items-center justify-center">

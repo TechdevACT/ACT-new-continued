@@ -153,6 +153,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/industry', [SettingsController::class, 'industryUpdate'])->name('industryUpdate');
         Route::post('/blog', [SettingsController::class, 'blogUpdate'])->name('blogUpdate');
         Route::post('/aboutPage', [SettingsController::class, 'aboutPageUpdate'])->name('aboutPageUpdate');
+        Route::post('/contact', [SettingsController::class, 'contactUpdate'])->name('contactUpdate');
+        Route::post('/bannerAbout', [SettingsController::class, 'bannerAboutUpdate'])->name('bannerAboutUpdate');
     });
 
     Route::post('/service', [\App\Http\Controllers\ServiceController::class, 'store'])->name('service.store');

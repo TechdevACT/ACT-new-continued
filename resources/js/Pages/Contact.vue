@@ -3,9 +3,12 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { faBehance, faDribbble, faFacebookF, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-const images = [
-    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Modern-Collaborative-Workspace.webp'
-]
+const props = defineProps({
+    contact_image: { type: Object, default: null }
+});
+
+const contactPhoto = props.contact_image?.path
+    || 'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Modern-Collaborative-Workspace.webp';
 
 const icons = [
     { icon: faFacebookF, link: 'https://www.facebook.com' },
@@ -14,7 +17,6 @@ const icons = [
     { icon: faXTwitter, link: 'https://twitter.com' },
     { icon: faDribbble, link: 'https://dribbble.com' },
 ]
-
 </script>
 
 <template>
@@ -26,7 +28,7 @@ const icons = [
         <section class="px-4 mb-10">
             <div class="grid sm:flex gap-4 mb-10">
                 <div class="sm:w-1/3 h-96 animate-fade-right transition-all duration-500">
-                    <img :src="images[0]" alt="" class="w-full h-full object-cover rounded-3xl shadow-xl">
+                    <img :src="contactPhoto" alt="" class="w-full h-full object-cover rounded-3xl shadow-xl">
                 </div>
                 <div class="sm:w-2/3 h-96 animate-fade-left transition-all duration-500">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d511.73105162459217!2d106.70353407436683!3d-6.147451003636312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9f43bedc925%3A0xfbf72affa79a64ac!2sact*21%20digital%20agency!5e0!3m2!1sen!2sid!4v1780988775356!5m2!1sen!2sid" class="w-full h-full rounded-3xl shadow-xl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

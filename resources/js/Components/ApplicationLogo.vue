@@ -6,5 +6,5 @@
 </template> -->
 
 <template>
-    <img src="/images/logo.png" alt="Application Logo" />
+    <img src="/images/Logo-200x200px.png" alt="Application Logo" />
 </template>

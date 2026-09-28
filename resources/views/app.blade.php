@@ -8,8 +8,8 @@
     <title inertia>{{ config('app.name', 'act! digital agency') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/logo.png">
-    <link rel="apple-touch-icon" href="/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/Favicon-64x64px.png">
+    <link rel="apple-touch-icon" href="/images/Favicon-64x64px.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
