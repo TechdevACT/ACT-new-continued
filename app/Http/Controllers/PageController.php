@@ -18,7 +18,7 @@ class PageController extends Controller
     public function home(){
         $data_fe = FrontEnd::all();
         $hero_image = ImageFrontEnd::where('type', 'hero')->orderBy('sort_order')->take(5)->get('path');
-        $industry_image = ImageFrontEnd::where('type', 'industry')->orderBy('sort_order')->take(5)->get('path');
+        $industry_image = ImageFrontEnd::where('type', 'industry')->orderBy('sort_order')->take(6)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->orderBy('sort_order')->take(5)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
         $banner_about_image = ImageFrontEnd::where('type', 'bannerAbout')->first();

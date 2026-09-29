@@ -20,7 +20,7 @@ class SettingsController extends Controller
         $data_fe = FrontEnd::all();
         $data_about = AboutOption::all();
         $hero_image = ImageFrontEnd::where('type', 'hero')->orderBy('sort_order')->take(5)->get('path');
-        $industry_image = ImageFrontEnd::where('type', 'industry')->orderBy('sort_order')->take(5)->get('path');
+        $industry_image = ImageFrontEnd::where('type', 'industry')->orderBy('sort_order')->take(6)->get('path');
         $clients_image = ImageFrontEnd::where('type', 'clients')->orderBy('sort_order')->take(6)->get('path');
         $banner_image = ImageFrontEnd::where('type', 'bannerHome')->take(1)->get('path');
         $contact_image = ImageFrontEnd::where('type', 'contactImage')->first();
@@ -199,22 +199,43 @@ class SettingsController extends Controller
             'description' => 'required',
         ]);
 
-        if ($request->hasFile('images')) {
-            $old_images = ImageFrontEnd::where('type', 'industry')->get();
-            foreach ($old_images as $image) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $image->path));
-                $image->delete();
+        $stringImages = $request->input('images', []);
+        $fileImages   = $request->file('images', []);
+
+        $allIndexes = array_merge(array_keys($stringImages), array_keys($fileImages));
+        if (empty($allIndexes)) {
+            $oldImages = ImageFrontEnd::where('type', 'industry')->get();
+            foreach ($oldImages as $old) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $old->path));
+                $old->delete();
+            }
+        } else {
+            $maxIndex = max($allIndexes);
+            $keptPaths = array_values($stringImages);
+
+            $oldImages = ImageFrontEnd::where('type', 'industry')->get();
+            foreach ($oldImages as $old) {
+                if (!in_array($old->path, $keptPaths)) {
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $old->path));
+                    $old->delete();
+                }
             }
 
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('images/frontEnd', 'public');
-                ImageFrontEnd::create([
-                    'type' => 'industry',
-                    'path' => '/storage/' . $path
-                ]);
+            for ($i = 0; $i <= $maxIndex; $i++) {
+                if (isset($stringImages[$i])) {
+                    ImageFrontEnd::where('type', 'industry')
+                        ->where('path', $stringImages[$i])
+                        ->update(['sort_order' => $i]);
+                } elseif (isset($fileImages[$i])) {
+                    $path = $fileImages[$i]->store('images/frontEnd', 'public');
+                    ImageFrontEnd::create([
+                        'type'       => 'industry',
+                        'path'       => '/storage/' . $path,
+                        'sort_order' => $i,
+                    ]);
+                }
             }
         }
-
 
         $data_hero->update([
             'industry_title' => $request->title,

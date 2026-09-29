@@ -21,7 +21,7 @@ watch(
   () => props.industries,
   (newVal) => {
     if (newVal && newVal.length > 0) {
-      displayedIndustries.value = newVal.slice(0, 3)
+      displayedIndustries.value = newVal.slice(0, 6)
     }
   },
   { immediate: true }
@@ -35,7 +35,7 @@ watch(
             <h3 class="text-md sm:text-2xl text-white font-medium">/ {{ text[0] }}</h3>
             <div class="sm:col-span-2 flex flex-col gap-4 sm:items-end sm:text-end text-white">
                 <h3 class="sm:w-3/4 text-4xl sm:text-6xl font-bold">{{ text[1] }}</h3>
-                <h4 class="sm:w-3/4 lg:w-2/3 text-base sm:text-lg leading-relaxed text-white font-inter font-normal">{{ text[2] }}</h4>
+                <h4 class="sm:w-3/4 lg:w-2/3 text-base sm:text-lg leading-relaxed text-white font-inter font-normal" v-html="text[2]"></h4>
             </div>
         </div>
 

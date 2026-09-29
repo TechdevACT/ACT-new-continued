@@ -26,9 +26,8 @@ const navClasses = (active) =>
         <div class="flex h-16 items-center justify-between">
 
           <div class="flex items-center gap-8">
-            <Link :href="route('dashboard')" class="flex items-center gap-2">
+            <Link :href="route('home')" class="flex items-center gap-2">
               <ApplicationLogo class="h-9 w-auto fill-current text-[#99ca3d]" />
-              <span class="hidden lg:block text-lg font-bold text-slate-900">ActNew!</span>
             </Link>
 
             <div class="hidden lg:flex items-center gap-1">
