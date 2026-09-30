@@ -28,3 +28,6 @@ yarn-error.log
 
 # Deploy state (dibuat otomatis oleh FTP Deploy Action)
 .ftp-deploy-sync-state.json
+
+# Temporary Language Server files
+lsp-*.php

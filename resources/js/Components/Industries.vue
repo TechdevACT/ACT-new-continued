@@ -21,7 +21,7 @@ watch(
   () => props.industries,
   (newVal) => {
     if (newVal && newVal.length > 0) {
-      displayedIndustries.value = newVal.slice(0, 6)
+      displayedIndustries.value = newVal.slice(0, 3)
     }
   },
   { immediate: true }
