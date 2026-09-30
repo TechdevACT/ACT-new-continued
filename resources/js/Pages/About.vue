@@ -16,14 +16,14 @@ const props = defineProps({
     }
 })
 
-// const clients = [
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-4.svg',
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-2.svg',
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector.svg',
-//     'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-1.svg'
-// ];
+const clients = [
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-6.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-5.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-4.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-2.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector.svg',
+    'https://theme.madsparrow.me/osty/wp-content/uploads/2025/02/Vector-1.svg'
+];
 </script>
 
 <template>
@@ -34,7 +34,7 @@ const props = defineProps({
 
         <template #fullwidth>
             <section
-                class="w-full h-screen bg-[url('/images/about/bg-about.png')] dark:bg-[url('/images/about/bg-about-dark.jpg')] bg-cover bg-center py-12 -mt-[102px] sm:-mt-[88px] animate-fade transition-all duration-500">
+                class="w-full h-screen bg-[url('/images/about/bg-about.png')] dark:bg-[url('/images/about/bg-about-dark.jpg')] bg-cover bg-center py-12 -mt-[112px] sm:-mt-[128px] animate-fade transition-all duration-500">
                 <div class="text-center text-3xl font-bold h-full flex items-center justify-center">
                     <div class="flex flex-col gap-2 uppercase max-w-7xl">
                         <h2 class="text-4xl sm:text-6xl text-white dark:text-black transition-all duration-500">
