@@ -119,7 +119,7 @@ if (is_dir($buildPath)) {
 // ── Jalankan post-deploy tasks ───────────────────────────────────────────────
 
 // 1. Bersihkan semua cache lama
-$log[] = artisan('cache:clear', $phpBin);
+$log[] = artisan('optimize:clear', $phpBin);
 
 // 2. Cache konfigurasi
 $log[] = artisan('config:cache', $phpBin);

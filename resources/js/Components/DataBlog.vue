@@ -36,7 +36,7 @@ const limitTitle = (text, limit = 50) => {
                 <tr v-for="item in news.data" :key="item.id" class="border-t items-center">
                     <td class="px-4 py-2">
                         <div class="flex justify-center">
-                            <img :src="item.news_images[0]?.image ?? 'https://placehold.co/1080x500'"
+                            <img loading="lazy" decoding="async" :src="item.news_images[0]?.image ?? 'https://placehold.co/1080x500'"
                                 class="h-10 object-cover"></img>
                         </div>
                     </td>

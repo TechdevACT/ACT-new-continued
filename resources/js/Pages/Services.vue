@@ -161,7 +161,7 @@ const displaySubText = (card) => {
 
             <div class="grid sm:grid-cols-3 gap-x-12 gap-y-20 mb-16 mx-4 sm:mx-0">
                 <div v-for="wu in whyUs" :key="wu.id" class="flex flex-col gap-3 text-left items-start">
-                    <img :src="wu.image" alt="" class="mb-4">
+                    <img loading="lazy" decoding="async" :src="wu.image" alt="" class="mb-4">
                     <h2 class="text-2xl font-bold dark:text-gray-300">{{ wu.title }}</h2>
                     <h3 class="text-sm dark:text-gray-400 leading-relaxed">{{ wu.text }}</h3>
                     <div class="mt-4 w-full">

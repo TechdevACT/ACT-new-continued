@@ -29,7 +29,7 @@ const destroyItem = (id) => {
                 <tr v-for="item in projects.data" :key="item.id" class="border-t items-center">
                     <td class="px-4 py-2">
                         <div class="flex justify-center">
-                            <img :src="item.thumbnail ?? 'https://placehold.co/1080x500'"
+                            <img loading="lazy" decoding="async" :src="item.thumbnail ?? 'https://placehold.co/1080x500'"
                                 class="h-10 object-cover"></img>
                         </div>
                     </td>

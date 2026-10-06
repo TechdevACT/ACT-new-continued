@@ -142,7 +142,7 @@ const clients = [
                 </div>
                 <div class="grid grid-cols-3 sm:grid-cols-6 gap-6">
                     <div v-for="c in clients" class="flex h-20 sm:h-32 rounded-2xl border shadow">
-                        <img :src="c" alt="" class="p-4">
+                        <img loading="lazy" decoding="async" :src="c" alt="" class="p-4">
                     </div>
                 </div>
             </section>

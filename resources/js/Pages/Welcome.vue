@@ -173,16 +173,16 @@ const displaySubText = (card) => {
 
         <section class="flex flex-col py-5 sm:pt-10 mx-4 sm:mx-0 animate-fade-up transition-all duration-500">
             <div class="mb-10">
-                <img :src="bannerAbout" class="w-full rounded-3xl">
+                <img loading="lazy" decoding="async" :src="bannerAbout" class="w-full rounded-3xl">
             </div>
             <div class="relative overflow-hidden w-full pt-10 pb-5" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
                 <div class="flex w-max animate-marquee space-x-12 sm:space-x-24 items-center">
                     <div v-for="(clients, index) in clientsImage" :key="'orig-' + index" class="flex items-center justify-center w-32 sm:w-48 flex-shrink-0">
-                        <img :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                        <img loading="lazy" decoding="async" :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
                     </div>
                     <!-- Duplicate array for seamless looping -->
                     <div v-for="(clients, index) in clientsImage" :key="'dup-' + index" class="flex items-center justify-center w-32 sm:w-48 flex-shrink-0">
-                        <img :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                        <img loading="lazy" decoding="async" :src="clients" alt="" class="max-w-full h-auto max-h-16 sm:max-h-20 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
                     </div>
                 </div>
             </div>
@@ -252,7 +252,7 @@ const displaySubText = (card) => {
             <div class="mx-auto w-11/12 sm:w-10/12">
                 <div class="grid sm:grid-cols-4 gap-x-12 gap-y-20 mb-16 mx-4 sm:mx-0">
                     <div v-for="wu in whyUs" :key="wu.id" class="flex flex-col gap-3 text-left items-start">
-                        <img :src="wu.image" alt="" class="mb-4">
+                        <img loading="lazy" decoding="async" :src="wu.image" alt="" class="mb-4">
                         <h2 class="text-2xl font-bold dark:text-gray-300">{{ wu.title }}</h2>
                         <h3 class="text-sm dark:text-gray-400 leading-relaxed">{{ wu.text }}</h3>
                     </div>
@@ -294,7 +294,7 @@ const displaySubText = (card) => {
                             </div>
 
                             <div class="flex-1">
-                                <img :src="blog.news_images[0]?.image || 'https://placehold.co/400x200'" alt=""
+                                <img loading="lazy" decoding="async" :src="blog.news_images[0]?.image || 'https://placehold.co/400x200'" alt=""
                                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
                             </div>
                         </Link>

@@ -83,7 +83,7 @@ const clearFilter = () => {
                             class="flex flex-col shadow-xl group rounded-2xl overflow-hidden bg-gray-200 dark:bg-zinc-900">
                             <Link :href="`/blog/` + p.slug" class="flex flex-col h-full">
                                 <div class="overflow-hidden aspect-video flex-shrink-0">
-                                    <img :src="p.news_images[0]?.image || 'https://placehold.co/1600x900'" alt=""
+                                    <img loading="lazy" decoding="async" :src="p.news_images[0]?.image || 'https://placehold.co/1600x900'" alt=""
                                         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110" />
                                 </div>
 
@@ -157,7 +157,7 @@ const clearFilter = () => {
 
                 <div class="flex flex-col gap-4 sm:col-span-1 animate-fade-left dark:text-white">
                     <!-- <img src="https://placehold.co/400x200" alt="" class="rounded-2xl"> -->
-                    <img src="/images/news_banner.jpg" alt="News banner" class="rounded-2xl w-full object-cover">
+                    <img src="/images/news_banner.jpg" loading="lazy" decoding="async" alt="News banner" class="rounded-2xl w-full object-cover">
                     <span class="text-lg mb-10">It’s all about creative design, website,
                         and everything in digital.</span>
                     <h3 class="text-xl sm:text-2xl font-bold">Recent Posts</h3>

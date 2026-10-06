@@ -63,7 +63,7 @@ const loadMore = () => {
                 class="flex flex-col justify-center items-center">
                 <Link :href="`/projects/` + project.slug">
                 <div class="w-full h-auto aspect-square overflow-hidden rounded-3xl relative group shadow-xl">
-                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    <img loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         :src="`/storage/` + project.image" :alt="project.title" />
                 </div>
                 <div class="w-full flex justify-between items-center py-4 transition-colors duration-500">

@@ -42,7 +42,7 @@ watch(
         <div class="flex flex-col justify-center">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 my-10">
                 <div v-for="(industry, index) in displayedIndustries" :key="index" class="rounded-2xl">
-                    <img :src="industry" class="w-full rounded-2xl animate-fade-up">
+                    <img loading="lazy" decoding="async" :src="industry" class="w-full rounded-2xl animate-fade-up">
                 </div>
             </div>
 
