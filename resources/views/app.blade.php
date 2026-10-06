@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'act! digital agency') }}</title>
+    <title inertia>{{ config('app.name', 'ACT! Digital Agency') }}</title>
 
     <!-- SEO / Open Graph (default, tersedia di HTML awal untuk crawler) -->
     <meta name="description" content="act! digital agency is a creative & digital partner combining creativity, strategy, and technology to help brands grow, including in e-commerce." inertia="description">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="act! digital agency">
-    <meta property="og:title" content="act! digital agency">
+    <meta property="og:site_name" content="ACT! Digital Agency">
+    <meta property="og:title" content="ACT! Digital Agency">
     <meta property="og:description" content="A creative & digital partner combining creativity, strategy, and technology to help brands grow in the digital era.">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ url('/images/Logo-200x200px.png') }}">
