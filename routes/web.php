@@ -18,45 +18,6 @@ use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
-| Maintenance Routes (NOT behind the gate)
-|--------------------------------------------------------------------------
-*/
-Route::get('/maintenance', function () {
-    // If maintenance mode is off, redirect to home
-    if (!config('app.maintenance_mode', true)) {
-        return redirect()->route('home');
-    }
-    // If already bypassed, redirect to home
-    if (session('maintenance_bypass') === true) {
-        return redirect()->route('home');
-    }
-    return Inertia::render('Maintenance');
-})->name('maintenance');
-
-Route::post('/maintenance-bypass', function (Request $request) {
-    $request->validate([
-        'password' => 'required|string',
-    ]);
-
-    // The bypass password — change this to whatever you want
-    $bypassPassword = config('app.maintenance_password', 'actdigital2026');
-
-    if ($request->password !== $bypassPassword) {
-        return back()->withErrors(['password' => 'Incorrect password. Access denied.']);
-    }
-
-    $request->session()->put('maintenance_bypass', true);
-
-    return redirect()->route('home');
-})->name('maintenance.bypass');
-
-Route::get('/maintenance-lock', function (Request $request) {
-    $request->session()->forget('maintenance_bypass');
-    return redirect()->route('maintenance');
-})->name('maintenance.lock');
-
-/*
-|--------------------------------------------------------------------------
 | Dashboard (Auth Required)
 |--------------------------------------------------------------------------
 */
@@ -169,19 +130,17 @@ Route::middleware('auth')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes (Behind Maintenance Gate)
+| Public Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware(\App\Http\Middleware\MaintenanceGate::class)->group(function () {
-    Route::get('/', [PageController::class, 'home'])->name('home');
-    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-    Route::get('/about', [PageController::class, 'about'])->name('about');
-    Route::get('/services', [PageController::class, 'services'])->name('services');
-    Route::get('/news', [PageController::class, 'news'])->name('news');
-    Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
-    Route::get('/blog/{blog}', [NewsController::class, 'show'])->name('blog.show');
-    Route::resource('projects', ProjectController::class)->only(['index','show']);
-});
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/news', [PageController::class, 'news'])->name('news');
+Route::get('/news/detail', [PageController::class, 'newsDetail'])->name('newsDetail');
+Route::get('/blog/{blog}', [NewsController::class, 'show'])->name('blog.show');
+Route::resource('projects', ProjectController::class)->only(['index','show']);
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
     ->name('auth.redirect');

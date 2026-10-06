@@ -33,7 +33,7 @@ defineProps({
 
         <slot name="fullwidth" />
 
-        <main>
+        <main class="flex-grow">
             <div class="mx-auto w-11/12 sm:w-10/12 flex-grow transition-colors duration-500">
                 <slot />
             </div>

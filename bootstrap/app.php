@@ -19,5 +19,23 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->respond(function (\Symfony\Component\HttpFoundation\Response $response, \Throwable $e, \Illuminate\Http\Request $request) {
+            $status = $response->getStatusCode();
+
+            // Keep Laravel's debug page for 500 errors while debugging
+            if ($status === 500 && config('app.debug')) {
+                return $response;
+            }
+
+            if (! in_array($status, [403, 404, 419, 429, 500, 503])) {
+                return $response;
+            }
+
+            // Run the Inertia middleware manually (unmatched routes skip the web group)
+            return (new \App\Http\Middleware\HandleInertiaRequests)->handle($request, function ($request) use ($status) {
+                return \Inertia\Inertia::render('Error', ['status' => $status])
+                    ->toResponse($request)
+                    ->setStatusCode($status);
+            });
+        });
     })->create();

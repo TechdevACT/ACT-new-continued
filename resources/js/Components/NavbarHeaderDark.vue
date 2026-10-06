@@ -69,13 +69,13 @@ onUnmounted(() => {
 <template>
     <header
         class="sticky top-0 w-full z-50 flex items-center justify-between px-4 sm:px-16 transition-[padding,background-color] duration-300 ease-in-out"
-        :class="isScrolled ? 'py-3 bg-black/70 dark:bg-white/70 backdrop-blur-sm shadow-lg' : 'py-6 bg-transparent'">
+        :class="isScrolled ? 'py-2 bg-black/70 dark:bg-white/70 backdrop-blur-sm shadow-lg' : 'py-3 bg-transparent'">
 
         <div class="text-2xl font-bold text-white dark:text-black z-10">
             <Link href="/">
                 <img src="/images/Logo-200x200px.png" alt="Logo"
                     class="w-auto object-contain transition-all duration-300"
-                    :class="isScrolled ? 'h-12 sm:h-14' : 'h-16 sm:h-20'">
+                    :class="isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-16'">
             </Link>
         </div>
 
