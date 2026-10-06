@@ -29,7 +29,7 @@ const clients = [
 <template>
     <DefaultLayout title="About Us -" navbar-type="inverse">
         <template #meta>
-            <meta name="description" content="Meta Description Here" />
+            <meta head-key="description" name="description" content="act! digital agency is a creative & digital partner combining creativity, strategy, and technology to help brands grow, including in e-commerce." />
         </template>
 
         <template #fullwidth>

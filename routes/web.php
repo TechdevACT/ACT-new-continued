@@ -50,6 +50,30 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/sitemap.xml', function () {
+    $urls = collect(['/', '/about', '/services', '/projects', '/news', '/contact'])
+        ->map(fn ($path) => ['loc' => url($path), 'lastmod' => null]);
+
+    $news = News::where('status', 'published')->get(['slug', 'updated_at'])
+        ->map(fn ($n) => ['loc' => url('/blog/' . $n->slug), 'lastmod' => optional($n->updated_at)->toAtomString()]);
+
+    $projects = Project::get(['slug', 'updated_at'])
+        ->map(fn ($p) => ['loc' => url('/projects/' . $p->slug), 'lastmod' => optional($p->updated_at)->toAtomString()]);
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($urls->concat($news)->concat($projects) as $u) {
+        $xml .= '  <url><loc>' . e($u['loc']) . '</loc>';
+        if ($u['lastmod']) {
+            $xml .= '<lastmod>' . $u['lastmod'] . '</lastmod>';
+        }
+        $xml .= '</url>' . "\n";
+    }
+    $xml .= '</urlset>';
+
+    return response($xml, 200)->header('Content-Type', 'application/xml');
+});
+
 Route::get('/symlink', function () {
     Artisan::call('storage:link');
 });

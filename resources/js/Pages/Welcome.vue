@@ -115,7 +115,7 @@ const displaySubText = (card) => {
 <template>
     <DefaultLayout>
         <template #meta>
-            <meta name="description" content="Meta Description Here" />
+            <meta head-key="description" name="description" content="act! digital agency is a creative & digital partner combining creativity, strategy, and technology to help brands grow, including in e-commerce." />
         </template>
 
         <section class="flex flex-col pt-16 sm:pt-24 sm:pb-16 justify-center items-center animate-fade-up">
