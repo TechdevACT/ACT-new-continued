@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage; // Impor fasad Storage
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class SettingsController extends Controller
@@ -101,6 +102,8 @@ class SettingsController extends Controller
             'hero_description' => $request->description,
         ]);
 
+        Cache::forget('home.data_fe');
+
         return redirect()->back();
     }
 
@@ -117,6 +120,8 @@ class SettingsController extends Controller
             'about_title' => $request->titleAbout,
             'about_description' => $request->descriptionAbout
         ]);
+
+        Cache::forget('home.data_fe');
 
         return redirect()->back();
     }
@@ -160,6 +165,7 @@ class SettingsController extends Controller
             }
 
             DB::commit();
+            Cache::forget('home.data_fe');
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -185,6 +191,8 @@ class SettingsController extends Controller
             'expertise_heading' => $request->heading,
             'expertise_description' => $request->description
         ]);
+
+        Cache::forget('home.data_fe');
 
         return redirect()->back();
     }
@@ -243,6 +251,8 @@ class SettingsController extends Controller
             'industry_description' => $request->description
         ]);
 
+        Cache::forget('home.data_fe');
+
         return redirect()->back();
     }
 
@@ -261,6 +271,8 @@ class SettingsController extends Controller
             'blog_heading' => $request->heading,
             'blog_description' => $request->description
         ]);
+
+        Cache::forget('home.data_fe');
 
         return redirect()->back();
     }
@@ -324,6 +336,8 @@ class SettingsController extends Controller
             }
         }
 
+        Cache::forget('home.data_fe');
+
         return redirect()->back();
     }
 
@@ -350,6 +364,8 @@ class SettingsController extends Controller
                 $old->delete();
             }
         }
+
+        Cache::forget('home.data_fe');
 
         return redirect()->back();
     }
